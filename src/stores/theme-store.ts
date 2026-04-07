@@ -1,0 +1,30 @@
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+
+export type ThemeMode = "light" | "dark" | "system";
+
+interface ThemeState {
+  mode: ThemeMode;
+  setMode: (mode: ThemeMode) => void;
+}
+
+export const useThemeStore = create<ThemeState>()(
+  persist(
+    (set) => ({
+      mode: "light",
+      setMode: (mode) => set({ mode }),
+    }),
+    {
+      name: "rtttl-theme",
+    },
+  ),
+);
+
+export function getEffectiveTheme(mode: ThemeMode): "light" | "dark" {
+  if (mode === "system") {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+  return mode;
+}

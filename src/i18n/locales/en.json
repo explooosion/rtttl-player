@@ -1,0 +1,69 @@
+{
+  "app": {
+    "title": "RTTTL Player",
+    "subtitle": "Retro Ringtone Collection"
+  },
+  "nav": {
+    "collection": "Collection",
+    "favorites": "Favorites"
+  },
+  "search": {
+    "placeholder": "Search by name or artist...",
+    "noResults": "No results found",
+    "totalItems": "{{count}} items"
+  },
+  "sort": {
+    "label": "Sort",
+    "aToZ": "Title A-Z",
+    "zToA": "Title Z-A",
+    "artistAZ": "Artist A-Z",
+    "artistZA": "Artist Z-A"
+  },
+  "player": {
+    "play": "Play",
+    "pause": "Pause",
+    "resume": "Resume",
+    "stop": "Stop",
+    "nowPlaying": "Now Playing",
+    "note": "Note {{current}} / {{total}}"
+  },
+  "editor": {
+    "title": "RTTTL Editor",
+    "placeholder": "Select a ringtone or paste RTTTL code here...",
+    "playEdited": "Play Edited",
+    "copyCode": "Copy Code",
+    "copied": "Copied!",
+    "copyFailed": "Copy failed"
+  },
+  "create": {
+    "title": "Create New Ringtone",
+    "duplicateTitle": "Duplicate Ringtone",
+    "name": "Name",
+    "namePlaceholder": "Enter ringtone name",
+    "code": "RTTTL Code",
+    "codePlaceholder": "Enter RTTTL code (name:d=4,o=5,b=120:notes...)",
+    "create": "Create",
+    "cancel": "Cancel",
+    "duplicate": "Duplicate",
+    "invalidCode": "Invalid RTTTL code format",
+    "nameRequired": "Name is required"
+  },
+  "favorites": {
+    "title": "My Favorites",
+    "empty": "No favorites yet. Click the heart icon on any ringtone to add it.",
+    "remove": "Remove from favorites"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "actions": {
+    "createNew": "Create New",
+    "duplicate": "Duplicate"
+  },
+  "letters": {
+    "all": "All"
+  },
+  "loading": "Loading collection..."
+}

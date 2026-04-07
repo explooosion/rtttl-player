@@ -1,0 +1,69 @@
+{
+  "app": {
+    "title": "RTTTL 播放器",
+    "subtitle": "復古鈴聲收藏庫"
+  },
+  "nav": {
+    "collection": "收藏庫",
+    "favorites": "我的最愛"
+  },
+  "search": {
+    "placeholder": "搜尋名稱或演出者...",
+    "noResults": "找不到結果",
+    "totalItems": "共 {{count}} 項"
+  },
+  "sort": {
+    "label": "排序",
+    "aToZ": "標題 A-Z",
+    "zToA": "標題 Z-A",
+    "artistAZ": "演出者 A-Z",
+    "artistZA": "演出者 Z-A"
+  },
+  "player": {
+    "play": "播放",
+    "pause": "暫停",
+    "resume": "繼續",
+    "stop": "停止",
+    "nowPlaying": "正在播放",
+    "note": "音符 {{current}} / {{total}}"
+  },
+  "editor": {
+    "title": "RTTTL 編輯器",
+    "placeholder": "選擇一個鈴聲或在此貼上 RTTTL 代碼...",
+    "playEdited": "播放編輯版",
+    "copyCode": "複製代碼",
+    "copied": "已複製！",
+    "copyFailed": "複製失敗"
+  },
+  "create": {
+    "title": "建立新鈴聲",
+    "duplicateTitle": "複製鈴聲",
+    "name": "名稱",
+    "namePlaceholder": "輸入鈴聲名稱",
+    "code": "RTTTL 代碼",
+    "codePlaceholder": "輸入 RTTTL 代碼 (name:d=4,o=5,b=120:notes...)",
+    "create": "建立",
+    "cancel": "取消",
+    "duplicate": "複製",
+    "invalidCode": "RTTTL 代碼格式無效",
+    "nameRequired": "名稱為必填"
+  },
+  "favorites": {
+    "title": "我的最愛",
+    "empty": "尚無最愛。點擊鈴聲旁的愛心圖示即可加入。",
+    "remove": "從最愛中移除"
+  },
+  "theme": {
+    "light": "淺色",
+    "dark": "深色",
+    "system": "系統"
+  },
+  "actions": {
+    "createNew": "新建",
+    "duplicate": "複製"
+  },
+  "letters": {
+    "all": "全部"
+  },
+  "loading": "載入收藏庫中..."
+}

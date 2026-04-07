@@ -1,0 +1,110 @@
+import { Play, Pause, Square } from "lucide-react";
+import { usePlayerStore } from "@/stores/player-store";
+import { useTranslation } from "react-i18next";
+import clsx from "clsx";
+
+export function Player() {
+  const { t } = useTranslation();
+  const currentItem = usePlayerStore((s) => s.currentItem);
+  const playerState = usePlayerStore((s) => s.playerState);
+  const currentNoteIndex = usePlayerStore((s) => s.currentNoteIndex);
+  const totalNotes = usePlayerStore((s) => s.totalNotes);
+  const pause = usePlayerStore((s) => s.pause);
+  const resume = usePlayerStore((s) => s.resume);
+  const stop = usePlayerStore((s) => s.stop);
+  const playCode = usePlayerStore((s) => s.playCode);
+  const editedCode = usePlayerStore((s) => s.editedCode);
+
+  const progress =
+    totalNotes > 0 ? (currentNoteIndex / totalNotes) * 100 : 0;
+
+  return (
+    <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+      <h3 className="mb-3 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
+        {t("player.nowPlaying")}
+      </h3>
+
+      {currentItem ? (
+        <>
+          <div className="mb-2">
+            <p className="truncate font-medium text-gray-900 dark:text-white">
+              {currentItem.title}
+            </p>
+            {currentItem.artist && (
+              <p className="truncate text-sm text-gray-500 dark:text-gray-400">
+                {currentItem.artist}
+              </p>
+            )}
+          </div>
+
+          {/* Progress bar */}
+          <div className="mb-3">
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
+              <div
+                className="h-full rounded-full bg-indigo-500 transition-all duration-150"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+            {playerState === "playing" && (
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                {t("player.note", {
+                  current: currentNoteIndex + 1,
+                  total: totalNotes,
+                })}
+              </p>
+            )}
+          </div>
+
+          {/* Controls */}
+          <div className="flex items-center gap-2">
+            {playerState === "playing" ? (
+              <button
+                onClick={pause}
+                className={clsx(
+                  "flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium",
+                  "bg-indigo-600 text-white hover:bg-indigo-700",
+                )}
+              >
+                <Pause size={16} />
+                {t("player.pause")}
+              </button>
+            ) : playerState === "paused" ? (
+              <button
+                onClick={resume}
+                className={clsx(
+                  "flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium",
+                  "bg-indigo-600 text-white hover:bg-indigo-700",
+                )}
+              >
+                <Play size={16} />
+                {t("player.resume")}
+              </button>
+            ) : (
+              <button
+                onClick={() => playCode(editedCode || currentItem.code)}
+                className={clsx(
+                  "flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium",
+                  "bg-indigo-600 text-white hover:bg-indigo-700",
+                )}
+              >
+                <Play size={16} />
+                {t("player.play")}
+              </button>
+            )}
+            <button
+              onClick={stop}
+              className="flex items-center gap-1.5 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
+            >
+              <Square size={16} />
+              {t("player.stop")}
+            </button>
+          </div>
+        </>
+      ) : (
+        <p className="text-sm text-gray-400 dark:text-gray-500">
+          {t("editor.placeholder")}
+        </p>
+      )}
+    </div>
+  );
+}
