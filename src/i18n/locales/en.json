@@ -1,11 +1,73 @@
 {
   "app": {
-    "title": "RTTTL Player",
-    "subtitle": "Retro Ringtone Collection"
+    "title": "RTTTL Hub",
+    "subtitle": "Browse, Play & Create Retro Ringtones"
   },
   "nav": {
     "collection": "Collection",
-    "favorites": "Favorites"
+    "collections": "Collections",
+    "favorites": "Favorites",
+    "home": "Home"
+  },
+  "landing": {
+    "hero": {
+      "title": "RTTTL Hub",
+      "subtitle": "Explore collections of retro RTTTL ringtones. Browse, play, and create chiptunes right in your browser.",
+      "cta": "Explore Collections"
+    },
+    "features": {
+      "browse": {
+        "title": "Massive Library",
+        "description": "Explore a vast PICAXE library of classic RTTTL ringtones covering every genre."
+      },
+      "play": {
+        "title": "Play in Browser",
+        "description": "Listen to any tone instantly using the Web Audio API — no plugins required."
+      },
+      "create": {
+        "title": "Create Your Own",
+        "description": "Compose custom RTTTL ringtones with the built-in editor and share with the community."
+      },
+      "openSource": {
+        "title": "Open Source",
+        "description": "Free and open-source. Contribute on GitHub or deploy your own instance."
+      }
+    },
+    "categories": {
+      "title": "Browse by Category"
+    }
+  },
+  "collections": {
+    "title": "Collections",
+    "subtitle": "Browse ringtone collections from different sources.",
+    "browseAll": "Browse All",
+    "items": "{{count}} items",
+    "picaxe": {
+      "name": "PICAXE RTTTL",
+      "description": "A massive collection of classic RTTTL ringtones from the PICAXE library. Covers pop, rock, TV themes, Christmas tunes, and more."
+    },
+    "community": {
+      "name": "Community",
+      "description": "Ringtones created by the community. Create your own and share with everyone."
+    }
+  },
+  "categories": {
+    "all": "All",
+    "pop": "Pop",
+    "rock": "Rock",
+    "classical": "Classical",
+    "movie-tv": "Movie & TV",
+    "game": "Game",
+    "holiday": "Holiday",
+    "folk": "Folk & National",
+    "nursery": "Nursery Rhyme",
+    "alert": "Alert & Notification",
+    "original": "Original"
+  },
+  "creator": {
+    "title": "Creator Profile",
+    "works": "{{count}} works",
+    "backToCollection": "Back to Collection"
   },
   "search": {
     "placeholder": "Search by name or artist...",
@@ -33,7 +95,12 @@
     "playEdited": "Play Edited",
     "copyCode": "Copy Code",
     "copied": "Copied!",
-    "copyFailed": "Copy failed"
+    "copyFailed": "Copy failed",
+    "reset": "Reset",
+    "resetConfirmTitle": "Reset to Original",
+    "resetConfirmMessage": "This will discard all your changes and restore the original RTTTL code. Continue?",
+    "preview": "Preview",
+    "editedPreview": "Edited Preview"
   },
   "create": {
     "title": "Create New Ringtone",
@@ -42,6 +109,8 @@
     "namePlaceholder": "Enter ringtone name",
     "code": "RTTTL Code",
     "codePlaceholder": "Enter RTTTL code (name:d=4,o=5,b=120:notes...)",
+    "category": "Category",
+    "categoryPlaceholder": "Select a category",
     "create": "Create",
     "cancel": "Cancel",
     "duplicate": "Duplicate",
@@ -61,7 +130,10 @@
   },
   "actions": {
     "createNew": "Create New",
-    "duplicate": "Duplicate"
+    "duplicate": "Duplicate",
+    "showFilters": "Show Filters",
+    "hideFilters": "Hide Filters",
+    "download": "Download .rtttl"
   },
   "letters": {
     "all": "All"
@@ -70,9 +142,221 @@
   "settings": {
     "clearListened": "Clear listened history"
   },
+  "breadcrumb": {
+    "home": "Home",
+    "collections": "Collections"
+  },
   "footer": {
     "sourceCode": "GitHub",
     "reportIssue": "Issues",
-    "picaxeCollection": "PICAXE RTTTL Collection"
+    "picaxeCollection": "PICAXE RTTTL",
+    "discover": "Discover",
+    "allCollections": "All Collections",
+    "resources": "Resources",
+    "documentation": "Documentation",
+    "about": "About",
+    "aboutDescription": "RTTTL Hub is a platform for exploring and playing retro RTTTL ringtones.",
+    "copyright": "© 2026 RTTTL Hub. Trademarks and brands are the property of their respective owners.",
+    "legal": "Legal",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "cookieSettings": "Cookie Settings"
+  },
+  "cookie": {
+    "title": "Your privacy matters",
+    "description": "We use cookies to enhance your experience and analyze site traffic. 'Accept all' to consent per our Cookie and Privacy policies.",
+    "acceptAll": "Accept all",
+    "rejectAll": "Reject all",
+    "managePreferences": "Manage preferences",
+    "savePreferences": "Save preferences",
+    "necessary": "Necessary",
+    "necessaryDesc": "Essential cookies that enable basic functions like page navigation and access to secure areas.",
+    "preferences": "Preferences",
+    "preferencesDesc": "Cookies that remember your settings like language and theme preferences.",
+    "statistics": "Statistics",
+    "statisticsDesc": "Cookies that help us understand how visitors interact with the website.",
+    "alwaysActive": "Always active"
+  },
+  "legal": {
+    "lastRevised": "Last revised: {{date}}",
+    "termsTitle": "Terms & Conditions",
+    "privacyTitle": "Privacy Policy",
+    "cookieTitle": "Cookie Policy",
+    "terms": {
+      "aboutUs": "About us and these terms",
+      "welcome": "Hi, we're RTTTL Hub and welcome to our platform. We're happy to have you here and we hope you enjoy exploring retro ringtones.",
+      "aboutUsDesc": "RTTTL Hub is a platform for browsing, playing, and creating RTTTL (Ring Tone Text Transfer Language) ringtones. The platform allows users to explore a vast curated library of classic ringtones, create custom ringtones, and save favorites — all within the browser.",
+      "userTermsIntro": "By accessing and using RTTTL Hub, you acknowledge and agree that the following terms apply to your use of the platform:",
+      "userTermsA": "These RTTTL Hub User Terms;",
+      "userTermsB": "Our Privacy Policy;",
+      "userTermsC": "Our Cookie Policy;",
+      "userTermsD": "Any applicable guidelines published on our platform.",
+      "yourPrivacy": "For more information on how we handle information when you use RTTTL Hub, please see our Privacy Policy.",
+      "yourAccount": "Your account",
+      "noAccount": "RTTTL Hub currently operates without user accounts. All data (favorites, preferences, custom ringtones) is stored locally in your browser. You are responsible for managing your own local data.",
+      "futureAccount": "We may introduce account functionality in the future. If so, these terms will be updated accordingly with advance notice.",
+      "accessAndRestrictions": "Access and restrictions",
+      "access": "Subject to your compliance with these Terms, you are granted a non-exclusive, limited, non-transferable license to access and use RTTTL Hub for personal or non-commercial use.",
+      "restrictionsIntro": "You must not:",
+      "restrictionA": "Interfere with or disrupt the integrity or performance of RTTTL Hub (for example through sending mass requests, \"flooding\" servers, or introducing malicious code);",
+      "restrictionB": "Attempt to gain unauthorized access to RTTTL Hub or related systems;",
+      "restrictionC": "Use data mining, robots, or similar tools to scrape or mass-download content from RTTTL Hub;",
+      "restrictionD": "Copy, redistribute, or commercially exploit the RTTTL Hub platform or its compiled collection data without permission;",
+      "restrictionE": "Use RTTTL Hub for any illegal purpose or in violation of applicable laws.",
+      "contentAndIP": "Content and intellectual property",
+      "rtttlData": "The RTTTL ringtone data available on RTTTL Hub is sourced from publicly available collections (such as the PICAXE library) and community contributions. Individual ringtone melodies may be subject to copyright by their respective composers or rights holders.",
+      "userCreated": "Ringtones you create using the built-in editor are stored locally in your browser. You retain all rights to content you create.",
+      "platform": "The RTTTL Hub platform, including its design, code, and compilation, is the intellectual property of its creators. The source code is available on GitHub under its respective license terms.",
+      "disclaimer": "Disclaimer",
+      "disclaimerDesc": "RTTTL Hub is provided on an \"AS IS\" and \"AS AVAILABLE\" basis. We make no warranties, express or implied, regarding:",
+      "disclaimerA": "The accuracy or completeness of any ringtone data;",
+      "disclaimerB": "Uninterrupted or error-free access to the platform;",
+      "disclaimerC": "The suitability of the platform for any particular purpose;",
+      "disclaimerD": "The legality of using specific ringtone melodies in your jurisdiction.",
+      "limitation": "Limitation of liability",
+      "limitationDesc": "To the maximum extent permitted by applicable law, RTTTL Hub and its contributors shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of data arising from your use of the platform.",
+      "changesToPlatform": "Changes to the platform",
+      "changesToPlatformDesc": "We may add, change, or remove features from RTTTL Hub at any time. We may also temporarily or permanently discontinue the platform (or any part thereof) without notice.",
+      "changesToTerms": "Changes to these terms",
+      "changesToTermsDesc": "We may update these Terms from time to time. We will update the \"Last revised\" date at the top of these Terms when changes are made. By continuing to use RTTTL Hub after changes take effect, you agree to be bound by the updated Terms.",
+      "governingLaw": "Governing law",
+      "governingLawDesc": "These Terms shall be governed by and construed in accordance with the laws applicable to the jurisdiction in which the project maintainers reside.",
+      "contact": "Contact",
+      "contactDesc": "If you have questions about these Terms, please open an issue on our GitHub repository."
+    },
+    "privacy": {
+      "intro": "Hi, we're RTTTL Hub. This policy sets out how we handle information when you use our platform. It applies to all users of RTTTL Hub and all products, features, and services we may develop or make available from time to time.",
+      "scope": "Scope",
+      "scopeA": "This policy applies to the information that we collect when you use RTTTL Hub as a visitor or registered user of our platform.",
+      "scopeB": "We are committed to protecting your privacy. This policy describes what data we collect, how we use it, and your rights regarding that data.",
+      "typeOfInfo": "The type of information we collect",
+      "typeOfInfoA": "We collect certain information about visitors and users of RTTTL Hub. The most common types of information include browser type, pages visited, and interaction patterns within the application.",
+      "localStorage": "RTTTL Hub stores your preferences (theme, language), favorites, listened history, and user-created ringtones in your browser's local storage. This data never leaves your device unless you explicitly choose to share it.",
+      "analytics": "We may use anonymized analytics to understand how visitors interact with RTTTL Hub, including which pages are visited most frequently and how users navigate through the application.",
+      "howWeUse": "How we use your information",
+      "howWeUseIntro": "We use information to provide, maintain, and improve RTTTL Hub, including to:",
+      "howWeUseA": "Remember your preferences across sessions (theme, language, volume)",
+      "howWeUseB": "Save your favorite ringtones and listening history locally",
+      "howWeUseC": "Analyze aggregate usage patterns to improve the platform",
+      "howWeUseD": "Ensure the security and integrity of the service",
+      "dataStorage": "Data storage and retention",
+      "dataStorageA": "All personal preference data is stored locally in your browser using localStorage. We do not maintain server-side databases of user personal information.",
+      "dataStorageB": "You can clear all locally stored data at any time by clearing your browser's local storage or using the settings menu within the application.",
+      "thirdParty": "Third-party services",
+      "thirdPartyA": "RTTTL Hub is hosted on GitHub Pages. Please refer to GitHub's privacy policy for information about how GitHub handles data related to hosting.",
+      "thirdPartyB": "We do not sell, trade, or otherwise transfer your information to third parties. We do not use third-party advertising services.",
+      "cookies": "Cookies",
+      "cookiesDesc": "RTTTL Hub uses cookies and similar technologies to remember your preferences and improve your experience. For detailed information about our cookie practices, please see our Cookie Policy.",
+      "childrenPrivacy": "Children's privacy",
+      "childrenPrivacyDesc": "RTTTL Hub is a general-audience platform. We do not knowingly collect personal information from children under the age of 13.",
+      "yourRights": "Your rights",
+      "yourRightsIntro": "Since RTTTL Hub stores data locally in your browser, you have full control over your data. You may:",
+      "yourRightsA": "View all stored data through your browser's developer tools",
+      "yourRightsB": "Delete all stored data at any time",
+      "yourRightsC": "Export or manage your data as you see fit",
+      "changes": "Changes to this policy",
+      "changesDesc": "We may update this privacy policy from time to time. We will notify users of any material changes by updating the \"Last revised\" date at the top of this policy.",
+      "contact": "Contact",
+      "contactDesc": "If you have any questions about this privacy policy, please open an issue on our GitHub repository."
+    },
+    "cookie": {
+      "intro": "This policy explains how RTTTL Hub uses cookies and similar tracking technologies on our website.",
+      "scope": "This policy applies to the RTTTL Hub website and all related pages hosted under our domain.",
+      "whatAreCookies": "What Cookies Are",
+      "whatAreCookiesA": "Cookies are small data files that are created when you browse a website, and which are sent to your computer or mobile device where they are stored by your web browser. Cookies serve a variety of functions, including remembering your preferences, keeping you signed in, and understanding how you use a website.",
+      "whatAreCookiesB": "Similar technologies such as localStorage and sessionStorage serve comparable purposes on modern web applications. RTTTL Hub primarily uses localStorage to persist your preferences, favorites, and other settings.",
+      "whatAreCookiesC": "All references to cookies in this policy also include references to localStorage, sessionStorage, and similar browser storage mechanisms.",
+      "typesTitle": "Types of Cookies that we use",
+      "typesIntro": "RTTTL Hub uses the following categories of cookies and storage:",
+      "necessary": "Essential cookies that enable basic functions like page navigation, website security, and access to core features. These cannot be disabled as the platform requires them to function.",
+      "preferences": "These cookies and localStorage entries remember your settings such as:",
+      "prefA": "Language preference",
+      "prefB": "Theme setting (light / dark / system)",
+      "prefC": "Volume and playback preferences",
+      "prefD": "Cookie consent preferences",
+      "statistics": "If enabled, these cookies help us understand how visitors interact with the website, including which parts are visited more frequently, so we can improve the experience.",
+      "infoCollected": "Information that cookies collect",
+      "infoCollectedIntro": "The information that cookies and local storage on RTTTL Hub collect includes:",
+      "infoA": "Pages visited and navigation patterns within the application;",
+      "infoB": "Ringtones you have listened to (listened history);",
+      "infoC": "Your favorites list;",
+      "infoD": "Custom ringtones you have created;",
+      "infoE": "Your theme and language preferences;",
+      "infoF": "Cookie consent choices.",
+      "managePrefs": "How to manage your preferences",
+      "managePrefsA": "You can manage your cookie preferences at any time by clicking the \"Cookie Settings\" link in the footer of any page on RTTTL Hub. This will open the cookie consent banner where you can toggle your preferences.",
+      "managePrefsB": "You can also manage cookies directly through your web browser's settings. Most browsers allow you to block or delete cookies. Please note that disabling cookies may affect the functionality of RTTTL Hub.",
+      "managePrefsC": "To clear all locally stored data (favorites, history, preferences), you can use the Settings menu within the application or clear your browser's local storage for this site.",
+      "changes": "Changes to this policy",
+      "changesDesc": "We may update this Cookie Policy from time to time. Changes will be reflected by updating the \"Last revised\" date at the top of this page.",
+      "furtherInfo": "Further information",
+      "furtherInfoDesc": "Further information about how we handle your data is set out in our Privacy Policy.",
+      "contact": "Contact",
+      "contactDesc": "If you have any questions about our cookie practices, please open an issue on our GitHub repository."
+    }
+  },
+  "confirm": {
+    "ok": "Confirm",
+    "cancel": "Cancel"
+  },
+  "megaMenu": {
+    "quickLinks": "Quick Links",
+    "popular": "Popular",
+    "createNew": "Create New"
+  },
+  "auth": {
+    "signInTitle": "Sign in to RTTTL Hub",
+    "signInDescription": "Browse, play, and create retro RTTTL ringtones. Sign in to save your favorites and custom tones.",
+    "continueWithGoogle": "Continue with Google",
+    "or": "OR",
+    "email": "Email",
+    "password": "Password",
+    "forgot": "Forgot?",
+    "signIn": "Sign in",
+    "signOut": "Sign Out",
+    "noAccount": "New here?",
+    "createAccount": "Create an account",
+    "termsNotice": "By continuing, you agree to our Terms of Use and Privacy Policy.",
+    "createAccountTitle": "Create your account",
+    "createAccountDescription": "Sign up with Google to get started. You can set a password for email login afterwards.",
+    "registerWithGoogle": "Use your Google account to create an RTTTL Hub account.",
+    "haveAccount": "Already have an account?",
+    "setPasswordTitle": "Set a password",
+    "registeredAs": "Registered as:",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password",
+    "passwordPlaceholder": "At least 6 characters",
+    "setPassword": "Set password",
+    "skipForNow": "Skip for now",
+    "passwordTooShort": "Password must be at least 6 characters",
+    "passwordMismatch": "Passwords do not match"
+  },
+  "account": {
+    "title": "Account",
+    "settings": "Account Settings",
+    "information": "Account Information",
+    "editProfile": "Edit profile",
+    "email": "Email",
+    "helpCenter": "Help center",
+    "profileDetails": "Account Details",
+    "profileNotice": "Some fields may be managed by your login provider.",
+    "displayName": "Display Name",
+    "saveChanges": "Save Changes",
+    "setPassword": "Set Password",
+    "changePassword": "Change Password",
+    "currentPassword": "Current Password",
+    "passwordSuccess": "Password updated successfully."
+  },
+  "pagination": {
+    "pageInfo": "Page {{current}} / {{total}}"
+  },
+  "language": {
+    "en": "English",
+    "zh-TW": "繁體中文",
+    "zh-CN": "简体中文",
+    "zh-HK": "香港繁體",
+    "ja": "日本語",
+    "ko": "한국어"
   }
 }

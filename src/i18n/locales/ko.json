@@ -1,0 +1,362 @@
+{
+  "app": {
+    "title": "RTTTL Hub",
+    "subtitle": "레트로 벨소리 탐색, 재생 & 만들기"
+  },
+  "nav": {
+    "collection": "컬렉션",
+    "collections": "컬렉션",
+    "favorites": "즐겨찾기",
+    "home": "홈"
+  },
+  "landing": {
+    "hero": {
+      "title": "RTTTL Hub",
+      "subtitle": "레트로 RTTTL 벨소리 컬렉션을 탐색하세요. 브라우저에서 칩튠을 탐색, 재생, 만들 수 있습니다.",
+      "cta": "컬렉션 탐색"
+    },
+    "features": {
+      "browse": {
+        "title": "대규모 라이브러리",
+        "description": "다양한 장르의 PICAXE 클래식 RTTTL 벨소리 라이브러리를 탐색하세요."
+      },
+      "play": {
+        "title": "브라우저에서 재생",
+        "description": "Web Audio API를 사용하여 모든 벨소리를 즉시 들어보세요 — 플러그인 불필요."
+      },
+      "create": {
+        "title": "나만의 벨소리 만들기",
+        "description": "내장 에디터로 맞춤 RTTTL 벨소리를 만들고 커뮤니티와 공유하세요."
+      },
+      "openSource": {
+        "title": "오픈 소스",
+        "description": "무료 오픈 소스. GitHub에서 기여하거나 나만의 인스턴스를 배포하세요."
+      }
+    },
+    "categories": {
+      "title": "카테고리별 탐색"
+    }
+  },
+  "collections": {
+    "title": "컬렉션",
+    "subtitle": "다양한 소스에서 벨소리 컬렉션을 탐색하세요.",
+    "browseAll": "전체 보기",
+    "items": "{{count}}개 항목",
+    "picaxe": {
+      "name": "PICAXE 컬렉션",
+      "description": "PICAXE 라이브러리의 방대한 클래식 RTTTL 벨소리 컬렉션. 팝, 록, TV 테마, 크리스마스 노래 등."
+    },
+    "community": {
+      "name": "커뮤니티",
+      "description": "커뮤니티가 만든 벨소리. 나만의 벨소리를 만들고 공유하세요."
+    }
+  },
+  "categories": {
+    "all": "전체",
+    "pop": "팝",
+    "rock": "록",
+    "classical": "클래식",
+    "movie-tv": "영화 & TV",
+    "game": "게임",
+    "holiday": "홀리데이",
+    "folk": "민요 & 국가",
+    "nursery": "동요",
+    "alert": "알림음",
+    "original": "오리지널"
+  },
+  "creator": {
+    "title": "크리에이터 프로필",
+    "works": "{{count}}개 작품",
+    "backToCollection": "컬렉션으로 돌아가기"
+  },
+  "search": {
+    "placeholder": "이름 또는 아티스트로 검색...",
+    "noResults": "결과를 찾을 수 없습니다",
+    "totalItems": "{{count}}개 항목"
+  },
+  "sort": {
+    "label": "정렬",
+    "aToZ": "제목 A-Z",
+    "zToA": "제목 Z-A",
+    "artistAZ": "아티스트 A-Z",
+    "artistZA": "아티스트 Z-A"
+  },
+  "player": {
+    "play": "재생",
+    "pause": "일시정지",
+    "resume": "계속",
+    "stop": "정지",
+    "nowPlaying": "재생 중",
+    "note": "노트 {{current}} / {{total}}"
+  },
+  "editor": {
+    "title": "RTTTL 에디터",
+    "placeholder": "벨소리를 선택하거나 RTTTL 코드를 여기에 붙여넣기...",
+    "playEdited": "편집본 재생",
+    "copyCode": "코드 복사",
+    "copied": "복사됨!",
+    "copyFailed": "복사 실패",
+    "reset": "초기화",
+    "resetConfirmTitle": "원본으로 복원",
+    "resetConfirmMessage": "모든 변경 사항이 삭제되고 원래 RTTTL 코드로 복원됩니다. 계속하시겠습니까?",
+    "preview": "미리보기",
+    "editedPreview": "편집 미리보기"
+  },
+  "create": {
+    "title": "새 벨소리 만들기",
+    "duplicateTitle": "벨소리 복제",
+    "name": "이름",
+    "namePlaceholder": "벨소리 이름 입력",
+    "code": "RTTTL 코드",
+    "codePlaceholder": "RTTTL 코드 입력 (name:d=4,o=5,b=120:notes...)",
+    "category": "카테고리",
+    "categoryPlaceholder": "카테고리 선택",
+    "create": "만들기",
+    "cancel": "취소",
+    "duplicate": "복제",
+    "invalidCode": "잘못된 RTTTL 코드 형식",
+    "nameRequired": "이름은 필수입니다",
+    "localStorageHint": "만든 벨소리는 브라우저의 로컬 저장소에 저장됩니다."
+  },
+  "favorites": {
+    "title": "즐겨찾기",
+    "empty": "아직 즐겨찾기가 없습니다. 벨소리의 하트 아이콘을 클릭하여 추가하세요.",
+    "remove": "즐겨찾기에서 삭제"
+  },
+  "theme": {
+    "light": "라이트",
+    "dark": "다크",
+    "system": "시스템"
+  },
+  "actions": {
+    "createNew": "새로 만들기",
+    "duplicate": "복제",
+    "showFilters": "필터 표시",
+    "hideFilters": "필터 숨기기",
+    "download": ".rtttl 다운로드"
+  },
+  "letters": {
+    "all": "전체"
+  },
+  "loading": "컬렉션 로딩 중...",
+  "settings": {
+    "clearListened": "청취 기록 삭제"
+  },
+  "breadcrumb": {
+    "home": "홈",
+    "collections": "컬렉션"
+  },
+  "footer": {
+    "sourceCode": "GitHub",
+    "reportIssue": "Issues",
+    "picaxeCollection": "PICAXE RTTTL 컬렉션",
+    "discover": "탐색",
+    "allCollections": "전체 컬렉션",
+    "resources": "리소스",
+    "documentation": "문서",
+    "about": "소개",
+    "aboutDescription": "RTTTL Hub는 레트로 RTTTL 벨소리를 탐색하고 재생하는 플랫폼입니다.",
+    "copyright": "© 2026 RTTTL Hub. 상표 및 브랜드는 각 소유자에게 귀속됩니다.",
+    "legal": "법적 고지",
+    "terms": "이용약관",
+    "privacy": "개인정보처리방침",
+    "cookies": "쿠키 정책",
+    "cookieSettings": "쿠키 설정"
+  },
+  "cookie": {
+    "title": "개인정보 보호",
+    "description": "경험 향상 및 사이트 트래픽 분석을 위해 쿠키를 사용합니다. '모두 수락'을 클릭하면 쿠키 및 개인정보처리방침에 동의하게 됩니다.",
+    "acceptAll": "모두 수락",
+    "rejectAll": "모두 거부",
+    "managePreferences": "설정 관리",
+    "savePreferences": "설정 저장",
+    "necessary": "필수 쿠키",
+    "necessaryDesc": "페이지 탐색 및 보안 영역 접근과 같은 기본 기능을 활성화하는 필수 쿠키.",
+    "preferences": "환경설정",
+    "preferencesDesc": "언어 및 테마 설정과 같은 사용자 설정을 기억하는 쿠키.",
+    "statistics": "통계",
+    "statisticsDesc": "방문자가 웹사이트와 어떻게 상호작용하는지 이해하는 데 도움이 되는 쿠키.",
+    "alwaysActive": "항상 활성"
+  },
+  "legal": {
+    "lastRevised": "최종 수정: {{date}}",
+    "termsTitle": "이용약관",
+    "privacyTitle": "개인정보처리방침",
+    "cookieTitle": "쿠키 정책",
+    "terms": {
+      "aboutUs": "우리에 대해 그리고 이 약관",
+      "welcome": "안녕하세요, RTTTL Hub입니다. 우리 플랫폼에 오신 것을 환영합니다. 레트로 벨소리 탐색을 즐기시길 바랍니다.",
+      "aboutUsDesc": "RTTTL Hub는 RTTTL(Ring Tone Text Transfer Language) 벨소리를 탐색, 재생, 만들기 위한 플랫폼입니다. 방대한 클래식 벨소리 라이브러리 탐색, 맞춤 벨소리 만들기, 즐겨찾기 저장 — 모두 브라우저에서 가능합니다.",
+      "userTermsIntro": "RTTTL Hub에 접속하고 사용함으로써, 다음 약관이 플랫폼 사용에 적용됨을 확인하고 동의합니다:",
+      "userTermsA": "이 RTTTL Hub 사용자 약관;",
+      "userTermsB": "우리의 개인정보처리방침;",
+      "userTermsC": "우리의 쿠키 정책;",
+      "userTermsD": "플랫폼에 게시된 적용 가능한 가이드라인.",
+      "yourPrivacy": "RTTTL Hub 사용 시 정보 처리에 대한 자세한 내용은 개인정보처리방침을 참조하세요.",
+      "yourAccount": "계정",
+      "noAccount": "RTTTL Hub는 현재 사용자 계정 없이 운영됩니다. 모든 데이터(즐겨찾기, 설정, 맞춤 벨소리)는 브라우저의 로컬 저장소에 저장됩니다. 로컬 데이터 관리는 사용자의 책임입니다.",
+      "futureAccount": "향후 계정 기능을 도입할 수 있습니다. 그 경우, 사전 통지 후 약관을 그에 맞게 업데이트합니다.",
+      "accessAndRestrictions": "접근 및 제한",
+      "access": "약관 준수를 전제로, 개인적 또는 비상업적 사용을 위한 비독점적, 제한적, 양도 불가능한 라이선스가 부여됩니다.",
+      "restrictionsIntro": "다음 행위는 금지됩니다:",
+      "restrictionA": "RTTTL Hub의 무결성이나 성능을 방해하거나 교란하는 행위(예: 대량 요청 전송, 서버 \"플러딩\", 악성 코드 유포);",
+      "restrictionB": "RTTTL Hub 또는 관련 시스템에 무단 접근을 시도하는 행위;",
+      "restrictionC": "데이터 마이닝, 로봇 또는 유사 도구를 사용하여 RTTTL Hub의 콘텐츠를 스크래핑하거나 대량 다운로드하는 행위;",
+      "restrictionD": "허가 없이 RTTTL Hub 플랫폼 또는 컴파일된 컬렉션 데이터를 복사, 재배포 또는 상업적으로 이용하는 행위;",
+      "restrictionE": "RTTTL Hub를 불법적 목적으로, 또는 적용 법률을 위반하여 사용하는 행위.",
+      "contentAndIP": "콘텐츠 및 지적 재산",
+      "rtttlData": "RTTTL Hub에서 이용 가능한 RTTTL 벨소리 데이터는 공개적으로 사용 가능한 컬렉션(PICAXE 라이브러리 등) 및 커뮤니티 기여에서 제공됩니다. 개별 벨소리 멜로디는 각 작곡자 또는 권리자의 저작권 대상이 될 수 있습니다.",
+      "userCreated": "내장 에디터를 사용하여 만든 벨소리는 브라우저에 로컬 저장됩니다. 만든 콘텐츠에 대한 모든 권리는 사용자에게 있습니다.",
+      "platform": "RTTTL Hub 플랫폼(디자인, 코드, 컴파일 포함)은 제작자의 지적 재산입니다. 소스 코드는 GitHub에서 각 라이선스 조건에 따라 이용 가능합니다.",
+      "disclaimer": "면책 조항",
+      "disclaimerDesc": "RTTTL Hub는 \"있는 그대로\" 및 \"이용 가능한\" 기반으로 제공됩니다. 다음에 관하여 명시적이든 묵시적이든 어떠한 보증도 하지 않습니다:",
+      "disclaimerA": "벨소리 데이터의 정확성 또는 완전성;",
+      "disclaimerB": "플랫폼에 대한 중단 없는 또는 오류 없는 접근;",
+      "disclaimerC": "특정 목적에 대한 플랫폼의 적합성;",
+      "disclaimerD": "관할 지역에서 특정 벨소리 멜로디 사용의 합법성.",
+      "limitation": "책임 제한",
+      "limitationDesc": "적용 법률이 허용하는 최대 범위 내에서, RTTTL Hub 및 기여자는 플랫폼 사용으로 인한 간접적, 부수적, 특별한, 결과적 또는 징벌적 손해, 또는 데이터 손실에 대해 책임을 지지 않습니다.",
+      "changesToPlatform": "플랫폼 변경",
+      "changesToPlatformDesc": "RTTTL Hub의 기능을 언제든지 추가, 변경 또는 제거할 수 있습니다. 또한 통지 없이 플랫폼(또는 그 일부)을 일시적 또는 영구적으로 중단할 수 있습니다.",
+      "changesToTerms": "약관 변경",
+      "changesToTermsDesc": "이 약관을 수시로 업데이트할 수 있습니다. 변경 시 약관 상단의 \"최종 수정\" 날짜를 업데이트합니다. 변경 적용 후 RTTTL Hub를 계속 사용하면 업데이트된 약관에 동의하는 것으로 간주됩니다.",
+      "governingLaw": "준거법",
+      "governingLawDesc": "이 약관은 프로젝트 유지 관리자가 거주하는 관할 지역의 적용 법률에 따라 규율되고 해석됩니다.",
+      "contact": "문의",
+      "contactDesc": "이 약관에 대한 질문이 있으시면 GitHub 저장소에서 Issue를 열어주세요."
+    },
+    "privacy": {
+      "intro": "안녕하세요, RTTTL Hub입니다. 이 정책은 플랫폼 사용 시 정보를 어떻게 처리하는지 설명합니다. RTTTL Hub의 모든 사용자와 수시로 개발하거나 제공하는 모든 제품, 기능, 서비스에 적용됩니다.",
+      "scope": "범위",
+      "scopeA": "이 정책은 RTTTL Hub를 방문자 또는 등록 사용자로 사용할 때 수집하는 정보에 적용됩니다.",
+      "scopeB": "우리는 개인정보 보호에 최선을 다하고 있습니다. 이 정책은 수집하는 데이터, 사용 방법, 데이터에 관한 권리를 설명합니다.",
+      "typeOfInfo": "수집하는 정보 유형",
+      "typeOfInfoA": "RTTTL Hub 방문자 및 사용자에 대한 특정 정보를 수집합니다. 가장 일반적인 정보 유형에는 브라우저 유형, 방문 페이지, 애플리케이션 내 상호작용 패턴이 포함됩니다.",
+      "localStorage": "RTTTL Hub는 설정(테마, 언어), 즐겨찾기, 청취 기록, 사용자가 만든 벨소리를 브라우저 로컬 저장소에 저장합니다. 명시적으로 공유를 선택하지 않는 한 이 데이터는 장치를 떠나지 않습니다.",
+      "analytics": "RTTTL Hub와의 방문자 상호작용을 이해하기 위해 익명화된 분석을 사용할 수 있습니다. 여기에는 가장 자주 방문하는 페이지와 사용자가 애플리케이션을 탐색하는 방법이 포함됩니다.",
+      "howWeUse": "정보 사용 방법",
+      "howWeUseIntro": "RTTTL Hub를 제공, 유지, 개선하기 위해 정보를 사용합니다:",
+      "howWeUseA": "세션 간 설정 기억 (테마, 언어, 볼륨)",
+      "howWeUseB": "즐겨찾기 벨소리와 청취 기록을 로컬에 저장",
+      "howWeUseC": "플랫폼 개선을 위한 집계 사용 패턴 분석",
+      "howWeUseD": "서비스의 보안과 무결성 보장",
+      "dataStorage": "데이터 저장 및 보관",
+      "dataStorageA": "모든 개인 설정 데이터는 localStorage를 사용하여 브라우저에 로컬 저장됩니다. 사용자 개인정보의 서버 측 데이터베이스는 유지하지 않습니다.",
+      "dataStorageB": "브라우저의 로컬 저장소를 지우거나 애플리케이션 내 설정 메뉴를 사용하여 언제든지 모든 로컬 저장 데이터를 삭제할 수 있습니다.",
+      "thirdParty": "제3자 서비스",
+      "thirdPartyA": "RTTTL Hub는 GitHub Pages에서 호스팅됩니다. GitHub가 호스팅 관련 데이터를 어떻게 처리하는지에 대해서는 GitHub의 개인정보처리방침을 참조하세요.",
+      "thirdPartyB": "정보를 제3자에게 판매, 거래 또는 양도하지 않습니다. 제3자 광고 서비스를 사용하지 않습니다.",
+      "cookies": "쿠키",
+      "cookiesDesc": "RTTTL Hub는 설정을 기억하고 경험을 향상시키기 위해 쿠키 및 유사 기술을 사용합니다. 쿠키 관행에 대한 자세한 내용은 쿠키 정책을 참조하세요.",
+      "childrenPrivacy": "아동 개인정보 보호",
+      "childrenPrivacyDesc": "RTTTL Hub는 일반 대중용 플랫폼입니다. 13세 미만 아동의 개인정보를 고의로 수집하지 않습니다.",
+      "yourRights": "귀하의 권리",
+      "yourRightsIntro": "RTTTL Hub는 브라우저에 데이터를 로컬 저장하므로, 데이터에 대한 완전한 통제권을 갖습니다:",
+      "yourRightsA": "브라우저 개발자 도구를 통해 모든 저장 데이터 확인",
+      "yourRightsB": "언제든지 모든 저장 데이터 삭제",
+      "yourRightsC": "필요에 따라 데이터 내보내기 또는 관리",
+      "changes": "정책 변경",
+      "changesDesc": "이 개인정보처리방침을 수시로 업데이트할 수 있습니다. 중요한 변경 사항은 정책 상단의 \"최종 수정\" 날짜를 업데이트하여 알려드립니다.",
+      "contact": "문의",
+      "contactDesc": "이 개인정보처리방침에 대한 질문이 있으시면 GitHub 저장소에서 Issue를 열어주세요."
+    },
+    "cookie": {
+      "intro": "이 정책은 RTTTL Hub가 웹사이트에서 쿠키 및 유사 추적 기술을 어떻게 사용하는지 설명합니다.",
+      "scope": "이 정책은 RTTTL Hub 웹사이트와 도메인에서 호스팅되는 모든 관련 페이지에 적용됩니다.",
+      "whatAreCookies": "쿠키란",
+      "whatAreCookiesA": "쿠키는 웹사이트를 탐색할 때 생성되는 작은 데이터 파일로, 컴퓨터나 모바일 기기에 전송되어 웹 브라우저에 의해 저장됩니다. 쿠키는 설정 기억, 로그인 유지, 웹사이트 사용 방법 이해 등 다양한 기능을 수행합니다.",
+      "whatAreCookiesB": "localStorage 및 sessionStorage와 같은 유사 기술은 현대 웹 애플리케이션에서 비슷한 목적을 수행합니다. RTTTL Hub는 주로 localStorage를 사용하여 설정, 즐겨찾기 및 기타 설정을 유지합니다.",
+      "whatAreCookiesC": "이 정책에서 쿠키에 대한 모든 참조에는 localStorage, sessionStorage 및 유사 브라우저 저장 메커니즘에 대한 참조도 포함됩니다.",
+      "typesTitle": "사용하는 쿠키 유형",
+      "typesIntro": "RTTTL Hub는 다음 카테고리의 쿠키와 저장소를 사용합니다:",
+      "necessary": "페이지 탐색, 웹사이트 보안, 핵심 기능 접근과 같은 기본 기능을 활성화하는 필수 쿠키. 플랫폼 작동에 필요하므로 비활성화할 수 없습니다.",
+      "preferences": "이 쿠키와 localStorage 항목은 다음과 같은 설정을 기억합니다:",
+      "prefA": "언어 설정",
+      "prefB": "테마 설정 (라이트 / 다크 / 시스템)",
+      "prefC": "볼륨 및 재생 설정",
+      "prefD": "쿠키 동의 설정",
+      "statistics": "활성화된 경우, 이 쿠키는 웹사이트의 어떤 부분이 더 자주 방문되는지 등 방문자가 웹사이트와 어떻게 상호작용하는지 이해하는 데 도움이 됩니다.",
+      "infoCollected": "쿠키가 수집하는 정보",
+      "infoCollectedIntro": "RTTTL Hub의 쿠키와 로컬 저장소가 수집하는 정보는 다음과 같습니다:",
+      "infoA": "애플리케이션 내 방문 페이지와 탐색 패턴;",
+      "infoB": "청취한 벨소리 (청취 기록);",
+      "infoC": "즐겨찾기 목록;",
+      "infoD": "만든 맞춤 벨소리;",
+      "infoE": "테마 및 언어 설정;",
+      "infoF": "쿠키 동의 선택.",
+      "managePrefs": "설정 관리 방법",
+      "managePrefsA": "RTTTL Hub의 아무 페이지 하단에 있는 \"쿠키 설정\" 링크를 클릭하여 언제든지 쿠키 설정을 관리할 수 있습니다. 쿠키 동의 배너가 열리며 설정을 전환할 수 있습니다.",
+      "managePrefsB": "웹 브라우저 설정에서 직접 쿠키를 관리할 수도 있습니다. 대부분의 브라우저에서 쿠키 차단 또는 삭제가 가능합니다. 쿠키를 비활성화하면 RTTTL Hub의 기능에 영향을 줄 수 있습니다.",
+      "managePrefsC": "모든 로컬 저장 데이터(즐겨찾기, 기록, 설정)를 삭제하려면 애플리케이션 내 설정 메뉴를 사용하거나 이 사이트의 브라우저 로컬 저장소를 삭제하세요.",
+      "changes": "정책 변경",
+      "changesDesc": "이 쿠키 정책을 수시로 업데이트할 수 있습니다. 변경 사항은 이 페이지 상단의 \"최종 수정\" 날짜 업데이트에 반영됩니다.",
+      "furtherInfo": "추가 정보",
+      "furtherInfoDesc": "데이터 처리에 대한 자세한 내용은 개인정보처리방침을 참조하세요.",
+      "contact": "문의",
+      "contactDesc": "쿠키 관행에 대한 질문이 있으시면 GitHub 저장소에서 Issue를 열어주세요."
+    }
+  },
+  "confirm": {
+    "ok": "확인",
+    "cancel": "취소"
+  },
+  "megaMenu": {
+    "quickLinks": "빠른 링크",
+    "popular": "인기",
+    "createNew": "새로 만들기"
+  },
+  "auth": {
+    "signInTitle": "RTTTL Hub 로그인",
+    "signInDescription": "레트로 RTTTL 벨소리를 탐색, 재생 및 생성하세요. 로그인하여 즐겨찾기와 커스텀 톤을 저장하세요.",
+    "continueWithGoogle": "Google로 계속",
+    "or": "또는",
+    "email": "이메일",
+    "password": "비밀번호",
+    "forgot": "비밀번호 찾기",
+    "signIn": "로그인",
+    "signOut": "로그아웃",
+    "noAccount": "계정이 없으신가요?",
+    "createAccount": "계정 만들기",
+    "termsNotice": "계속하면 이용약관 및 개인정보 처리방침에 동의하는 것입니다.",
+    "createAccountTitle": "계정 만들기",
+    "createAccountDescription": "Google 계정으로 가입하세요. 이후 이메일 로그인을 위한 비밀번호를 설정할 수 있습니다.",
+    "registerWithGoogle": "Google 계정으로 RTTTL Hub 계정을 만드세요.",
+    "haveAccount": "이미 계정이 있으신가요?",
+    "setPasswordTitle": "비밀번호 설정",
+    "registeredAs": "등록된 이메일:",
+    "newPassword": "새 비밀번호",
+    "confirmPassword": "비밀번호 확인",
+    "passwordPlaceholder": "6자 이상",
+    "setPassword": "비밀번호 설정",
+    "skipForNow": "나중에 하기",
+    "passwordTooShort": "비밀번호는 6자 이상이어야 합니다",
+    "passwordMismatch": "비밀번호가 일치하지 않습니다"
+  },
+  "account": {
+    "title": "계정",
+    "settings": "계정 설정",
+    "information": "계정 정보",
+    "editProfile": "프로필 편집",
+    "email": "이메일",
+    "helpCenter": "도움말 센터",
+    "profileDetails": "계정 상세",
+    "profileNotice": "일부 필드는 로그인 제공자가 관리합니다.",
+    "displayName": "표시 이름",
+    "saveChanges": "변경사항 저장",
+    "setPassword": "비밀번호 설정",
+    "changePassword": "비밀번호 변경",
+    "currentPassword": "현재 비밀번호",
+    "passwordSuccess": "비밀번호가 성공적으로 업데이트되었습니다."
+  },
+  "pagination": {
+    "pageInfo": "{{current}} / {{total}} 페이지"
+  },
+  "language": {
+    "en": "English",
+    "zh-TW": "繁體中文",
+    "zh-CN": "简体中文",
+    "zh-HK": "香港繁體",
+    "ja": "日本語",
+    "ko": "한국어"
+  }
+}

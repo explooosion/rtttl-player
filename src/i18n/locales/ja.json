@@ -1,0 +1,362 @@
+{
+  "app": {
+    "title": "RTTTL Hub",
+    "subtitle": "レトロ着信音を閲覧・再生・作成"
+  },
+  "nav": {
+    "collection": "コレクション",
+    "collections": "コレクション",
+    "favorites": "お気に入り",
+    "home": "ホーム"
+  },
+  "landing": {
+    "hero": {
+      "title": "RTTTL Hub",
+      "subtitle": "レトロ RTTTL 着信音コレクションを探索。ブラウザで閲覧・再生・チップチューンを作成。",
+      "cta": "コレクションを探索"
+    },
+    "features": {
+      "browse": {
+        "title": "大規模ライブラリ",
+        "description": "あらゆるジャンルのクラシック RTTTL 着信音を収録した PICAXE ライブラリを探索。"
+      },
+      "play": {
+        "title": "ブラウザで再生",
+        "description": "Web Audio API を使って任意の着信音を即座に試聴 — プラグイン不要。"
+      },
+      "create": {
+        "title": "オリジナルを作成",
+        "description": "内蔵エディタでカスタム RTTTL 着信音を作成し、コミュニティと共有。"
+      },
+      "openSource": {
+        "title": "オープンソース",
+        "description": "無料でオープンソース。GitHub でコントリビュートまたは独自のインスタンスをデプロイ。"
+      }
+    },
+    "categories": {
+      "title": "カテゴリー別に閲覧"
+    }
+  },
+  "collections": {
+    "title": "コレクション",
+    "subtitle": "さまざまなソースから着信音コレクションを閲覧。",
+    "browseAll": "すべて閲覧",
+    "items": "{{count}} 件",
+    "picaxe": {
+      "name": "PICAXE コレクション",
+      "description": "PICAXE ライブラリの膨大なクラシック RTTTL 着信音コレクション。ポップ、ロック、テレビテーマ、クリスマスソングなど。"
+    },
+    "community": {
+      "name": "コミュニティ",
+      "description": "コミュニティが作成した着信音。あなたのオリジナルを作成して共有しましょう。"
+    }
+  },
+  "categories": {
+    "all": "すべて",
+    "pop": "ポップ",
+    "rock": "ロック",
+    "classical": "クラシック",
+    "movie-tv": "映画・テレビ",
+    "game": "ゲーム",
+    "holiday": "ホリデー",
+    "folk": "フォーク・国歌",
+    "nursery": "童謡",
+    "alert": "アラート・通知",
+    "original": "オリジナル"
+  },
+  "creator": {
+    "title": "クリエイタープロフィール",
+    "works": "{{count}} 作品",
+    "backToCollection": "コレクションに戻る"
+  },
+  "search": {
+    "placeholder": "名前またはアーティストで検索...",
+    "noResults": "結果が見つかりません",
+    "totalItems": "{{count}} 件"
+  },
+  "sort": {
+    "label": "並び替え",
+    "aToZ": "タイトル A-Z",
+    "zToA": "タイトル Z-A",
+    "artistAZ": "アーティスト A-Z",
+    "artistZA": "アーティスト Z-A"
+  },
+  "player": {
+    "play": "再生",
+    "pause": "一時停止",
+    "resume": "再開",
+    "stop": "停止",
+    "nowPlaying": "再生中",
+    "note": "ノート {{current}} / {{total}}"
+  },
+  "editor": {
+    "title": "RTTTL エディタ",
+    "placeholder": "着信音を選択するか、RTTTL コードをここに貼り付け...",
+    "playEdited": "編集版を再生",
+    "copyCode": "コードをコピー",
+    "copied": "コピーしました！",
+    "copyFailed": "コピーに失敗しました",
+    "reset": "リセット",
+    "resetConfirmTitle": "オリジナルに戻す",
+    "resetConfirmMessage": "すべての変更が破棄され、元の RTTTL コードに復元されます。続行しますか？",
+    "preview": "プレビュー",
+    "editedPreview": "編集プレビュー"
+  },
+  "create": {
+    "title": "新しい着信音を作成",
+    "duplicateTitle": "着信音を複製",
+    "name": "名前",
+    "namePlaceholder": "着信音の名前を入力",
+    "code": "RTTTL コード",
+    "codePlaceholder": "RTTTL コードを入力 (name:d=4,o=5,b=120:notes...)",
+    "category": "カテゴリ",
+    "categoryPlaceholder": "カテゴリを選択",
+    "create": "作成",
+    "cancel": "キャンセル",
+    "duplicate": "複製",
+    "invalidCode": "無効な RTTTL コード形式",
+    "nameRequired": "名前は必須です",
+    "localStorageHint": "作成した着信音はブラウザのローカルストレージに保存されます。"
+  },
+  "favorites": {
+    "title": "お気に入り",
+    "empty": "お気に入りはまだありません。着信音のハートアイコンをクリックして追加してください。",
+    "remove": "お気に入りから削除"
+  },
+  "theme": {
+    "light": "ライト",
+    "dark": "ダーク",
+    "system": "システム"
+  },
+  "actions": {
+    "createNew": "新規作成",
+    "duplicate": "複製",
+    "showFilters": "フィルタを表示",
+    "hideFilters": "フィルタを非表示",
+    "download": ".rtttl をダウンロード"
+  },
+  "letters": {
+    "all": "すべて"
+  },
+  "loading": "コレクションを読み込み中...",
+  "settings": {
+    "clearListened": "試聴履歴をクリア"
+  },
+  "breadcrumb": {
+    "home": "ホーム",
+    "collections": "コレクション"
+  },
+  "footer": {
+    "sourceCode": "GitHub",
+    "reportIssue": "Issues",
+    "picaxeCollection": "PICAXE RTTTL コレクション",
+    "discover": "探索",
+    "allCollections": "すべてのコレクション",
+    "resources": "リソース",
+    "documentation": "ドキュメント",
+    "about": "概要",
+    "aboutDescription": "RTTTL Hub はレトロ RTTTL 着信音を探索・再生するためのプラットフォームです。",
+    "copyright": "© 2026 RTTTL Hub. 商標およびブランドはそれぞれの所有者に帰属します。",
+    "legal": "法的情報",
+    "terms": "利用規約",
+    "privacy": "プライバシーポリシー",
+    "cookies": "Cookie ポリシー",
+    "cookieSettings": "Cookie 設定"
+  },
+  "cookie": {
+    "title": "プライバシーについて",
+    "description": "私たちは体験の向上とサイトトラフィックの分析のために Cookie を使用しています。「すべて同意」をクリックすると、Cookie およびプライバシーポリシーに同意したことになります。",
+    "acceptAll": "すべて同意",
+    "rejectAll": "すべて拒否",
+    "managePreferences": "設定を管理",
+    "savePreferences": "設定を保存",
+    "necessary": "必須 Cookie",
+    "necessaryDesc": "ページナビゲーションやセキュアエリアへのアクセスなどの基本機能を有効にする必須 Cookie。",
+    "preferences": "環境設定",
+    "preferencesDesc": "言語やテーマなどの設定を記憶する Cookie。",
+    "statistics": "統計",
+    "statisticsDesc": "訪問者がウェブサイトとどのように対話しているかを理解するための Cookie。",
+    "alwaysActive": "常に有効"
+  },
+  "legal": {
+    "lastRevised": "最終改訂：{{date}}",
+    "termsTitle": "利用規約",
+    "privacyTitle": "プライバシーポリシー",
+    "cookieTitle": "Cookie ポリシー",
+    "terms": {
+      "aboutUs": "私たちとこれらの規約について",
+      "welcome": "こんにちは、RTTTL Hub です。私たちのプラットフォームへようこそ。レトロ着信音の探索をお楽しみください。",
+      "aboutUsDesc": "RTTTL Hub は RTTTL（Ring Tone Text Transfer Language）着信音の閲覧、再生、作成のためのプラットフォームです。膨大なクラシック着信音のキュレーションされたライブラリの探索、カスタム着信音の作成、お気に入りの保存 — すべてブラウザ内で完結します。",
+      "userTermsIntro": "RTTTL Hub にアクセスし使用することにより、以下の規約がプラットフォームの使用に適用されることを確認し同意したものとします：",
+      "userTermsA": "これらの RTTTL Hub ユーザー規約；",
+      "userTermsB": "当社のプライバシーポリシー；",
+      "userTermsC": "当社の Cookie ポリシー；",
+      "userTermsD": "当社プラットフォームで公開されている適用ガイドライン。",
+      "yourPrivacy": "RTTTL Hub の使用時における情報の取り扱いについての詳細は、当社のプライバシーポリシーをご覧ください。",
+      "yourAccount": "あなたのアカウント",
+      "noAccount": "RTTTL Hub は現在ユーザーアカウントなしで運営されています。すべてのデータ（お気に入り、設定、カスタム着信音）はブラウザのローカルストレージに保存されます。ご自身のローカルデータの管理はお客様の責任となります。",
+      "futureAccount": "将来的にアカウント機能を導入する可能性があります。その場合、事前に通知の上、これらの規約を適宜更新します。",
+      "accessAndRestrictions": "アクセスと制限",
+      "access": "これらの規約への準拠を条件として、個人的または非商業的使用のために RTTTL Hub にアクセスし使用する非独占的、限定的、譲渡不可のライセンスが付与されます。",
+      "restrictionsIntro": "以下の行為は禁止されています：",
+      "restrictionA": "RTTTL Hub の整合性またはパフォーマンスを妨害または混乱させること（例：大量リクエストの送信、サーバーの「フラッディング」、悪意のあるコードの導入）；",
+      "restrictionB": "RTTTL Hub または関連システムへの不正アクセスを試みること；",
+      "restrictionC": "データマイニング、ロボット、または類似のツールを使用して RTTTL Hub のコンテンツをスクレイピングまたは大量ダウンロードすること；",
+      "restrictionD": "許可なく RTTTL Hub プラットフォームまたはそのコンパイルされたコレクションデータをコピー、再配布、または商業的に利用すること；",
+      "restrictionE": "RTTTL Hub を違法な目的で、または適用法に違反して使用すること。",
+      "contentAndIP": "コンテンツと知的財産",
+      "rtttlData": "RTTTL Hub で利用可能な RTTTL 着信音データは、公開されているコレクション（PICAXE ライブラリなど）およびコミュニティの貢献から提供されています。個々の着信音メロディは、それぞれの作曲者または権利者の著作権の対象となる場合があります。",
+      "userCreated": "内蔵エディタを使用して作成した着信音はブラウザにローカル保存されます。作成したコンテンツに対するすべての権利はお客様が保持します。",
+      "platform": "RTTTL Hub プラットフォーム（そのデザイン、コード、コンパイルを含む）は、その作成者の知的財産です。ソースコードはそれぞれのライセンス条件の下で GitHub で入手できます。",
+      "disclaimer": "免責事項",
+      "disclaimerDesc": "RTTTL Hub は「現状のまま」かつ「利用可能な状態で」提供されます。以下に関して明示的または黙示的な保証は行いません：",
+      "disclaimerA": "着信音データの正確性または完全性；",
+      "disclaimerB": "プラットフォームへの中断のない、またはエラーのないアクセス；",
+      "disclaimerC": "特定の目的に対するプラットフォームの適合性；",
+      "disclaimerD": "あなたの管轄区域での特定の着信音メロディの使用の合法性。",
+      "limitation": "責任の制限",
+      "limitationDesc": "適用法で許される最大限の範囲において、RTTTL Hub およびその貢献者は、プラットフォームの使用から生じる間接的、偶発的、特別な、結果的または懲罰的損害、またはデータの損失について責任を負いません。",
+      "changesToPlatform": "プラットフォームの変更",
+      "changesToPlatformDesc": "RTTTL Hub の機能をいつでも追加、変更、または削除する場合があります。また、予告なしにプラットフォーム（またはその一部）を一時的または永久的に中止する場合があります。",
+      "changesToTerms": "規約の変更",
+      "changesToTermsDesc": "これらの規約を随時更新する場合があります。変更が行われた場合、規約の上部の「最終改訂」日を更新します。変更が有効になった後も RTTTL Hub を継続して使用することで、更新された規約に拘束されることに同意したものとみなされます。",
+      "governingLaw": "準拠法",
+      "governingLawDesc": "これらの規約は、プロジェクトメンテナーが居住する管轄区域の適用法に準拠し、それに従って解釈されるものとします。",
+      "contact": "お問い合わせ",
+      "contactDesc": "これらの規約についてご質問がある場合は、GitHub リポジトリで Issue を開いてください。"
+    },
+    "privacy": {
+      "intro": "こんにちは、RTTTL Hub です。このポリシーは、あなたが私たちのプラットフォームを使用する際の情報の取り扱いについて記載しています。RTTTL Hub のすべてのユーザーおよび私たちが随時開発または提供するすべての製品、機能、サービスに適用されます。",
+      "scope": "範囲",
+      "scopeA": "このポリシーは、あなたが RTTTL Hub の訪問者または登録ユーザーとして使用する際に当社が収集する情報に適用されます。",
+      "scopeB": "私たちはあなたのプライバシーの保護に努めています。このポリシーでは、収集するデータ、その使用方法、およびそのデータに関するあなたの権利について説明します。",
+      "typeOfInfo": "収集する情報の種類",
+      "typeOfInfoA": "RTTTL Hub の訪問者およびユーザーに関する特定の情報を収集します。最も一般的な情報の種類には、ブラウザの種類、訪問したページ、アプリケーション内のインタラクションパターンが含まれます。",
+      "localStorage": "RTTTL Hub は、ブラウザのローカルストレージにあなたの設定（テーマ、言語）、お気に入り、試聴履歴、ユーザーが作成した着信音を保存します。あなたが明示的に共有を選択しない限り、このデータはあなたのデバイスから離れることはありません。",
+      "analytics": "RTTTL Hub との訪問者のインタラクションを理解するために、匿名化された分析を使用する場合があります。これには、どのページが最も頻繁に訪問されるか、ユーザーがアプリケーション内でどのようにナビゲートするかが含まれます。",
+      "howWeUse": "情報の使用方法",
+      "howWeUseIntro": "RTTTL Hub を提供、維持、改善するために情報を使用します：",
+      "howWeUseA": "セッション間であなたの設定を記憶する（テーマ、言語、音量）",
+      "howWeUseB": "お気に入りの着信音と試聴履歴をローカルに保存する",
+      "howWeUseC": "プラットフォームを改善するために集計された使用パターンを分析する",
+      "howWeUseD": "サービスのセキュリティと整合性を確保する",
+      "dataStorage": "データの保存と保持",
+      "dataStorageA": "すべての個人設定データは localStorage を使用してブラウザにローカル保存されます。ユーザーの個人情報のサーバー側データベースは維持していません。",
+      "dataStorageB": "ブラウザのローカルストレージをクリアするか、アプリケーション内の設定メニューを使用して、いつでもすべてのローカル保存データをクリアできます。",
+      "thirdParty": "第三者サービス",
+      "thirdPartyA": "RTTTL Hub は GitHub Pages でホスティングされています。GitHub がホスティングに関連するデータをどのように処理するかについては、GitHub のプライバシーポリシーを参照してください。",
+      "thirdPartyB": "私たちはあなたの情報を第三者に販売、取引、またはその他の方法で譲渡しません。第三者広告サービスは使用していません。",
+      "cookies": "Cookie",
+      "cookiesDesc": "RTTTL Hub は Cookie および類似の技術を使用して、あなたの設定を記憶し、体験を向上させます。当社の Cookie の実践に関する詳細は、Cookie ポリシーをご覧ください。",
+      "childrenPrivacy": "子どものプライバシー",
+      "childrenPrivacyDesc": "RTTTL Hub は一般向けプラットフォームです。13 歳未満の子どもから故意に個人情報を収集することはありません。",
+      "yourRights": "あなたの権利",
+      "yourRightsIntro": "RTTTL Hub はブラウザにデータをローカル保存するため、あなたのデータを完全にコントロールできます：",
+      "yourRightsA": "ブラウザの開発者ツールを通じてすべての保存データを表示する",
+      "yourRightsB": "いつでもすべての保存データを削除する",
+      "yourRightsC": "必要に応じてデータをエクスポートまたは管理する",
+      "changes": "このポリシーの変更",
+      "changesDesc": "このプライバシーポリシーを随時更新する場合があります。重要な変更がある場合は、このポリシーの上部の「最終改訂」日を更新してユーザーに通知します。",
+      "contact": "お問い合わせ",
+      "contactDesc": "このプライバシーポリシーについてご質問がある場合は、GitHub リポジトリで Issue を開いてください。"
+    },
+    "cookie": {
+      "intro": "このポリシーは、RTTTL Hub が当社ウェブサイトで Cookie および類似の追跡技術をどのように使用するかについて説明します。",
+      "scope": "このポリシーは RTTTL Hub ウェブサイトおよび当社ドメイン下でホスティングされるすべての関連ページに適用されます。",
+      "whatAreCookies": "Cookie とは",
+      "whatAreCookiesA": "Cookie は、ウェブサイトを閲覧する際に作成される小さなデータファイルで、コンピュータまたはモバイルデバイスに送信され、ウェブブラウザによって保存されます。Cookie は、設定の記憶、ログイン状態の維持、ウェブサイトの使用方法の理解など、さまざまな機能を果たします。",
+      "whatAreCookiesB": "localStorage や sessionStorage などの類似技術は、現代のウェブアプリケーションで同等の目的を果たします。RTTTL Hub は主に localStorage を使用して設定、お気に入り、その他の設定を保持します。",
+      "whatAreCookiesC": "このポリシーでの Cookie への言及はすべて、localStorage、sessionStorage、および類似のブラウザストレージメカニズムへの言及も含みます。",
+      "typesTitle": "使用する Cookie の種類",
+      "typesIntro": "RTTTL Hub は以下のカテゴリの Cookie とストレージを使用します：",
+      "necessary": "ページナビゲーション、ウェブサイトのセキュリティ、コア機能へのアクセスなどの基本機能を有効にする必須 Cookie。プラットフォームが機能するために必要であるため、無効にすることはできません。",
+      "preferences": "これらの Cookie と localStorage エントリは以下のような設定を記憶します：",
+      "prefA": "言語設定",
+      "prefB": "テーマ設定（ライト / ダーク / システム）",
+      "prefC": "音量と再生設定",
+      "prefD": "Cookie 同意設定",
+      "statistics": "有効にした場合、これらの Cookie はウェブサイトのどの部分がより頻繁に訪問されるかなど、訪問者がウェブサイトとどのようにインタラクトするかを理解するのに役立ちます。",
+      "infoCollected": "Cookie が収集する情報",
+      "infoCollectedIntro": "RTTTL Hub の Cookie とローカルストレージが収集する情報には以下が含まれます：",
+      "infoA": "アプリケーション内で訪問したページとナビゲーションパターン；",
+      "infoB": "試聴した着信音（試聴履歴）；",
+      "infoC": "お気に入りリスト；",
+      "infoD": "作成したカスタム着信音；",
+      "infoE": "テーマと言語の設定；",
+      "infoF": "Cookie 同意の選択。",
+      "managePrefs": "設定の管理方法",
+      "managePrefsA": "RTTTL Hub の任意のページのフッターにある「Cookie 設定」リンクをクリックすることで、いつでも Cookie の設定を管理できます。Cookie 同意バナーが開き、設定を切り替えることができます。",
+      "managePrefsB": "ウェブブラウザの設定から直接 Cookie を管理することもできます。ほとんどのブラウザでは Cookie のブロックまたは削除が可能です。Cookie を無効にすると RTTTL Hub の機能に影響する可能性がありますのでご注意ください。",
+      "managePrefsC": "すべてのローカル保存データ（お気に入り、履歴、設定）をクリアするには、アプリケーション内の設定メニューを使用するか、このサイトのブラウザのローカルストレージをクリアしてください。",
+      "changes": "このポリシーの変更",
+      "changesDesc": "この Cookie ポリシーを随時更新する場合があります。変更はこのページの上部の「最終改訂」日の更新に反映されます。",
+      "furtherInfo": "詳細情報",
+      "furtherInfoDesc": "データの取り扱いに関する詳細情報は、当社のプライバシーポリシーに記載されています。",
+      "contact": "お問い合わせ",
+      "contactDesc": "Cookie の実践についてご質問がある場合は、GitHub リポジトリで Issue を開いてください。"
+    }
+  },
+  "confirm": {
+    "ok": "確認",
+    "cancel": "キャンセル"
+  },
+  "megaMenu": {
+    "quickLinks": "クイックリンク",
+    "popular": "人気",
+    "createNew": "新規作成"
+  },
+  "auth": {
+    "signInTitle": "RTTTL Hub にログイン",
+    "signInDescription": "レトロな RTTTL 着信音を閲覧、再生、作成。ログインしてお気に入りやカスタムトーンを保存しましょう。",
+    "continueWithGoogle": "Google でログイン",
+    "or": "または",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "forgot": "お忘れですか？",
+    "signIn": "ログイン",
+    "signOut": "ログアウト",
+    "noAccount": "アカウントをお持ちでない方",
+    "createAccount": "アカウントを作成",
+    "termsNotice": "続行すると、利用規約とプライバシーポリシーに同意したことになります。",
+    "createAccountTitle": "アカウントを作成",
+    "createAccountDescription": "Google アカウントで登録。その後、メールログイン用のパスワードを設定できます。",
+    "registerWithGoogle": "Google アカウントで RTTTL Hub アカウントを作成します。",
+    "haveAccount": "アカウントをお持ちですか？",
+    "setPasswordTitle": "パスワードを設定",
+    "registeredAs": "登録メールアドレス：",
+    "newPassword": "新しいパスワード",
+    "confirmPassword": "パスワードの確認",
+    "passwordPlaceholder": "6文字以上",
+    "setPassword": "パスワードを設定",
+    "skipForNow": "後で設定する",
+    "passwordTooShort": "パスワードは6文字以上必要です",
+    "passwordMismatch": "パスワードが一致しません"
+  },
+  "account": {
+    "title": "アカウント",
+    "settings": "アカウント設定",
+    "information": "アカウント情報",
+    "editProfile": "プロフィールを編集",
+    "email": "メールアドレス",
+    "helpCenter": "ヘルプセンター",
+    "profileDetails": "アカウント詳細",
+    "profileNotice": "一部のフィールドはログインプロバイダーが管理しています。",
+    "displayName": "表示名",
+    "saveChanges": "変更を保存",
+    "setPassword": "パスワードを設定",
+    "changePassword": "パスワードを変更",
+    "currentPassword": "現在のパスワード",
+    "passwordSuccess": "パスワードが正常に更新されました。"
+  },
+  "pagination": {
+    "pageInfo": "{{current}} / {{total}} ページ"
+  },
+  "language": {
+    "en": "English",
+    "zh-TW": "繁體中文",
+    "zh-CN": "简体中文",
+    "zh-HK": "香港繁體",
+    "ja": "日本語",
+    "ko": "한국어"
+  }
+}

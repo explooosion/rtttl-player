@@ -1,4 +1,10 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-brand: "Orbitron", ui-monospace, monospace;
+  --font-sans: "Noto Sans TC", "Noto Sans SC", "Noto Sans", ui-sans-serif, system-ui, sans-serif;
+}
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -72,4 +78,96 @@ body {
 .seek-range:disabled::-moz-range-thumb {
   background: #9ca3af;
   cursor: default;
+}
+
+/* Scroll fly-in animations */
+@keyframes fly-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fly-in {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.fly-in.visible {
+  animation: fly-in-up 0.6s ease-out forwards;
+}
+
+.fly-in-delay-1 {
+  animation-delay: 0.1s;
+}
+.fly-in-delay-2 {
+  animation-delay: 0.2s;
+}
+.fly-in-delay-3 {
+  animation-delay: 0.3s;
+}
+.fly-in-delay-4 {
+  animation-delay: 0.4s;
+}
+
+/* Page entrance animation */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out both;
+}
+
+/* Subtle scale-in */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.4s ease-out both;
+}
+
+/* Float animation for hero decorations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--rotate, 12deg));
+  }
+  50% {
+    transform: translateY(-12px) rotate(var(--rotate, 12deg));
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: float 10s ease-in-out infinite;
+}
+.fly-in-delay-3 {
+  animation-delay: 0.3s;
 }

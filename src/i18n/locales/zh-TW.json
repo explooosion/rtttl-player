@@ -1,11 +1,73 @@
 {
   "app": {
-    "title": "RTTTL 播放器",
-    "subtitle": "復古鈴聲收藏庫"
+    "title": "RTTTL Hub",
+    "subtitle": "瀏覽、播放 & 創作復古鈴聲"
   },
   "nav": {
     "collection": "收藏庫",
-    "favorites": "我的最愛"
+    "collections": "收藏庫",
+    "favorites": "我的最愛",
+    "home": "首頁"
+  },
+  "landing": {
+    "hero": {
+      "title": "RTTTL Hub",
+      "subtitle": "探索復古 RTTTL 鈴聲合集。在瀏覽器中瀏覽、播放和創作 chiptune 音樂。",
+      "cta": "探索收藏庫"
+    },
+    "features": {
+      "browse": {
+        "title": "海量曲庫",
+        "description": "探索涵蓋各類風格的 PICAXE 經典 RTTTL 鈴聲資料庫。"
+      },
+      "play": {
+        "title": "瀏覽器播放",
+        "description": "使用 Web Audio API 即時聆聽任何鈴聲，無需安裝外掛。"
+      },
+      "create": {
+        "title": "自訂創作",
+        "description": "使用內建編輯器創作自訂 RTTTL 鈴聲，並分享給社群。"
+      },
+      "openSource": {
+        "title": "開源專案",
+        "description": "自由且開源。在 GitHub 上貢獻或部署自己的實例。"
+      }
+    },
+    "categories": {
+      "title": "依分類瀏覽"
+    }
+  },
+  "collections": {
+    "title": "收藏庫",
+    "subtitle": "瀏覽來自不同來源的鈴聲收藏。",
+    "browseAll": "瀏覽全部",
+    "items": "{{count}} 項",
+    "picaxe": {
+      "name": "PICAXE RTTTL",
+      "description": "海量經典 RTTTL 鈴聲收藏，涵蓋流行、搖滾、電視主題曲、聖誕歌曲等多種風格。"
+    },
+    "community": {
+      "name": "社群",
+      "description": "社群創作的鈴聲。建立您自己的鈴聲並與大家分享。"
+    }
+  },
+  "categories": {
+    "all": "全部",
+    "pop": "流行",
+    "rock": "搖滾",
+    "classical": "古典",
+    "movie-tv": "影視主題",
+    "game": "遊戲",
+    "holiday": "節日",
+    "folk": "民謠與國歌",
+    "nursery": "童謠",
+    "alert": "提示音",
+    "original": "原創"
+  },
+  "creator": {
+    "title": "創作者檔案",
+    "works": "{{count}} 個作品",
+    "backToCollection": "返回收藏庫"
   },
   "search": {
     "placeholder": "搜尋名稱或演出者...",
@@ -33,7 +95,12 @@
     "playEdited": "播放編輯版",
     "copyCode": "複製代碼",
     "copied": "已複製！",
-    "copyFailed": "複製失敗"
+    "copyFailed": "複製失敗",
+    "reset": "復原",
+    "resetConfirmTitle": "復原為原始版本",
+    "resetConfirmMessage": "這將捨棄所有變更並還原原始 RTTTL 代碼。確定要繼續嗎？",
+    "preview": "預覽",
+    "editedPreview": "編輯後預覽"
   },
   "create": {
     "title": "建立新鈴聲",
@@ -42,6 +109,8 @@
     "namePlaceholder": "輸入鈴聲名稱",
     "code": "RTTTL 代碼",
     "codePlaceholder": "輸入 RTTTL 代碼 (name:d=4,o=5,b=120:notes...)",
+    "category": "分類",
+    "categoryPlaceholder": "選擇分類",
     "create": "建立",
     "cancel": "取消",
     "duplicate": "複製",
@@ -61,7 +130,10 @@
   },
   "actions": {
     "createNew": "新建",
-    "duplicate": "複製"
+    "duplicate": "複製",
+    "showFilters": "顯示篩選",
+    "hideFilters": "隱藏篩選",
+    "download": "下載 .rtttl"
   },
   "letters": {
     "all": "全部"
@@ -70,9 +142,221 @@
   "settings": {
     "clearListened": "清除試聽紀錄"
   },
+  "breadcrumb": {
+    "home": "首頁",
+    "collections": "收藏庫"
+  },
   "footer": {
     "sourceCode": "GitHub",
     "reportIssue": "Issues",
-    "picaxeCollection": "PICAXE RTTTL 收藏庫"
+    "picaxeCollection": "PICAXE RTTTL",
+    "discover": "探索",
+    "allCollections": "所有收藏庫",
+    "resources": "資源",
+    "documentation": "文件",
+    "about": "關於",
+    "aboutDescription": "RTTTL Hub 是一個用於探索和播放復古 RTTTL 鈴聲的平台。",
+    "copyright": "© 2026 RTTTL Hub. 商標及品牌為其各自擁有者之財產。",
+    "legal": "法律條款",
+    "terms": "使用條款",
+    "privacy": "隱私權政策",
+    "cookies": "Cookie 政策",
+    "cookieSettings": "Cookie 設定"
+  },
+  "cookie": {
+    "title": "您的隱私很重要",
+    "description": "我們使用 Cookie 來提升您的體驗並分析網站流量。點擊「全部接受」即表示您同意我們的 Cookie 和隱私權政策。",
+    "acceptAll": "全部接受",
+    "rejectAll": "全部拒絕",
+    "managePreferences": "管理偏好設定",
+    "savePreferences": "儲存偏好設定",
+    "necessary": "必要 Cookie",
+    "necessaryDesc": "啟用基本功能（如頁面導覽和存取安全區域）所必需的 Cookie。",
+    "preferences": "偏好設定",
+    "preferencesDesc": "記住您的語言和主題偏好等設定的 Cookie。",
+    "statistics": "統計分析",
+    "statisticsDesc": "幫助我們了解訪客如何與網站互動的 Cookie。",
+    "alwaysActive": "永遠啟用"
+  },
+  "legal": {
+    "lastRevised": "最後修訂：{{date}}",
+    "termsTitle": "使用條款",
+    "privacyTitle": "隱私權政策",
+    "cookieTitle": "Cookie 政策",
+    "terms": {
+      "aboutUs": "關於我們與這些條款",
+      "welcome": "你好，我們是 RTTTL Hub，歡迎來到我們的平台。很高興你來到這裡，希望你能享受探索復古鈴聲的樂趣。",
+      "aboutUsDesc": "RTTTL Hub 是一個用於瀏覽、播放和創作 RTTTL（Ring Tone Text Transfer Language）鈴聲的平台。該平台允許使用者探索海量經典鈴聲的精選資料庫、創作自訂鈴聲並保存最愛 — 全部在瀏覽器中完成。",
+      "userTermsIntro": "存取和使用 RTTTL Hub 即表示你確認並同意以下條款適用於你對平台的使用：",
+      "userTermsA": "這些 RTTTL Hub 使用者條款；",
+      "userTermsB": "我們的隱私權政策；",
+      "userTermsC": "我們的 Cookie 政策；",
+      "userTermsD": "我們平台上發布的任何適用準則。",
+      "yourPrivacy": "有關我們在你使用 RTTTL Hub 時如何處理資訊的更多資訊，請參閱我們的隱私權政策。",
+      "yourAccount": "你的帳戶",
+      "noAccount": "RTTTL Hub 目前無需使用者帳戶即可運作。所有資料（最愛、偏好設定、自訂鈴聲）都儲存在你的瀏覽器本機中。你有責任管理你自己的本機資料。",
+      "futureAccount": "我們未來可能會導入帳戶功能。屆時，這些條款將會相應更新並提前通知。",
+      "accessAndRestrictions": "存取與限制",
+      "access": "在你遵守這些條款的前提下，你被授予非獨占、有限、不可轉讓的許可來存取和使用 RTTTL Hub 進行個人或非商業用途。",
+      "restrictionsIntro": "你不得：",
+      "restrictionA": "干擾或破壞 RTTTL Hub 的完整性或效能（例如透過發送大量請求、「灌水」伺服器或引入惡意程式碼）；",
+      "restrictionB": "嘗試未經授權存取 RTTTL Hub 或相關系統；",
+      "restrictionC": "使用資料探勘、機器人或類似工具來抓取或大量下載 RTTTL Hub 的內容；",
+      "restrictionD": "未經許可複製、再發行或商業利用 RTTTL Hub 平台或其編譯的收藏資料；",
+      "restrictionE": "將 RTTTL Hub 用於任何非法目的或違反適用法律。",
+      "contentAndIP": "內容與智慧財產權",
+      "rtttlData": "RTTTL Hub 上可用的 RTTTL 鈴聲資料來源於公開可用的收藏（如 PICAXE 資料庫）和社群貢獻。個別鈴聲旋律可能受其各自作曲者或權利人的版權保護。",
+      "userCreated": "你使用內建編輯器創作的鈴聲儲存在你的瀏覽器本機中。你保留你所創作內容的所有權利。",
+      "platform": "RTTTL Hub 平台，包括其設計、程式碼和編譯，是其創作者的智慧財產。原始碼在 GitHub 上以其各自的授權條款提供。",
+      "disclaimer": "免責聲明",
+      "disclaimerDesc": "RTTTL Hub 按「現狀」和「可用」基礎提供。我們不對以下內容作出任何明示或暗示的保證：",
+      "disclaimerA": "任何鈴聲資料的準確性或完整性；",
+      "disclaimerB": "不間斷或無錯誤地存取平台；",
+      "disclaimerC": "平台適用於任何特定目的；",
+      "disclaimerD": "在你所在的司法管轄區使用特定鈴聲旋律的合法性。",
+      "limitation": "責任限制",
+      "limitationDesc": "在適用法律允許的最大範圍內，RTTTL Hub 及其貢獻者不對因你使用平台而產生的任何間接、附帶、特殊、後果性或懲罰性損害，或任何資料遺失承擔責任。",
+      "changesToPlatform": "平台變更",
+      "changesToPlatformDesc": "我們可能隨時添加、更改或移除 RTTTL Hub 的功能。我們也可能在不通知的情況下暫時或永久停止平台（或其任何部分）。",
+      "changesToTerms": "條款變更",
+      "changesToTermsDesc": "我們可能不時更新這些條款。當進行更改時，我們會更新這些條款頂部的「最後修訂」日期。在更改生效後繼續使用 RTTTL Hub，即表示你同意受更新後的條款約束。",
+      "governingLaw": "準據法",
+      "governingLawDesc": "這些條款應受專案維護者所在司法管轄區適用法律管轄並據其解釋。",
+      "contact": "聯繫方式",
+      "contactDesc": "如果你對這些條款有疑問，請在我們的 GitHub 儲存庫中開啟 Issue。"
+    },
+    "privacy": {
+      "intro": "你好，我們是 RTTTL Hub。本政策闡述了我們在你使用我們平台時如何處理資訊。它適用於 RTTTL Hub 的所有使用者以及我們可能不時開發或提供的所有產品、功能和服務。",
+      "scope": "範圍",
+      "scopeA": "本政策適用於我們在你作為訪客或註冊使用者使用 RTTTL Hub 時收集的資訊。",
+      "scopeB": "我們致力於保護你的隱私。本政策描述了我們收集哪些資料、如何使用這些資料以及你對這些資料的權利。",
+      "typeOfInfo": "我們收集的資訊類型",
+      "typeOfInfoA": "我們收集有關 RTTTL Hub 訪客和使用者的某些資訊。最常見的資訊類型包括瀏覽器類型、瀏覽的頁面以及應用程式中的互動模式。",
+      "localStorage": "RTTTL Hub 在你的瀏覽器本機儲存中儲存你的偏好設定（主題、語言）、最愛、試聽歷史和使用者建立的鈴聲。除非你明確選擇分享，否則這些資料不會離開你的裝置。",
+      "analytics": "我們可能使用匿名分析來了解訪客如何與 RTTTL Hub 互動，包括哪些頁面被最頻繁瀏覽以及使用者如何在應用程式中導覽。",
+      "howWeUse": "我們如何使用你的資訊",
+      "howWeUseIntro": "我們使用資訊來提供、維護和改善 RTTTL Hub，包括：",
+      "howWeUseA": "在各次工作階段間記住你的偏好設定（主題、語言、音量）",
+      "howWeUseB": "在本機保存你的最愛鈴聲和試聽歷史",
+      "howWeUseC": "分析整體使用模式以改善平台",
+      "howWeUseD": "確保服務的安全性和完整性",
+      "dataStorage": "資料儲存與保留",
+      "dataStorageA": "所有個人偏好資料都使用 localStorage 儲存在你的瀏覽器本機中。我們不維護使用者個人資訊的伺服器端資料庫。",
+      "dataStorageB": "你可以隨時透過清除瀏覽器的本機儲存或使用應用程式內的設定選單來清除所有本機儲存的資料。",
+      "thirdParty": "第三方服務",
+      "thirdPartyA": "RTTTL Hub 託管在 GitHub Pages 上。有關 GitHub 如何處理與託管相關的資料，請參閱 GitHub 的隱私權政策。",
+      "thirdPartyB": "我們不會出售、交易或以其他方式將你的資訊轉讓給第三方。我們不使用第三方廣告服務。",
+      "cookies": "Cookie",
+      "cookiesDesc": "RTTTL Hub 使用 Cookie 和類似技術來記住你的偏好設定並改善你的體驗。有關我們 Cookie 做法的詳細資訊，請參閱我們的 Cookie 政策。",
+      "childrenPrivacy": "兒童隱私",
+      "childrenPrivacyDesc": "RTTTL Hub 是一個面向一般受眾的平台。我們不會故意收集 13 歲以下兒童的個人資訊。",
+      "yourRights": "你的權利",
+      "yourRightsIntro": "由於 RTTTL Hub 在你的瀏覽器中本機儲存資料，你對你的資料擁有完全控制權。你可以：",
+      "yourRightsA": "透過瀏覽器的開發人員工具查看所有儲存的資料",
+      "yourRightsB": "隨時刪除所有儲存的資料",
+      "yourRightsC": "根據你的需要匯出或管理你的資料",
+      "changes": "本政策的變更",
+      "changesDesc": "我們可能不時更新本隱私權政策。我們將透過更新本政策頂部的「最後修訂」日期來通知使用者任何重大變更。",
+      "contact": "聯繫方式",
+      "contactDesc": "如果你對本隱私權政策有任何疑問，請在我們的 GitHub 儲存庫中開啟 Issue。"
+    },
+    "cookie": {
+      "intro": "本政策說明 RTTTL Hub 如何在我們的網站上使用 Cookie 和類似追蹤技術。",
+      "scope": "本政策適用於 RTTTL Hub 網站以及在我們網域下託管的所有相關頁面。",
+      "whatAreCookies": "什麼是 Cookie",
+      "whatAreCookiesA": "Cookie 是你瀏覽網站時建立的小型資料檔案，會傳送到你的電腦或行動裝置，並由你的網頁瀏覽器儲存。Cookie 有多種功能，包括記住你的偏好設定、保持你的登入狀態以及了解你如何使用網站。",
+      "whatAreCookiesB": "localStorage 和 sessionStorage 等類似技術在現代網頁應用程式中具有類似的功能。RTTTL Hub 主要使用 localStorage 來保存你的偏好設定、最愛和其他設定。",
+      "whatAreCookiesC": "本政策中所有對 Cookie 的引用也包括對 localStorage、sessionStorage 和類似瀏覽器儲存機制的引用。",
+      "typesTitle": "我們使用的 Cookie 類型",
+      "typesIntro": "RTTTL Hub 使用以下類別的 Cookie 和儲存：",
+      "necessary": "啟用基本功能（如頁面導覽、網站安全和存取核心功能）的必要 Cookie。這些不能被停用，因為平台需要它們才能運作。",
+      "preferences": "這些 Cookie 和 localStorage 項目記住你的設定，例如：",
+      "prefA": "語言偏好",
+      "prefB": "主題設定（淺色 / 深色 / 系統）",
+      "prefC": "音量和播放偏好",
+      "prefD": "Cookie 同意偏好",
+      "statistics": "如果啟用，這些 Cookie 幫助我們了解訪客如何與網站互動，包括哪些部分被更頻繁地瀏覽，以便我們改善體驗。",
+      "infoCollected": "Cookie 收集的資訊",
+      "infoCollectedIntro": "RTTTL Hub 上的 Cookie 和本機儲存收集的資訊包括：",
+      "infoA": "在應用程式中瀏覽的頁面和導覽模式；",
+      "infoB": "你已試聽的鈴聲（試聽歷史）；",
+      "infoC": "你的最愛清單；",
+      "infoD": "你已建立的自訂鈴聲；",
+      "infoE": "你的主題和語言偏好設定；",
+      "infoF": "Cookie 同意選擇。",
+      "managePrefs": "如何管理你的偏好設定",
+      "managePrefsA": "你可以隨時點擊 RTTTL Hub 任何頁面底部的「Cookie 設定」連結來管理你的 Cookie 偏好設定。這將開啟 Cookie 同意橫幅，你可以在其中切換你的偏好設定。",
+      "managePrefsB": "你也可以直接透過你的網頁瀏覽器設定來管理 Cookie。大多數瀏覽器允許你封鎖或刪除 Cookie。請注意，停用 Cookie 可能會影響 RTTTL Hub 的功能。",
+      "managePrefsC": "要清除所有本機儲存的資料（最愛、歷史、偏好設定），你可以使用應用程式中的設定選單或清除此網站的瀏覽器本機儲存。",
+      "changes": "本政策的變更",
+      "changesDesc": "我們可能不時更新本 Cookie 政策。變更將透過更新本頁頂部的「最後修訂」日期來反映。",
+      "furtherInfo": "更多資訊",
+      "furtherInfoDesc": "有關我們如何處理你的資料的更多資訊，請參閱我們的隱私權政策。",
+      "contact": "聯繫方式",
+      "contactDesc": "如果你對我們的 Cookie 做法有任何疑問，請在我們的 GitHub 儲存庫中開啟 Issue。"
+    }
+  },
+  "confirm": {
+    "ok": "確認",
+    "cancel": "取消"
+  },
+  "megaMenu": {
+    "quickLinks": "快速連結",
+    "popular": "熱門",
+    "createNew": "新建"
+  },
+  "auth": {
+    "signInTitle": "登入 RTTTL Hub",
+    "signInDescription": "瀏覽、播放和創建復古 RTTTL 鈴聲。登入後可儲存您的收藏和自訂鈴聲。",
+    "continueWithGoogle": "使用 Google 登入",
+    "or": "或",
+    "email": "電子郵件",
+    "password": "密碼",
+    "forgot": "忘記密碼？",
+    "signIn": "登入",
+    "signOut": "登出",
+    "noAccount": "還沒有帳號？",
+    "createAccount": "建立帳號",
+    "termsNotice": "繼續即表示您同意我們的使用條款和隱私權政策。",
+    "createAccountTitle": "建立您的帳號",
+    "createAccountDescription": "使用 Google 帳號註冊。之後可以設定密碼以使用電子郵件登入。",
+    "registerWithGoogle": "使用您的 Google 帳號建立 RTTTL Hub 帳號。",
+    "haveAccount": "已有帳號？",
+    "setPasswordTitle": "設定密碼",
+    "registeredAs": "已註冊為：",
+    "newPassword": "新密碼",
+    "confirmPassword": "確認密碼",
+    "passwordPlaceholder": "至少 6 個字元",
+    "setPassword": "設定密碼",
+    "skipForNow": "稍後再說",
+    "passwordTooShort": "密碼至少需要 6 個字元",
+    "passwordMismatch": "密碼不一致"
+  },
+  "account": {
+    "title": "帳號",
+    "settings": "帳號設定",
+    "information": "帳號資訊",
+    "editProfile": "編輯個人資料",
+    "email": "電子郵件",
+    "helpCenter": "幫助中心",
+    "profileDetails": "帳號詳細資料",
+    "profileNotice": "部分欄位可能由登入提供者管理。",
+    "displayName": "顯示名稱",
+    "saveChanges": "儲存變更",
+    "setPassword": "設定密碼",
+    "changePassword": "變更密碼",
+    "currentPassword": "目前密碼",
+    "passwordSuccess": "密碼更新成功。"
+  },
+  "pagination": {
+    "pageInfo": "第 {{current}} / {{total}} 頁"
+  },
+  "language": {
+    "en": "English",
+    "zh-TW": "繁體中文",
+    "zh-CN": "简体中文",
+    "zh-HK": "香港繁體",
+    "ja": "日本語",
+    "ko": "한국어"
   }
 }
