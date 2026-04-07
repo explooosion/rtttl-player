@@ -42,6 +42,7 @@ export function CollectionList({ onDuplicate }: CollectionListProps) {
     return rows;
   }, [items]);
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const virtualizer = useVirtualizer({
     count: rowData.length,
     getScrollElement: () => parentRef.current,

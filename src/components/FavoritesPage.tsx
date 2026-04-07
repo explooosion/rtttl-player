@@ -30,6 +30,7 @@ export function FavoritesPage() {
     return allItems.filter((item) => idSet.has(item.id));
   }, [items, userItems, favoriteIds]);
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const virtualizer = useVirtualizer({
     count: favoriteItems.length,
     getScrollElement: () => parentRef.current,
