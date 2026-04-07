@@ -2,8 +2,8 @@ import { useTranslation } from "react-i18next";
 import { Languages } from "lucide-react";
 
 const languages = [
-  { code: "en", label: "EN" },
-  { code: "zh-TW", label: "中文" },
+  { code: "en", label: "English" },
+  { code: "zh-TW", label: "正體中文" },
 ];
 
 export function LanguageSwitcher() {

@@ -5,6 +5,7 @@ import { Play, Copy, Check, Heart } from "lucide-react";
 import { useCollectionStore } from "@/stores/collection-store";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import { usePlayerStore } from "@/stores/player-store";
+import { useListenedStore } from "@/stores/listened-store";
 import { copyToClipboard } from "@/utils/clipboard";
 import type { RtttlEntry } from "@/utils/rtttl-parser";
 import clsx from "clsx";
@@ -20,6 +21,8 @@ export function FavoritesPage() {
   const setCurrentItem = usePlayerStore((s) => s.setCurrentItem);
   const parentRef = useRef<HTMLDivElement>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const listenedIds = useListenedStore((s) => s.listenedIds);
+  const listenedSet = useMemo(() => new Set(listenedIds), [listenedIds]);
 
   const favoriteItems = useMemo(() => {
     const allItems = [...items, ...userItems];
@@ -73,6 +76,7 @@ export function FavoritesPage() {
           {virtualizer.getVirtualItems().map((virtualRow) => {
             const item = favoriteItems[virtualRow.index];
             const isActive = currentItem?.id === item.id;
+            const isListened = listenedSet.has(item.id);
 
             return (
               <div
@@ -88,6 +92,7 @@ export function FavoritesPage() {
                 className={clsx(
                   "flex cursor-pointer items-center gap-2 border-b border-gray-100 px-4 transition-colors hover:bg-indigo-50 dark:border-gray-800 dark:hover:bg-indigo-950/30",
                   isActive && "bg-indigo-50 dark:bg-indigo-950/30",
+                  !isActive && isListened && "bg-amber-50/60 dark:bg-amber-950/20",
                 )}
                 onClick={() => setCurrentItem(item)}
               >

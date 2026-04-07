@@ -33,7 +33,7 @@ export function RtttlEditor() {
         value={editedCode}
         onChange={(e) => setEditedCode(e.target.value)}
         placeholder={t("editor.placeholder")}
-        rows={4}
+        rows={8}
         className="mb-3 w-full resize-y rounded-lg border border-gray-300 bg-gray-50 p-3 font-mono text-sm text-gray-800 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
       />
       <div className="flex flex-wrap gap-2">

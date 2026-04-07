@@ -46,7 +46,8 @@
     "cancel": "取消",
     "duplicate": "複製",
     "invalidCode": "RTTTL 代碼格式無效",
-    "nameRequired": "名稱為必填"
+    "nameRequired": "名稱為必填",
+    "localStorageHint": "您建立的鈴聲會保存在瀏覽器的本機儲存中。"
   },
   "favorites": {
     "title": "我的最愛",
@@ -65,5 +66,13 @@
   "letters": {
     "all": "全部"
   },
-  "loading": "載入收藏庫中..."
+  "loading": "載入收藏庫中...",
+  "settings": {
+    "clearListened": "清除試聽紀錄"
+  },
+  "footer": {
+    "sourceCode": "原始碼",
+    "reportIssue": "回報問題",
+    "picaxeCollection": "PICAXE RTTTL 收藏庫"
+  }
 }

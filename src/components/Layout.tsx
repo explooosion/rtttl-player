@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
-import { Music, Heart, Plus, Menu, X } from "lucide-react";
+import { Music, Heart, Plus, Menu, X, Code, Bug, ExternalLink } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { SettingsMenu } from "./SettingsMenu";
 import { SearchBar } from "./SearchBar";
 import { AlphabetSidebar } from "./AlphabetSidebar";
 import { CollectionList } from "./CollectionList";
@@ -109,6 +110,7 @@ export function Layout() {
           <div className="flex items-center gap-2">
             <ThemeToggle />
             <LanguageSwitcher />
+            <SettingsMenu />
           </div>
         </div>
       </header>
@@ -232,6 +234,39 @@ export function Layout() {
           setDuplicateFrom(null);
         }}
       />
+
+      {/* Footer */}
+      <footer className="mx-auto mt-8 max-w-7xl border-t border-gray-200 px-4 py-6 dark:border-gray-800">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a
+            href="https://github.com/explooosion/rtttl-player"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 transition-colors hover:text-gray-700 dark:hover:text-gray-200"
+          >
+            <Code size={16} />
+            {t("footer.sourceCode")}
+          </a>
+          <a
+            href="https://github.com/explooosion/rtttl-player/issues"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 transition-colors hover:text-gray-700 dark:hover:text-gray-200"
+          >
+            <Bug size={16} />
+            {t("footer.reportIssue")}
+          </a>
+          <a
+            href="https://picaxe.com/rtttl-ringtones-for-tune-command/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 transition-colors hover:text-gray-700 dark:hover:text-gray-200"
+          >
+            <ExternalLink size={16} />
+            {t("footer.picaxeCollection")}
+          </a>
+        </div>
+      </footer>
     </div>
   );
 }

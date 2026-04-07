@@ -85,6 +85,10 @@ export function CreateDialog({
             </button>
           </div>
 
+          <p className="mb-4 rounded-lg bg-blue-50 px-3 py-2 text-xs text-blue-600 dark:bg-blue-900/20 dark:text-blue-400">
+            {t("create.localStorageHint")}
+          </p>
+
           {errors.length > 0 && (
             <div className="mb-4 rounded-lg bg-red-50 p-3 dark:bg-red-900/20">
               {errors.map((err, i) => (

@@ -46,7 +46,8 @@
     "cancel": "Cancel",
     "duplicate": "Duplicate",
     "invalidCode": "Invalid RTTTL code format",
-    "nameRequired": "Name is required"
+    "nameRequired": "Name is required",
+    "localStorageHint": "Ringtones you create are saved locally in your browser."
   },
   "favorites": {
     "title": "My Favorites",
@@ -65,5 +66,13 @@
   "letters": {
     "all": "All"
   },
-  "loading": "Loading collection..."
+  "loading": "Loading collection...",
+  "settings": {
+    "clearListened": "Clear listened history"
+  },
+  "footer": {
+    "sourceCode": "Source Code",
+    "reportIssue": "Report Issue",
+    "picaxeCollection": "PICAXE RTTTL Collection"
+  }
 }

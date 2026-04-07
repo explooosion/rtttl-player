@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import type { RtttlEntry } from "@/utils/rtttl-parser";
 
 export type SortMode = "a-z" | "z-a" | "artist-a-z" | "artist-z-a";
@@ -18,21 +19,29 @@ interface CollectionState {
   setIsLoading: (loading: boolean) => void;
 }
 
-export const useCollectionStore = create<CollectionState>((set) => ({
-  items: [],
-  userItems: [],
-  searchQuery: "",
-  sortMode: "a-z",
-  activeLetter: null,
-  isLoading: true,
-  setItems: (items) => set({ items, isLoading: false }),
-  addUserItem: (item) =>
-    set((state) => ({ userItems: [...state.userItems, item] })),
-  setSearchQuery: (searchQuery) => set({ searchQuery }),
-  setSortMode: (sortMode) => set({ sortMode }),
-  setActiveLetter: (activeLetter) => set({ activeLetter }),
-  setIsLoading: (isLoading) => set({ isLoading }),
-}));
+export const useCollectionStore = create<CollectionState>()(
+  persist(
+    (set) => ({
+      items: [],
+      userItems: [],
+      searchQuery: "",
+      sortMode: "a-z",
+      activeLetter: null,
+      isLoading: true,
+      setItems: (items) => set({ items, isLoading: false }),
+      addUserItem: (item) =>
+        set((state) => ({ userItems: [...state.userItems, item] })),
+      setSearchQuery: (searchQuery) => set({ searchQuery }),
+      setSortMode: (sortMode) => set({ sortMode }),
+      setActiveLetter: (activeLetter) => set({ activeLetter }),
+      setIsLoading: (isLoading) => set({ isLoading }),
+    }),
+    {
+      name: "rtttl-user-items",
+      partialize: (state) => ({ userItems: state.userItems }),
+    },
+  ),
+);
 
 function matchesSearch(item: RtttlEntry, query: string): boolean {
   const q = query.toLowerCase();

@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { RtttlPlayer } from "@/utils/rtttl-player";
 import type { PlayerState } from "@/utils/rtttl-player";
 import type { RtttlEntry } from "@/utils/rtttl-parser";
+import { useListenedStore } from "./listened-store";
 
 interface PlayerStoreState {
   currentItem: RtttlEntry | null;
@@ -42,9 +43,14 @@ export const usePlayerStore = create<PlayerStoreState>((set, get) => {
     },
     playItem: (item) => {
       set({ currentItem: item, editedCode: item.code });
+      useListenedStore.getState().markListened(item.id);
       get().player.play(item.code);
     },
     playCode: (code) => {
+      const currentItem = get().currentItem;
+      if (currentItem) {
+        useListenedStore.getState().markListened(currentItem.id);
+      }
       get().player.play(code);
     },
     pause: () => {
