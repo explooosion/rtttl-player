@@ -31,7 +31,7 @@ export function Layout() {
   const isFavoritesPage = location.pathname === "/favorites";
 
   useEffect(function loadCollectionWhenMount() {
-    fetch("/rtttl-index.json")
+    fetch(`${import.meta.env.BASE_URL}rtttl-index.json`)
       .then((res) => res.json())
       .then((data) => setItems(data))
       .catch((err) => console.error("Failed to load collection:", err));
