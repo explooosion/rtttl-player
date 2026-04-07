@@ -91,7 +91,7 @@ export function CollectionList({ onDuplicate }: CollectionListProps) {
             if (row.type === "header") {
               return (
                 <div
-                  key={`header-${row.letter}`}
+                  key={`header-${row.letter}-${virtualRow.index}`}
                   style={{
                     position: "absolute",
                     top: 0,
@@ -115,7 +115,7 @@ export function CollectionList({ onDuplicate }: CollectionListProps) {
 
             return (
               <div
-                key={item.id}
+                key={`item-${item.id}-${virtualRow.index}`}
                 style={{
                   position: "absolute",
                   top: 0,

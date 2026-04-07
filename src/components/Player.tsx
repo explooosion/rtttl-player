@@ -37,8 +37,8 @@ export function Player() {
     setDragValue(Number(e.target.value));
   }
 
-  function handleSeekEnd(e: React.ChangeEvent<HTMLInputElement>) {
-    const noteIndex = Number(e.target.value);
+  function handleSeekEnd(e: React.MouseEvent<HTMLInputElement> | React.TouchEvent<HTMLInputElement>) {
+    const noteIndex = Number((e.target as HTMLInputElement).value);
     setDragging(false);
     seekTo(noteIndex);
     if (!wasPausedRef.current) {
