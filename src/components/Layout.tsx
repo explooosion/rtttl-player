@@ -1,14 +1,22 @@
 import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
-import { FaMusic, FaHeart, FaPlus, FaBars, FaTimes, FaGithub, FaBug, FaExternalLinkAlt } from "react-icons/fa";
+import {
+  FaMusic,
+  FaHeart,
+  FaPlus,
+  FaBars,
+  FaTimes,
+  FaGithub,
+  FaBug,
+  FaExternalLinkAlt,
+} from "react-icons/fa";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { SettingsMenu } from "./SettingsMenu";
 import { SearchBar } from "./SearchBar";
 import { AlphabetSidebar } from "./AlphabetSidebar";
 import { CollectionList } from "./CollectionList";
-import { Player } from "./Player";
 import { RtttlEditor } from "./RtttlEditor";
 import { CreateDialog } from "./CreateDialog";
 import { FavoritesPage } from "./FavoritesPage";
@@ -31,12 +39,15 @@ export function Layout() {
 
   const isFavoritesPage = location.pathname === "/favorites";
 
-  useEffect(function loadCollectionWhenMount() {
-    fetch(`${import.meta.env.BASE_URL}rtttl-index.json`)
-      .then((res) => res.json())
-      .then((data) => setItems(data))
-      .catch((err) => console.error("Failed to load collection:", err));
-  }, [setItems]);
+  useEffect(
+    function loadCollectionWhenMount() {
+      fetch(`${import.meta.env.BASE_URL}rtttl-index.json`)
+        .then((res) => res.json())
+        .then((data) => setItems(data))
+        .catch((err) => console.error("Failed to load collection:", err));
+    },
+    [setItems],
+  );
 
   const handleDuplicate = useCallback((item: RtttlEntry) => {
     setDuplicateFrom(item);
@@ -64,18 +75,13 @@ export function Layout() {
       {/* Header */}
       <header className="sticky top-0 z-40 border-b border-gray-200 bg-white/80 backdrop-blur-md dark:border-gray-800 dark:bg-gray-950/80">
         <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3">
-          <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="lg:hidden"
-          >
+          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="lg:hidden">
             {sidebarOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
 
           <Link to="/" className="flex items-center gap-2">
             <FaMusic size={24} className="text-indigo-600 dark:text-indigo-400" />
-            <h1 className="text-lg font-bold text-gray-900 dark:text-white">
-              {t("app.title")}
-            </h1>
+            <h1 className="text-lg font-bold text-gray-900 dark:text-white">{t("app.title")}</h1>
           </Link>
 
           <div className="hidden flex-1 sm:block" />
@@ -120,11 +126,7 @@ export function Layout() {
         <div className="flex gap-4">
           {/* Alphabet sidebar - desktop */}
           {!isFavoritesPage && (
-            <aside
-              className={clsx(
-                "hidden w-10 shrink-0 lg:block",
-              )}
-            >
+            <aside className={clsx("hidden w-10 shrink-0 lg:block")}>
               <div className="sticky top-20">
                 <AlphabetSidebar />
               </div>
@@ -196,9 +198,8 @@ export function Layout() {
                   <CollectionList onDuplicate={handleDuplicate} />
                 </div>
 
-                {/* Right side: player + editor */}
+                {/* Right side: editor */}
                 <div className="w-full space-y-4 lg:w-80 xl:w-96">
-                  <Player />
                   <RtttlEditor />
                 </div>
               </div>
@@ -239,7 +240,7 @@ export function Layout() {
       <footer className="mx-auto mt-8 max-w-7xl border-t border-gray-200 px-4 py-6 dark:border-gray-800">
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
           <a
-            href="https://github.com/explooosion/rtttl-player"
+            href="https://github.com/explooosion/rtttl-hub"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 transition-colors hover:text-gray-700 dark:hover:text-gray-200"
@@ -248,7 +249,7 @@ export function Layout() {
             {t("footer.sourceCode")}
           </a>
           <a
-            href="https://github.com/explooosion/rtttl-player/issues"
+            href="https://github.com/explooosion/rtttl-hub/issues"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 transition-colors hover:text-gray-700 dark:hover:text-gray-200"

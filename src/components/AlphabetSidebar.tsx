@@ -9,7 +9,7 @@ export function AlphabetSidebar() {
   const letters = useAvailableLetters();
 
   return (
-    <div className="flex flex-row flex-wrap gap-1 lg:flex-col lg:gap-0.5">
+    <div className="flex flex-row flex-wrap gap-1">
       <button
         onClick={() => setActiveLetter(null)}
         className={clsx(
@@ -24,9 +24,7 @@ export function AlphabetSidebar() {
       {letters.map((letter) => (
         <button
           key={letter}
-          onClick={() =>
-            setActiveLetter(activeLetter === letter ? null : letter)
-          }
+          onClick={() => setActiveLetter(activeLetter === letter ? null : letter)}
           className={clsx(
             "rounded px-2 py-1 text-xs font-medium transition-colors",
             activeLetter === letter

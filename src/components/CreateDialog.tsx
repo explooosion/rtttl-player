@@ -4,7 +4,8 @@ import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useCollectionStore } from "@/stores/collection-store";
 import { usePlayerStore } from "@/stores/player-store";
 import { parseRtttl } from "@/utils/rtttl-parser";
-import type { RtttlEntry } from "@/utils/rtttl-parser";
+import type { RtttlEntry, RtttlCategory } from "@/utils/rtttl-parser";
+import { RTTTL_CATEGORIES } from "@/constants/categories";
 import { FaTimes } from "react-icons/fa";
 
 interface CreateDialogProps {
@@ -13,18 +14,13 @@ interface CreateDialogProps {
   onClose: () => void;
 }
 
-export function CreateDialog({
-  isOpen,
-  duplicateFrom,
-  onClose,
-}: CreateDialogProps) {
+export function CreateDialog({ isOpen, duplicateFrom, onClose }: CreateDialogProps) {
   const { t } = useTranslation();
   const addUserItem = useCollectionStore((s) => s.addUserItem);
   const setCurrentItem = usePlayerStore((s) => s.setCurrentItem);
-  const [name, setName] = useState(
-    duplicateFrom ? `${duplicateFrom.title} (Copy)` : "",
-  );
+  const [name, setName] = useState(duplicateFrom ? `${duplicateFrom.title} (Copy)` : "");
   const [code, setCode] = useState(duplicateFrom?.code ?? "");
+  const [category, setCategory] = useState<RtttlCategory | "">(duplicateFrom?.category ?? "");
   const [errors, setErrors] = useState<string[]>([]);
 
   function handleSubmit() {
@@ -52,6 +48,9 @@ export function CreateDialog({
           ? "0-9"
           : "#",
       code: code.trim(),
+      collection: "community",
+      category: category || undefined,
+      createdAt: new Date().toISOString(),
     };
 
     addUserItem(newItem);
@@ -62,6 +61,7 @@ export function CreateDialog({
   function handleClose() {
     setName("");
     setCode("");
+    setCategory("");
     setErrors([]);
     onClose();
   }
@@ -73,9 +73,7 @@ export function CreateDialog({
         <DialogPanel className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl dark:bg-gray-900">
           <div className="mb-4 flex items-center justify-between">
             <DialogTitle className="text-lg font-semibold text-gray-900 dark:text-white">
-              {duplicateFrom
-                ? t("create.duplicateTitle")
-                : t("create.title")}
+              {duplicateFrom ? t("create.duplicateTitle") : t("create.title")}
             </DialogTitle>
             <button
               onClick={handleClose}
@@ -123,6 +121,23 @@ export function CreateDialog({
                 rows={4}
                 className="w-full resize-y rounded-lg border border-gray-300 bg-white p-3 font-mono text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
               />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                {t("create.category")}
+              </label>
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value as RtttlCategory | "")}
+                className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
+              >
+                <option value="">{t("create.categoryPlaceholder")}</option>
+                {RTTTL_CATEGORIES.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {t(`categories.${cat}`)}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 

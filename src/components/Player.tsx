@@ -2,7 +2,7 @@ import { FaPlay, FaPause, FaStop } from "react-icons/fa";
 import { usePlayerStore } from "@/stores/player-store";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
-import { useRef, useState } from "react";
+import { Waveform } from "./Waveform";
 
 export function Player() {
   const { t } = useTranslation();
@@ -16,35 +16,6 @@ export function Player() {
   const playCode = usePlayerStore((s) => s.playCode);
   const seekTo = usePlayerStore((s) => s.seekTo);
   const editedCode = usePlayerStore((s) => s.editedCode);
-
-  // Local drag state: while dragging, show preview position without updating store
-  const [dragging, setDragging] = useState(false);
-  const [dragValue, setDragValue] = useState(0);
-  const wasPausedRef = useRef(false);
-
-  const displayIndex = dragging ? dragValue : currentNoteIndex;
-  const progress = totalNotes > 0 ? (displayIndex / totalNotes) * 100 : 0;
-
-  function handleSeekStart(e: React.MouseEvent<HTMLInputElement> | React.TouchEvent<HTMLInputElement>) {
-    wasPausedRef.current = playerState === "paused";
-    if (playerState === "playing") pause();
-    setDragging(true);
-    const val = Number((e.target as HTMLInputElement).value);
-    setDragValue(val);
-  }
-
-  function handleSeekChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setDragValue(Number(e.target.value));
-  }
-
-  function handleSeekEnd(e: React.MouseEvent<HTMLInputElement> | React.TouchEvent<HTMLInputElement>) {
-    const noteIndex = Number((e.target as HTMLInputElement).value);
-    setDragging(false);
-    seekTo(noteIndex);
-    if (!wasPausedRef.current) {
-      // seekTo will resume playing automatically (was playing before drag)
-    }
-  }
 
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-900">
@@ -65,33 +36,19 @@ export function Player() {
             )}
           </div>
 
-          {/* Seek track */}
+          {/* Waveform seek */}
           <div className="mb-3">
-            <div className="relative flex items-center py-1">
-              {/* Track background */}
-              <div className="pointer-events-none absolute left-0 right-0 h-1.5 rounded-full bg-gray-200 dark:bg-gray-700">
-                <div
-                  className="h-full rounded-full bg-indigo-500 transition-none"
-                  style={{ width: `${progress}%` }}
-                />
-              </div>
-              {/* Draggable range */}
-              <input
-                type="range"
-                min={0}
-                max={Math.max(0, totalNotes - 1)}
-                value={displayIndex}
-                disabled={totalNotes === 0}
-                onMouseDown={handleSeekStart}
-                onTouchStart={handleSeekStart}
-                onChange={handleSeekChange}
-                onMouseUp={handleSeekEnd}
-                onTouchEnd={handleSeekEnd}
-                className="seek-range relative w-full"
-              />
-            </div>
-            <div className="flex items-center justify-between text-xs text-gray-400 dark:text-gray-500">
-              <span>{totalNotes > 0 ? displayIndex + 1 : 0}</span>
+            <Waveform
+              code={editedCode || currentItem.code}
+              currentNoteIndex={currentNoteIndex}
+              totalNotes={totalNotes}
+              isPlaying={playerState === "playing" || playerState === "paused"}
+              onSeek={seekTo}
+              height={48}
+              barCount={60}
+            />
+            <div className="mt-1 flex items-center justify-between text-xs text-gray-400 dark:text-gray-500">
+              <span>{totalNotes > 0 ? currentNoteIndex + 1 : 0}</span>
               <span>{totalNotes}</span>
             </div>
           </div>
@@ -142,9 +99,7 @@ export function Player() {
           </div>
         </>
       ) : (
-        <p className="text-sm text-gray-400 dark:text-gray-500">
-          {t("editor.placeholder")}
-        </p>
+        <p className="text-sm text-gray-400 dark:text-gray-500">{t("editor.placeholder")}</p>
       )}
     </div>
   );
