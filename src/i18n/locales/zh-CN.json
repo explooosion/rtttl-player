@@ -183,7 +183,7 @@
     "cancel": "取消",
     "invalidCode": "RTTTL 代码格式无效",
     "nameRequired": "名称为必填",
-    "multiTrack": "多电机模式",
+    "multiTrack": "多音轨模式",
     "localStorageHint": "您创建的铃声会保存在浏览器的本地存储中。",
     "preview": "预览",
     "previewHint": "请在上方输入 RTTTL 代码以预览",

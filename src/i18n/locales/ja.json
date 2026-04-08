@@ -183,7 +183,7 @@
     "cancel": "キャンセル",
     "invalidCode": "無効な RTTTL コード形式",
     "nameRequired": "名前は必須です",
-    "multiTrack": "マルチモーター",
+    "multiTrack": "マルチトラック",
     "localStorageHint": "作成した着信音はブラウザのローカルストレージに保存されます。",
     "preview": "プレビュー",
     "previewHint": "RTTTL コードを入力してプレビューしてください",

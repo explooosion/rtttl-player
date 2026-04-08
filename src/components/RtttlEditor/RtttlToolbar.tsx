@@ -54,7 +54,7 @@ export function RtttlToolbar({ onInsert }: RtttlToolbarProps) {
         </div>
       ))}
 
-      <div className="ml-auto">
+      <div className="relative ml-auto">
         <button
           type="button"
           className="flex h-7 w-7 items-center justify-center rounded text-gray-400 hover:bg-gray-200 hover:text-gray-600 dark:text-gray-500 dark:hover:bg-gray-600 dark:hover:text-gray-300"
@@ -72,7 +72,7 @@ export function RtttlToolbar({ onInsert }: RtttlToolbarProps) {
           </svg>
         </button>
         {activeTooltip === "__help" && (
-          <div className="pointer-events-none absolute right-0 z-20 mb-1.5 w-56 rounded bg-gray-900 px-3 py-2 text-xs leading-5 text-white shadow-lg dark:bg-gray-700">
+          <div className="pointer-events-none absolute bottom-full right-0 z-20 mb-1.5 w-56 rounded bg-gray-900 px-3 py-2 text-xs leading-5 text-white shadow-lg dark:bg-gray-700">
             <p className="font-semibold">
               {t("editor.toolbar.helpTitle", { defaultValue: "RTTTL Format" })}
             </p>
