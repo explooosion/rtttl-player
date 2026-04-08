@@ -35,18 +35,20 @@ interface CodeEditorProps {
   notesOnly?: boolean;
   minHeight?: string;
   maxHeight?: string;
+  fontSize?: number;
   readOnly?: boolean;
+  singleLine?: boolean;
+  containerClassName?: string;
   onChange?: (value: string) => void;
 }
 
 const baseTheme = EditorView.theme({
-  // When syntax highlighting is off, fall back to a readable dark-gray text
-  "&": { fontSize: "13px", color: "#1f2937" },
+  "&": { fontSize: "13px" },
   ".cm-scroller": {
     fontFamily: "ui-monospace, 'Cascadia Code', 'Fira Code', monospace",
     overflow: "auto",
   },
-  ".cm-content": { padding: "10px 0", minHeight: "160px" },
+  ".cm-content": { padding: "10px 0", minHeight: "40px" },
   ".cm-line": { padding: "0 12px" },
   "&.cm-focused": { outline: "none" },
   "&.cm-focused .cm-cursor": { borderLeftColor: "#6366f1" },
@@ -58,6 +60,10 @@ const baseTheme = EditorView.theme({
     borderRadius: "3px",
     outline: "1px solid rgba(99,102,241,0.5)",
   },
+});
+
+const lightTheme = EditorView.theme({
+  "&": { color: "#1f2937" },
 });
 
 const darkTheme = EditorView.theme(
@@ -84,7 +90,10 @@ export const CodeEditor = forwardRef<CodeEditorHandle, CodeEditorProps>(function
     notesOnly = false,
     minHeight,
     maxHeight,
+    fontSize,
     readOnly = false,
+    singleLine = false,
+    containerClassName,
     onChange,
   },
   ref,
@@ -139,7 +148,7 @@ export const CodeEditor = forwardRef<CodeEditorHandle, CodeEditorProps>(function
       extensions: [
         history(),
         keymap.of([...defaultKeymap, ...historyKeymap]),
-        EditorView.lineWrapping,
+        ...(singleLine ? [] : [EditorView.lineWrapping]),
         ...(readOnly ? [EditorState.readOnly.of(true)] : []),
         langCompartment.of(syntaxHighlight ? langExtension : []),
         highlightCompartment.of(syntaxHighlight ? buildHighlightExtension(syntaxColors) : []),
@@ -148,11 +157,15 @@ export const CodeEditor = forwardRef<CodeEditorHandle, CodeEditorProps>(function
         updateListener,
         baseTheme,
         ...(minHeight ? [EditorView.theme({ ".cm-content": { minHeight } })] : []),
-        ...(maxHeight
-          ? [EditorView.theme({ ".cm-scroller": { maxHeight, overflowY: "auto" } })]
+        ...(singleLine
+          ? [EditorView.theme({ ".cm-scroller": { overflowX: "auto", overflowY: "hidden" } })]
           : []),
+        ...(maxHeight
+          ? [EditorView.theme({ "&": { maxHeight }, ".cm-scroller": { overflowY: "auto" } })]
+          : []),
+        ...(fontSize ? [EditorView.theme({ "&": { fontSize: `${fontSize}px` } })] : []),
         themeCompartment.of(
-          getEffectiveTheme(useThemeStore.getState().mode) === "dark" ? darkTheme : [],
+          getEffectiveTheme(useThemeStore.getState().mode) === "dark" ? darkTheme : lightTheme,
         ),
       ],
     });
@@ -204,7 +217,9 @@ export const CodeEditor = forwardRef<CodeEditorHandle, CodeEditorProps>(function
       const view = viewRef.current;
       if (!view) return;
       view.dispatch({
-        effects: themeCompartment.reconfigure(getEffectiveTheme(mode) === "dark" ? darkTheme : []),
+        effects: themeCompartment.reconfigure(
+          getEffectiveTheme(mode) === "dark" ? darkTheme : lightTheme,
+        ),
       });
     },
     [mode, themeCompartment],
@@ -220,14 +235,12 @@ export const CodeEditor = forwardRef<CodeEditorHandle, CodeEditorProps>(function
         view.dispatch({ effects: clearActiveNote.of(null) });
         return;
       }
-      const offset = offsetsRef.current[currentNoteIndex];
       view.dispatch({
         effects: [
           setActiveNote.of({
             noteIndex: currentNoteIndex,
             offsets: offsetsRef.current,
           }),
-          ...(offset ? [EditorView.scrollIntoView(offset.from, { y: "center" })] : []),
         ],
       });
     },
@@ -237,7 +250,10 @@ export const CodeEditor = forwardRef<CodeEditorHandle, CodeEditorProps>(function
   return (
     <div
       ref={containerRef}
-      className="overflow-hidden rounded-lg border border-gray-300 bg-white dark:border-gray-600 dark:bg-gray-800"
+      className={
+        containerClassName ??
+        "overflow-hidden rounded-lg border border-gray-300 bg-white dark:border-gray-600 dark:bg-gray-800"
+      }
     />
   );
 });

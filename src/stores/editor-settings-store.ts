@@ -26,10 +26,12 @@ export type SyntaxColors = Record<SyntaxColorKey, string>;
 
 interface EditorSettingsState {
   features: EditorFeatures;
+  fontSize: number;
   syntaxColors: SyntaxColors;
   /** Restore point — set by "Save" action */
   savedColors: SyntaxColors;
   toggleFeature: (key: keyof EditorFeatures) => void;
+  setFontSize: (size: number) => void;
   setSyntaxColor: (key: SyntaxColorKey, value: string) => void;
   saveColors: () => void;
   restoreColors: () => void;
@@ -43,8 +45,10 @@ export const useEditorSettingsStore = create<EditorSettingsState>()(
         syntaxHighlight: false,
         playbackTracking: true,
       },
+      fontSize: 13,
       syntaxColors: { ...DEFAULT_SYNTAX_COLORS },
       savedColors: { ...DEFAULT_SYNTAX_COLORS },
+      setFontSize: (size) => set({ fontSize: Math.max(10, Math.min(24, size)) }),
       toggleFeature: (key) =>
         set((state) => ({
           features: { ...state.features, [key]: !state.features[key] },

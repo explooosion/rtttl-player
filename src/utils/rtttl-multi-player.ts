@@ -68,7 +68,7 @@ export class MultiTrackPlayer {
     return this.audioContext;
   }
 
-  play(codes: string[]) {
+  play(codes: string[], initialMuted?: boolean[]) {
     this.stop();
     const trackCount = codes.length;
     if (trackCount === 0) {
@@ -77,7 +77,7 @@ export class MultiTrackPlayer {
 
     const volume = 0.12 / Math.max(1, trackCount);
 
-    this.tracks = codes.map((code) => {
+    this.tracks = codes.map((code, i) => {
       const parsed = parseRtttl(code);
       return {
         notes: parsed ? parsed.notes : [],
@@ -85,7 +85,7 @@ export class MultiTrackPlayer {
         timeoutId: null,
         oscillator: null,
         gainNode: null,
-        muted: false,
+        muted: initialMuted?.[i] ?? false,
         finished: false,
       };
     });
@@ -264,6 +264,42 @@ export class MultiTrackPlayer {
       }
     } else {
       this.state = "paused";
+      this.notify();
+    }
+  }
+
+  /** Seek all tracks to the given time offset in milliseconds. */
+  seekToMs(targetMs: number) {
+    if (this.tracks.length === 0) return;
+    const wasPlaying = this.state === "playing";
+
+    for (const track of this.tracks) {
+      if (track.timeoutId) {
+        clearTimeout(track.timeoutId);
+        track.timeoutId = null;
+      }
+      this.cleanupTrackOscillator(track);
+
+      let elapsed = 0;
+      let idx = 0;
+      while (idx < track.notes.length && elapsed + track.notes[idx].durationMs <= targetMs) {
+        elapsed += track.notes[idx].durationMs;
+        idx++;
+      }
+      track.currentNoteIndex = Math.min(idx, track.notes.length);
+      track.finished = track.currentNoteIndex >= track.notes.length;
+    }
+
+    if (wasPlaying) {
+      this.state = "playing";
+      const volume = 0.12 / Math.max(1, this.tracks.length);
+      this.notify();
+      for (let i = 0; i < this.tracks.length; i++) {
+        if (!this.tracks[i].finished) {
+          this.playTrackNote(i, volume);
+        }
+      }
+    } else {
       this.notify();
     }
   }

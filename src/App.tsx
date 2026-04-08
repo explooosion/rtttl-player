@@ -23,12 +23,13 @@ function App() {
       <HashRouter>
         <ScrollToTop />
         <Routes>
+          {/* DAW editor — standalone fullscreen route (no AppShell) */}
+          <Route path="/create" element={<CreatePage />} />
           <Route element={<AppShell />}>
             <Route path="/" element={<LandingPage />} />
             <Route path="/collections" element={<CollectionsPage />} />
             <Route path="/collections/:slug" element={<CollectionPage />} />
             <Route path="/favorites" element={<FavoritesPageRoute />} />
-            <Route path="/create" element={<CreatePage />} />
             <Route path="/creators/:creatorId" element={<CreatorPage />} />
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/privacy" element={<PrivacyPolicyPage />} />

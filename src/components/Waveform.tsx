@@ -8,6 +8,8 @@ interface WaveformProps {
   totalNotes?: number;
   isPlaying?: boolean;
   onSeek?: (noteIndex: number) => void;
+  /** Override progress with a 0–1 ratio (time-based). When provided, takes precedence over currentNoteIndex. */
+  progressRatio?: number;
   height?: number;
   barCount?: number;
   className?: string;
@@ -88,6 +90,7 @@ export function Waveform({
   totalNotes = 0,
   isPlaying = false,
   onSeek,
+  progressRatio,
   height = 40,
   barCount = 60,
   className = "",
@@ -117,8 +120,13 @@ export function Waveform({
   }, [code, barCount]);
 
   const effectiveTotalNotes = totalNotes > 0 ? totalNotes : noteCount;
-  // Use (currentNoteIndex + 1) so the bar containing the current note is shown as played
-  const progress = effectiveTotalNotes > 0 ? (currentNoteIndex + 1) / effectiveTotalNotes : 0;
+  // Time-based progressRatio takes precedence over note-index-based progress
+  const progress =
+    progressRatio !== undefined
+      ? progressRatio
+      : effectiveTotalNotes > 0
+        ? (currentNoteIndex + 1) / effectiveTotalNotes
+        : 0;
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {

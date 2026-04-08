@@ -15,6 +15,11 @@ interface RtttlEditorInputProps {
   value: string;
   onChange: (value: string) => void;
   minHeight?: string;
+  maxHeight?: string;
+  fontSize?: number;
+  showToolbar?: boolean;
+  singleLine?: boolean;
+  containerClassName?: string;
   /** Multi-track support — when provided, TrackTabs are shown above the editor. */
   tracks?: string[];
   activeTrackIndex?: number;
@@ -29,6 +34,11 @@ export const RtttlEditorInput = forwardRef<RtttlEditorInputHandle, RtttlEditorIn
       value,
       onChange,
       minHeight,
+      maxHeight,
+      fontSize,
+      showToolbar = true,
+      singleLine = false,
+      containerClassName,
       tracks,
       activeTrackIndex,
       onSelectTrack,
@@ -83,7 +93,9 @@ export const RtttlEditorInput = forwardRef<RtttlEditorInputHandle, RtttlEditorIn
         )}
 
         {/* Editor area */}
-        <RtttlToolbar onInsert={(text) => codeEditorRef.current?.insertText(text)} />
+        {showToolbar && (
+          <RtttlToolbar onInsert={(text) => codeEditorRef.current?.insertText(text)} />
+        )}
         <CodeEditor
           ref={codeEditorRef}
           value={value}
@@ -94,6 +106,10 @@ export const RtttlEditorInput = forwardRef<RtttlEditorInputHandle, RtttlEditorIn
           currentNoteIndex={currentNoteIndex}
           playerState={playerState}
           minHeight={minHeight}
+          maxHeight={maxHeight}
+          fontSize={fontSize}
+          singleLine={singleLine}
+          containerClassName={containerClassName}
           onChange={onChange}
         />
       </div>

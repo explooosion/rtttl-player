@@ -14,6 +14,8 @@ interface PlayerStoreState {
   trackNoteIndices: number[];
   /** Per-track total note counts from multi-track playback. */
   trackTotalNotes: number[];
+  /** Per-track mute state. */
+  trackMuted: boolean[];
   editedCode: string;
   /** Multi-track codes (one per motor). Empty array = single-track mode. */
   editedTracks: string[];
@@ -30,12 +32,14 @@ interface PlayerStoreState {
   resume: () => void;
   stop: () => void;
   seekTo: (noteIndex: number) => void;
+  seekToMs: (ms: number) => void;
   setEditedCode: (code: string) => void;
   setEditedTracks: (tracks: string[]) => void;
   setActiveTrackIndex: (index: number) => void;
   setEditedTrackAt: (index: number, code: string) => void;
   addTrack: () => void;
   removeTrack: (index: number) => void;
+  toggleMuteTrack: (index: number) => void;
   /** Play a single track from the current multi-track item without disrupting editedTracks. */
   playSoloTrack: (trackIndex: number) => void;
 }
@@ -59,6 +63,8 @@ export const usePlayerStore = create<PlayerStoreState>((set, get) => {
       totalNotes: state.globalTotalNotes,
       trackNoteIndices: state.tracks.map((t) => t.currentNoteIndex),
       trackTotalNotes: state.tracks.map((t) => t.totalNotes),
+      // Don't overwrite mute state when stop() empties tracks array
+      ...(state.tracks.length > 0 ? { trackMuted: state.tracks.map((t) => t.muted) } : {}),
     });
   });
 
@@ -69,6 +75,7 @@ export const usePlayerStore = create<PlayerStoreState>((set, get) => {
     totalNotes: 0,
     trackNoteIndices: [],
     trackTotalNotes: [],
+    trackMuted: [],
     editedCode: "",
     editedTracks: [],
     activeTrackIndex: 0,
@@ -121,7 +128,7 @@ export const usePlayerStore = create<PlayerStoreState>((set, get) => {
       }
       player.stop();
       set({ isMultiTrack: true, editedTracks: tracks });
-      multiPlayer.play(tracks);
+      multiPlayer.play(tracks, get().trackMuted);
     },
     pause: () => {
       if (get().isMultiTrack) {
@@ -149,6 +156,11 @@ export const usePlayerStore = create<PlayerStoreState>((set, get) => {
         multiPlayer.seekTo(noteIndex);
       } else {
         player.seekTo(noteIndex);
+      }
+    },
+    seekToMs: (ms) => {
+      if (get().isMultiTrack) {
+        multiPlayer.seekToMs(ms);
       }
     },
     setEditedCode: (editedCode) => set({ editedCode }),
@@ -188,6 +200,19 @@ export const usePlayerStore = create<PlayerStoreState>((set, get) => {
       player.stop();
       // Play via multiPlayer so isMultiTrack stays true and TrackTabs remain visible
       multiPlayer.play([code]);
+    },
+    toggleMuteTrack: (index) => {
+      if (get().playerState !== "idle") {
+        // Playing/paused: delegate to engine; notify() callback will sync trackMuted
+        multiPlayer.toggleMuteTrack(index);
+      } else {
+        // Idle: engine has no tracks — update the store directly as a pre-play flag
+        const prev = get().trackMuted;
+        const next = [...prev];
+        while (next.length <= index) next.push(false);
+        next[index] = !next[index];
+        set({ trackMuted: next });
+      }
     },
   };
 });

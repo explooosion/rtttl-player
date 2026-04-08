@@ -239,3 +239,26 @@ export function parseRtttlOffsets(code: string): NoteOffset[] {
 
   return offsets;
 }
+
+export interface TimedNote {
+  startMs: number;
+  durationMs: number;
+  isRest: boolean;
+  noteIndex: number;
+}
+
+/**
+ * Returns each note with its absolute start time in milliseconds.
+ * Used for rendering note blocks on a time-aligned timeline.
+ */
+export function parseRtttlTimed(code: string): TimedNote[] | null {
+  const parsed = parseRtttl(code);
+  if (!parsed) return null;
+  const result: TimedNote[] = [];
+  let t = 0;
+  parsed.notes.forEach((note, i) => {
+    result.push({ startMs: t, durationMs: note.durationMs, isRest: note.isRest, noteIndex: i });
+    t += note.durationMs;
+  });
+  return result;
+}
