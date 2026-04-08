@@ -58,6 +58,8 @@ Review First: Do not commit changes directly. Propose "Suggested Changes" and ex
 
 Skill Integration: Automatically apply optimization skills located in /.agents/skills/.
 
+Commit Messages: When performing any git commit, apply the rules defined in /.agents/skills/commit-message/SKILL.md.
+
 # Corporate Development & AI Safety Standards
 
 ## Security & Credential Management
