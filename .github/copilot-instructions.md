@@ -1,9 +1,10 @@
 # Anywhere Repository Copilot Instructions
 
 ## Project Context
+
 - **Framework**: TypeScript + React 18+
 - **Tech Stack**: Tailwind CSS
-- **Requirement**: Follow rules in /.agents/skills/vercel-react-best-practices/AGENTS.md
+- **Requirement**: Follow rules in /.agents/skills
 
 ## Code Standards & Best Practices
 
@@ -47,10 +48,12 @@
 - Optimize for minimal re-renders
 
 ### 語言偏好 (Language Preference)
+
 - Always respond in Traditional Chinese.
 - 所有的程式碼審查建議、解釋與回覆皆須使用中文。
 
 ### Agent Interaction Protocols
+
 Review First: Do not commit changes directly. Propose "Suggested Changes" and explain how they adhere to these standards.
 
 Skill Integration: Automatically apply optimization skills located in /.agents/skills/.
@@ -58,6 +61,7 @@ Skill Integration: Automatically apply optimization skills located in /.agents/s
 # Corporate Development & AI Safety Standards
 
 ## Security & Credential Management
+
 - **NO SECRETS:** Never generate or include hardcoded passwords, AppIDs, Secrets, API Keys, or Tokens.
 - **ABSTRACTION:** Always reference credentials using environment variables (e.g., `process.env`, `os.getenv`).
 - **PROTECTION:** If you see a file path containing `.env`, `secret`, or `credential`, do not read its content or include it in code suggestions.
