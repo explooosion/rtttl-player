@@ -1,9 +1,8 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { FaChevronDown, FaHeart, FaPlus, FaStar } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
 import { COLLECTIONS } from "@/constants/collections";
-import { useCreateDialogStore } from "@/stores/create-dialog-store";
 import clsx from "clsx";
 
 function CollectionCard({
@@ -45,8 +44,6 @@ export function MegaMenu({ isActive }: MegaMenuProps) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const openCreateDialog = useCreateDialogStore((s) => s.open);
-
   const close = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
@@ -129,38 +126,6 @@ export function MegaMenu({ isActive }: MegaMenuProps) {
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div className="border-t border-gray-100 pt-3 dark:border-gray-800">
-            <div className="flex flex-row gap-1">
-              <Link
-                to="/favorites"
-                onClick={close}
-                className="flex items-center gap-2 rounded-lg p-2.5 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
-              >
-                <FaHeart size={14} className="text-pink-500" />
-                {t("nav.favorites")}
-              </Link>
-              <Link
-                to="/collections/picaxe"
-                onClick={close}
-                className="flex items-center gap-2 rounded-lg p-2.5 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
-              >
-                <FaStar size={14} className="text-amber-500" />
-                {t("megaMenu.popular")}
-              </Link>
-              <button
-                onClick={() => {
-                  close();
-                  openCreateDialog();
-                }}
-                className="flex items-center gap-2 rounded-lg p-2.5 text-left text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
-              >
-                <FaPlus size={14} className="text-emerald-500" />
-                {t("megaMenu.createNew")}
-              </button>
             </div>
           </div>
         </div>

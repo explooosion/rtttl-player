@@ -15,6 +15,7 @@ import { RegisterPage } from "@/pages/RegisterPage";
 import { AccountPage } from "@/pages/AccountPage";
 import { ProfilePage } from "@/pages/ProfilePage";
 import { PasswordPage } from "@/pages/PasswordPage";
+import { CreatePage } from "@/pages/CreatePage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/collections" element={<CollectionsPage />} />
             <Route path="/collections/:slug" element={<CollectionPage />} />
             <Route path="/favorites" element={<FavoritesPageRoute />} />
+            <Route path="/create" element={<CreatePage />} />
             <Route path="/creators/:creatorId" element={<CreatorPage />} />
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/privacy" element={<PrivacyPolicyPage />} />

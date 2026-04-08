@@ -1,20 +1,19 @@
 import { useCallback, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FaPlus } from "react-icons/fa";
 import { ListPageLayout } from "@/components/ListPageLayout";
 import type { BreadcrumbItem } from "@/components/ListPageLayout";
 import { useCollectionStore } from "@/stores/collection-store";
-import { useCreateDialogStore } from "@/stores/create-dialog-store";
 import { getCollectionBySlug } from "@/constants/collections";
 import type { CollectionSlug } from "@/utils/rtttl-parser";
 
 export function CollectionPage() {
   const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const items = useCollectionStore((s) => s.items);
   const userItems = useCollectionStore((s) => s.userItems);
-  const openCreateDialog = useCreateDialogStore((s) => s.open);
 
   const collectionDef = slug ? getCollectionBySlug(slug) : undefined;
 
@@ -27,8 +26,8 @@ export function CollectionPage() {
   }, [slug, items, userItems]);
 
   const handleCreateNew = useCallback(() => {
-    openCreateDialog();
-  }, [openCreateDialog]);
+    navigate("/create");
+  }, [navigate]);
 
   const breadcrumbs: BreadcrumbItem[] = [
     { label: t("breadcrumb.home"), to: "/" },

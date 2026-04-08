@@ -18,7 +18,6 @@ import { SettingsMenu } from "./SettingsMenu";
 import { MegaMenu } from "./MegaMenu";
 import { UserMenu } from "./UserMenu";
 import { CookieConsentBanner } from "./CookieConsentBanner";
-import { CreateDialog } from "./CreateDialog";
 import { useCollectionStore } from "@/stores/collection-store";
 import { usePlayerStore } from "@/stores/player-store";
 import { useCookieConsentStore } from "@/stores/cookie-consent-store";
@@ -44,6 +43,7 @@ export function AppShell() {
 
   const isCollectionsActive = location.pathname.startsWith("/collections");
   const isFavoritesActive = location.pathname === "/favorites";
+  const isCreateActive = location.pathname === "/create";
 
   useEffect(() => {
     let lastScrolled = false;
@@ -141,6 +141,17 @@ export function AppShell() {
               )}
             >
               {t("nav.favorites")}
+            </Link>
+            <Link
+              to="/create"
+              className={clsx(
+                "whitespace-nowrap rounded-lg px-3 py-1.5 text-sm font-medium transition-colors",
+                isCreateActive
+                  ? "bg-indigo-700 text-white"
+                  : "bg-indigo-600 text-white hover:bg-indigo-700",
+              )}
+            >
+              {t("actions.createNew")}
             </Link>
           </nav>
 
@@ -254,6 +265,18 @@ export function AppShell() {
                 )}
               >
                 {t("nav.favorites")}
+              </Link>
+              <Link
+                to="/create"
+                onClick={closeSidebar}
+                className={clsx(
+                  "rounded-lg px-3 py-2 text-sm font-medium",
+                  isCreateActive
+                    ? "bg-indigo-50 text-indigo-600 dark:bg-indigo-950 dark:text-indigo-400"
+                    : "text-gray-600 dark:text-gray-400",
+                )}
+              >
+                {t("actions.createNew")}
               </Link>
             </nav>
           </div>
@@ -428,9 +451,6 @@ export function AppShell() {
 
       {/* Cookie Consent Banner */}
       <CookieConsentBanner />
-
-      {/* Global Create RTTTL Dialog */}
-      <CreateDialog />
     </div>
   );
 }
