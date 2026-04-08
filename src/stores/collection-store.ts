@@ -36,7 +36,13 @@ export const useCollectionStore = create<CollectionState>()(
       activeCategories: [],
       isLoading: true,
       setItems: (items) => set({ items, isLoading: false }),
-      addUserItem: (item) => set((state) => ({ userItems: [...state.userItems, item] })),
+      addUserItem: (item) =>
+        set((state) => {
+          if (state.userItems.some((u) => u.id === item.id)) {
+            return state;
+          }
+          return { userItems: [...state.userItems, item] };
+        }),
       setSearchQuery: (searchQuery) => set({ searchQuery }),
       setSortMode: (sortMode) => set({ sortMode }),
       setActiveLetter: (activeLetter) => set({ activeLetter }),

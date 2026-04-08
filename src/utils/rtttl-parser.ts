@@ -1,4 +1,4 @@
-export type CollectionSlug = "picaxe" | "community";
+export type CollectionSlug = "picaxe" | "community" | "esc-configurator";
 
 export type RtttlCategory =
   | "pop"
@@ -22,6 +22,8 @@ export interface RtttlEntry {
   sourceCategory?: string;
   category?: RtttlCategory;
   createdAt?: string;
+  /** Multi-track (polyphonic) RTTTL — one string per motor/voice. */
+  tracks?: string[];
 }
 
 export interface RtttlDefaults {
@@ -40,6 +42,12 @@ export interface ParsedRtttl {
   name: string;
   defaults: RtttlDefaults;
   notes: RtttlNote[];
+}
+
+/** Character range of a single note token within the raw code string. */
+export interface NoteOffset {
+  from: number;
+  to: number;
 }
 
 const NOTE_FREQUENCIES: Record<string, number> = {
@@ -105,8 +113,13 @@ function parseNote(noteStr: string, defaults: RtttlDefaults): RtttlNote | null {
   if (pos >= trimmed.length) {
     return null;
   }
-  const noteChar = trimmed[pos].toLowerCase();
+  let noteChar = trimmed[pos].toLowerCase();
   pos++;
+
+  // European RTTTL dialect: 'h' = B natural
+  if (noteChar === "h") {
+    noteChar = "b";
+  }
 
   const isRest = noteChar === "p";
 
@@ -182,4 +195,47 @@ export function formatDuration(totalMs: number): string {
 
 export function getTotalDuration(notes: RtttlNote[]): number {
   return notes.reduce((sum, note) => sum + note.durationMs, 0);
+}
+
+/**
+ * Returns the character offsets of each note token within the raw RTTTL code string.
+ * Used by the playback tracking decoration extension.
+ */
+export function parseRtttlOffsets(code: string): NoteOffset[] {
+  const firstColon = code.indexOf(":");
+  if (firstColon === -1) {
+    return [];
+  }
+  const secondColon = code.indexOf(":", firstColon + 1);
+  if (secondColon === -1) {
+    return [];
+  }
+
+  const offsets: NoteOffset[] = [];
+  let pos = secondColon + 1;
+
+  while (pos < code.length) {
+    while (pos < code.length && code[pos] === " ") {
+      pos++;
+    }
+    if (pos >= code.length) {
+      break;
+    }
+    const tokenStart = pos;
+    while (pos < code.length && code[pos] !== ",") {
+      pos++;
+    }
+    let trimEnd = pos;
+    while (trimEnd > tokenStart && code[trimEnd - 1] === " ") {
+      trimEnd--;
+    }
+    if (trimEnd > tokenStart) {
+      offsets.push({ from: tokenStart, to: trimEnd });
+    }
+    if (pos < code.length) {
+      pos++;
+    }
+  }
+
+  return offsets;
 }
