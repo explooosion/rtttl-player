@@ -6,7 +6,7 @@ An online RTTTL ringtone platform built with React + TypeScript. Explore collect
 
 ## Features
 
-- **Multi-collection architecture** — PICAXE (11K+ tones) and Community collections
+- **Multi-collection architecture** — PICAXE (11K+ tones), ESC Configurator (FPV motor melodies), and Community collections
 - **Web Audio playback** — Play tones in-browser using the Web Audio API, no plugins needed
 - **Real-time waveform** — Visual seek bar synchronized with playback
 - **RTTTL editor** — Edit and preview ringtone code with instant audio feedback
@@ -30,9 +30,11 @@ An online RTTTL ringtone platform built with React + TypeScript. Explore collect
 - **@tanstack/react-virtual** — virtualized large lists
 - **Web Audio API** — tone synthesis
 
-## Data Source
+## Data Sources
 
-The PICAXE collection is sourced from the [PICAXE RTTTL collection](https://picaxe.com/rtttl-ringtones-for-tune-command/) and is used for non-commercial, educational purposes only. The original data remains the property of its respective authors.
+The **PICAXE** collection is sourced from the [PICAXE RTTTL collection](https://picaxe.com/rtttl-ringtones-for-tune-command/) and is used for non-commercial, educational purposes only. The original data remains the property of its respective authors.
+
+The **ESC Configurator** collection is sourced from the [ESC Configurator](https://esc-configurator.com/) open-source project. RTTTL melodies are community-contributed and merged by the project maintainer. Used under the project's open-source license.
 
 ## License
 

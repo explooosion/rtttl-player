@@ -60,6 +60,8 @@ Skill Integration: Automatically apply optimization skills located in /.agents/s
 
 Commit Messages: When performing any git commit, apply the rules defined in /.agents/skills/commit-message/SKILL.md.
 
+New Collections: When adding a new RTTTL collection to the platform, follow the checklist and decision framework in /.agents/skills/add-collection/SKILL.md. If any required information is missing, ask the user before proceeding.
+
 # Corporate Development & AI Safety Standards
 
 ## Security & Credential Management
