@@ -43,7 +43,9 @@ export function PropertiesPanel({
 
   const trackStats = useMemo(() => {
     const parsed = focusedCode.trim() ? parseRtttl(focusedCode.trim()) : null;
-    if (!parsed) return null;
+    if (!parsed) {
+      return null;
+    }
     return {
       duration: getTotalDuration(parsed.notes),
       bpm: parsed.defaults.bpm,
@@ -64,7 +66,9 @@ export function PropertiesPanel({
 
   async function handleCopyAll() {
     const all = tracks.filter((tk) => tk.trim()).join("\n");
-    if (!all) return;
+    if (!all) {
+      return;
+    }
     const ok = await copyToClipboard(all);
     if (ok) {
       setCopied(true);
@@ -73,7 +77,9 @@ export function PropertiesPanel({
   }
 
   async function handleCopyTrack() {
-    if (!focusedCode.trim()) return;
+    if (!focusedCode.trim()) {
+      return;
+    }
     const ok = await copyToClipboard(focusedCode);
     if (ok) {
       setCopiedTrack(true);

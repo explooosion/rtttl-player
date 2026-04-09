@@ -38,7 +38,9 @@ export function ImportDialog({ open, onClose, onConfirm }: ImportDialogProps) {
 
   /* Focus textarea when dialog opens; clear text when it closes. */
   useEffect(() => {
-    if (!open) return;
+    if (!open) {
+      return;
+    }
     const id = window.setTimeout(() => textareaRef.current?.focus(), 60);
     return () => {
       window.clearTimeout(id);
@@ -51,7 +53,9 @@ export function ImportDialog({ open, onClose, onConfirm }: ImportDialogProps) {
   const canImport = validTracks.length > 0 && validTracks.length <= MAX_TRACKS;
 
   function handleConfirm() {
-    if (!canImport) return;
+    if (!canImport) {
+      return;
+    }
     onConfirm(validTracks.slice(0, MAX_TRACKS));
     setText("");
   }

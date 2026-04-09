@@ -24,7 +24,9 @@ export function AccountPage() {
     }
   }, [isAuthenticated, navigate]);
 
-  if (!user) return null;
+  if (!user) {
+    return null;
+  }
 
   return (
     <div className="animate-fade-in-up mx-auto max-w-3xl px-4 py-8">

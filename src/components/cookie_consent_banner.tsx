@@ -15,7 +15,9 @@ export function CookieConsentBanner() {
   const [prefEnabled, setPrefEnabled] = useState(storePreferences);
   const [statsEnabled, setStatsEnabled] = useState(storeStatistics);
 
-  if (hasConsented) return null;
+  if (hasConsented) {
+    return null;
+  }
 
   const handleSave = () => {
     savePreferences({ preferences: prefEnabled, statistics: statsEnabled });

@@ -44,12 +44,15 @@ function matchesSearch(item: RtttlEntry, q: string): boolean {
 
 function sortItems(arr: RtttlEntry[], mode: SortMode): RtttlEntry[] {
   const sorted = [...arr];
-  if (mode === "a-z") sorted.sort((a, b) => a.title.localeCompare(b.title));
-  else if (mode === "z-a") sorted.sort((a, b) => b.title.localeCompare(a.title));
-  else if (mode === "artist-a-z")
+  if (mode === "a-z") {
+    sorted.sort((a, b) => a.title.localeCompare(b.title));
+  } else if (mode === "z-a") {
+    sorted.sort((a, b) => b.title.localeCompare(a.title));
+  } else if (mode === "artist-a-z") {
     sorted.sort((a, b) => a.artist.localeCompare(b.artist) || a.title.localeCompare(b.title));
-  else if (mode === "artist-z-a")
+  } else if (mode === "artist-z-a") {
     sorted.sort((a, b) => b.artist.localeCompare(a.artist) || a.title.localeCompare(b.title));
+  }
   return sorted;
 }
 
@@ -98,7 +101,9 @@ export function ListPageLayout({
   // Available letters derived from items filtered by search+category (not letter)
   const availableLetters = useMemo(() => {
     let base = items;
-    if (searchQuery.trim()) base = base.filter((item) => matchesSearch(item, searchQuery));
+    if (searchQuery.trim()) {
+      base = base.filter((item) => matchesSearch(item, searchQuery));
+    }
     if (activeCategories.length > 0) {
       base = base.filter(
         (item) =>
@@ -138,7 +143,9 @@ export function ListPageLayout({
   }, []);
 
   const handleSearch = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    if (timerRef.current) clearTimeout(timerRef.current);
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
     timerRef.current = setTimeout(() => {
       setSearchQuery(e.target.value);
       setCurrentPage(1);
@@ -174,8 +181,12 @@ export function ListPageLayout({
   const maxVisible = 7;
   let startPage = Math.max(1, safePage - Math.floor(maxVisible / 2));
   const endPage = Math.min(totalPages, startPage + maxVisible - 1);
-  if (endPage - startPage + 1 < maxVisible) startPage = Math.max(1, endPage - maxVisible + 1);
-  for (let i = startPage; i <= endPage; i++) pageNumbers.push(i);
+  if (endPage - startPage + 1 < maxVisible) {
+    startPage = Math.max(1, endPage - maxVisible + 1);
+  }
+  for (let i = startPage; i <= endPage; i++) {
+    pageNumbers.push(i);
+  }
 
   const categoryFilterUI = (
     <div>

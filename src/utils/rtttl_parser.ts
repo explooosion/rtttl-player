@@ -246,7 +246,9 @@ export interface TimedNote {
  */
 export function parseRtttlTimed(code: string): TimedNote[] | null {
   const parsed = parseRtttl(code);
-  if (!parsed) return null;
+  if (!parsed) {
+    return null;
+  }
   const result: TimedNote[] = [];
   let t = 0;
   parsed.notes.forEach((note, i) => {

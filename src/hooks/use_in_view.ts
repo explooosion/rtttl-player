@@ -5,7 +5,9 @@ export function useInView() {
 
   const observe = useCallback(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el) {
+      return;
+    }
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {

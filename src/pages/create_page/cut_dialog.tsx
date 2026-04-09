@@ -17,11 +17,15 @@ interface CutDialogProps {
 }
 
 function getTrackName(code: string, fallback: string): string {
-  if (!code.trim()) return fallback;
+  if (!code.trim()) {
+    return fallback;
+  }
   const colonIdx = code.indexOf(":");
   if (colonIdx > 0) {
     const name = code.slice(0, colonIdx).trim();
-    if (name) return name;
+    if (name) {
+      return name;
+    }
   }
   return fallback;
 }
@@ -67,8 +71,12 @@ export function CutDialog({
     if (inMs !== null && outMs !== null) {
       return `${(inMs / 1000).toFixed(1)}s – ${(outMs / 1000).toFixed(1)}s`;
     }
-    if (inMs !== null) return `${(inMs / 1000).toFixed(1)}s →`;
-    if (outMs !== null) return `← ${(outMs / 1000).toFixed(1)}s`;
+    if (inMs !== null) {
+      return `${(inMs / 1000).toFixed(1)}s →`;
+    }
+    if (outMs !== null) {
+      return `← ${(outMs / 1000).toFixed(1)}s`;
+    }
     return "";
   })();
 

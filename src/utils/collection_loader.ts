@@ -13,10 +13,16 @@ export interface CollectionEntry {
 
 function getFirstLetter(artist: string | undefined, name: string): string {
   const source = (artist ?? name).trim();
-  if (!source) return "#";
+  if (!source) {
+    return "#";
+  }
   const first = source.charAt(0).toUpperCase();
-  if (/[A-Z]/.test(first)) return first;
-  if (/[0-9]/.test(first)) return "0-9";
+  if (/[A-Z]/.test(first)) {
+    return first;
+  }
+  if (/[0-9]/.test(first)) {
+    return "0-9";
+  }
   return "#";
 }
 

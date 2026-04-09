@@ -28,7 +28,9 @@ export function PasswordPage() {
     }
   }, [isAuthenticated, navigate]);
 
-  if (!user) return null;
+  if (!user) {
+    return null;
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

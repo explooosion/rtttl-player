@@ -19,10 +19,15 @@ export function CollectionPage() {
   const collectionDef = slug ? getCollectionBySlug(slug) : undefined;
 
   const collectionItems = useMemo(() => {
-    if (!slug) return [...items, ...userItems];
-    if (slug === "picaxe")
+    if (!slug) {
+      return [...items, ...userItems];
+    }
+    if (slug === "picaxe") {
       return items.filter((item) => item.collection === (slug as CollectionSlug));
-    if (slug === "community") return userItems;
+    }
+    if (slug === "community") {
+      return userItems;
+    }
     return [...items, ...userItems].filter((item) => item.collection === (slug as CollectionSlug));
   }, [slug, items, userItems]);
 

@@ -61,7 +61,9 @@ export function MegaMenu({ isActive }: MegaMenuProps) {
 
   useEffect(() => {
     function handleEscape(e: KeyboardEvent) {
-      if (e.key === "Escape") close();
+      if (e.key === "Escape") {
+        close();
+      }
     }
     if (open) {
       document.addEventListener("keydown", handleEscape);

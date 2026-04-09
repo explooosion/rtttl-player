@@ -21,7 +21,9 @@ export function ProfilePage() {
     }
   }, [isAuthenticated, navigate]);
 
-  if (!user) return null;
+  if (!user) {
+    return null;
+  }
 
   function handleSave(e: React.FormEvent) {
     e.preventDefault();

@@ -37,10 +37,16 @@ function parseShortcut(descriptor: string): {
 
 function isInputFocused(): boolean {
   const el = document.activeElement;
-  if (!el) return false;
+  if (!el) {
+    return false;
+  }
   const tag = (el as HTMLElement).tagName?.toLowerCase();
-  if (tag === "input" || tag === "textarea" || tag === "select") return true;
-  if ((el as HTMLElement).isContentEditable) return true;
+  if (tag === "input" || tag === "textarea" || tag === "select") {
+    return true;
+  }
+  if ((el as HTMLElement).isContentEditable) {
+    return true;
+  }
   return false;
 }
 
@@ -48,7 +54,9 @@ export function useKeyboardShortcuts(shortcuts: ShortcutDef[]) {
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       for (const shortcut of shortcuts) {
-        if (shortcut.ignoreInInput && isInputFocused()) continue;
+        if (shortcut.ignoreInInput && isInputFocused()) {
+          continue;
+        }
 
         const parsed = parseShortcut(shortcut.key);
 

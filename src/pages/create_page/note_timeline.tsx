@@ -14,7 +14,9 @@ interface NoteTimelineProps {
 
 export function NoteTimeline({ code, totalMs, trackColor, playheadMs }: NoteTimelineProps) {
   const timedNotes = useMemo(() => {
-    if (!code.trim() || totalMs <= 0) return null;
+    if (!code.trim() || totalMs <= 0) {
+      return null;
+    }
     return parseRtttlTimed(code.trim());
   }, [code, totalMs]);
 
@@ -23,13 +25,18 @@ export function NoteTimeline({ code, totalMs, trackColor, playheadMs }: NoteTime
     if (!timedNotes || timedNotes.length === 0 || playheadMs === undefined || playheadMs <= 0) {
       return -1;
     }
-    if (timedNotes[0].startMs > playheadMs) return -1;
+    if (timedNotes[0].startMs > playheadMs) {
+      return -1;
+    }
     let lo = 0;
     let hi = timedNotes.length - 1;
     while (lo < hi) {
       const mid = (lo + hi + 1) >>> 1;
-      if (timedNotes[mid].startMs <= playheadMs) lo = mid;
-      else hi = mid - 1;
+      if (timedNotes[mid].startMs <= playheadMs) {
+        lo = mid;
+      } else {
+        hi = mid - 1;
+      }
     }
     return timedNotes[lo].noteIndex;
   }, [timedNotes, playheadMs]);

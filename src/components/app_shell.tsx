@@ -50,7 +50,9 @@ export function AppShell() {
     let lastScrolled = false;
     let ticking = false;
     const handleScroll = () => {
-      if (ticking) return;
+      if (ticking) {
+        return;
+      }
       ticking = true;
       requestAnimationFrame(() => {
         const y = window.scrollY;

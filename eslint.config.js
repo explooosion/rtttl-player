@@ -24,6 +24,7 @@ export default defineConfig([
         "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
+      curly: ["error", "all"],
     },
   },
 ]);

@@ -156,15 +156,23 @@ export function TrackLane({
   /** If pasted text looks like a complete RTTTL string (name:...), replace entire track code. */
   function handleContainerPaste(e: React.ClipboardEvent) {
     const target = e.target as HTMLElement;
-    if (!target.closest(".cm-editor")) return;
+    if (!target.closest(".cm-editor")) {
+      return;
+    }
     const pasted = e.clipboardData?.getData("text") ?? "";
     const colonIdx = pasted.indexOf(":");
-    if (colonIdx <= 0) return;
+    if (colonIdx <= 0) {
+      return;
+    }
     const pastedName = pasted.slice(0, colonIdx).trim();
     // Must look like a valid RTTTL name (letters, digits, underscore, hyphen, space)
-    if (!/^[\w\s-]+$/.test(pastedName)) return;
+    if (!/^[\w\s-]+$/.test(pastedName)) {
+      return;
+    }
     // After the name there must be more content (not just an empty tail)
-    if (pasted.slice(colonIdx + 1).trim().length === 0) return;
+    if (pasted.slice(colonIdx + 1).trim().length === 0) {
+      return;
+    }
     e.preventDefault();
     onChange(pasted.trim());
   }
@@ -278,7 +286,9 @@ export function TrackLane({
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
-                if (canDuplicate) onDuplicate();
+                if (canDuplicate) {
+                  onDuplicate();
+                }
               }}
               disabled={!canDuplicate}
               title={t("create.duplicateTrack", { defaultValue: "Duplicate Track" })}
@@ -312,7 +322,9 @@ export function TrackLane({
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
-                if (canRemove) onRemove();
+                if (canRemove) {
+                  onRemove();
+                }
               }}
               disabled={!canRemove}
               title={t("editor.removeTrack")}

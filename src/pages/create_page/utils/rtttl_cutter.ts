@@ -6,9 +6,13 @@ import { parseRtttlTimed, parseRtttlOffsets } from "../../../utils/rtttl_parser"
  */
 function extractHeader(code: string): string | null {
   const first = code.indexOf(":");
-  if (first === -1) return null;
+  if (first === -1) {
+    return null;
+  }
   const second = code.indexOf(":", first + 1);
-  if (second === -1) return null;
+  if (second === -1) {
+    return null;
+  }
   return code.slice(0, second + 1);
 }
 
@@ -25,10 +29,14 @@ function buildRtttl(header: string, tokens: string[]): string {
  */
 function keepNotesByIndex(code: string, indicesToKeep: Set<number>): string {
   const header = extractHeader(code);
-  if (header === null) return code;
+  if (header === null) {
+    return code;
+  }
 
   const offsets = parseRtttlOffsets(code);
-  if (offsets.length === 0) return header;
+  if (offsets.length === 0) {
+    return header;
+  }
 
   const tokens: string[] = [];
   for (let i = 0; i < offsets.length; i++) {
@@ -53,11 +61,17 @@ function keepNotesByIndex(code: string, indicesToKeep: Set<number>): string {
  * No sub-note splitting is performed.
  */
 export function trimRtttl(code: string, inMs: number | null, outMs: number | null): string {
-  if (inMs === null && outMs === null) return code;
-  if (!code.trim()) return code;
+  if (inMs === null && outMs === null) {
+    return code;
+  }
+  if (!code.trim()) {
+    return code;
+  }
 
   const timed = parseRtttlTimed(code);
-  if (!timed) return code;
+  if (!timed) {
+    return code;
+  }
 
   const keep = new Set<number>();
   for (const note of timed) {
@@ -82,11 +96,17 @@ export function trimRtttl(code: string, inMs: number | null, outMs: number | nul
  * - neither    → return code unchanged
  */
 export function deleteRegionRtttl(code: string, inMs: number | null, outMs: number | null): string {
-  if (inMs === null && outMs === null) return code;
-  if (!code.trim()) return code;
+  if (inMs === null && outMs === null) {
+    return code;
+  }
+  if (!code.trim()) {
+    return code;
+  }
 
   const timed = parseRtttlTimed(code);
-  if (!timed) return code;
+  if (!timed) {
+    return code;
+  }
 
   const keep = new Set<number>();
   for (const note of timed) {

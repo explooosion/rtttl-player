@@ -19,9 +19,13 @@ export function DropdownMenu({ label, items }: { label: string; items: MenuItemD
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!open) return;
+    if (!open) {
+      return;
+    }
     function onDown(e: MouseEvent) {
-      if (!ref.current?.contains(e.target as Node)) setOpen(false);
+      if (!ref.current?.contains(e.target as Node)) {
+        setOpen(false);
+      }
     }
     document.addEventListener("mousedown", onDown);
     return () => document.removeEventListener("mousedown", onDown);

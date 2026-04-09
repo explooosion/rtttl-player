@@ -14,7 +14,9 @@ export function CategorySlider() {
 
   useEffect(() => {
     const track = trackRef.current;
-    if (!track) return;
+    if (!track) {
+      return;
+    }
     let animId = 0;
     let offset = 0;
     // Width of one set of items
@@ -24,7 +26,9 @@ export function CategorySlider() {
       if (!pausedRef.current) {
         offset += 0.5;
         const setW = getSetWidth();
-        if (offset >= setW) offset -= setW;
+        if (offset >= setW) {
+          offset -= setW;
+        }
         track.style.transform = `translateX(-${offset}px)`;
       }
       animId = requestAnimationFrame(step);

@@ -136,13 +136,16 @@ export function TransportToolbar({
 
   useEffect(
     function closePaletteOnClickOutside() {
-      if (!colorPanelOpen) return;
+      if (!colorPanelOpen) {
+        return;
+      }
       function handleMouseDown(e: MouseEvent) {
         if (
           colorPanelRef.current?.contains(e.target as Node) ||
           paletteButtonRef.current?.contains(e.target as Node)
-        )
+        ) {
           return;
+        }
         setColorPanelOpen(false);
       }
       document.addEventListener("mousedown", handleMouseDown);

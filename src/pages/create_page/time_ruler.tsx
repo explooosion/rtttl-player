@@ -9,20 +9,38 @@ interface TimeRulerProps {
 /** Major tick interval in seconds, based on pixels-per-second. */
 function getMajorInterval(pxPerSec: number): number {
   // Keep at least 50px between labeled ticks
-  if (pxPerSec >= 400) return 0.5;
-  if (pxPerSec >= 160) return 1;
-  if (pxPerSec >= 80) return 2;
-  if (pxPerSec >= 30) return 5;
-  if (pxPerSec >= 12) return 10;
+  if (pxPerSec >= 400) {
+    return 0.5;
+  }
+  if (pxPerSec >= 160) {
+    return 1;
+  }
+  if (pxPerSec >= 80) {
+    return 2;
+  }
+  if (pxPerSec >= 30) {
+    return 5;
+  }
+  if (pxPerSec >= 12) {
+    return 10;
+  }
   return 30;
 }
 
 /** Minor tick interval between major ticks (null = none). */
 function getMinorInterval(majorInterval: number): number | null {
-  if (majorInterval <= 0.5) return 0.1;
-  if (majorInterval <= 1) return 0.2;
-  if (majorInterval <= 2) return 0.5;
-  if (majorInterval <= 5) return 1;
+  if (majorInterval <= 0.5) {
+    return 0.1;
+  }
+  if (majorInterval <= 1) {
+    return 0.2;
+  }
+  if (majorInterval <= 2) {
+    return 0.5;
+  }
+  if (majorInterval <= 5) {
+    return 1;
+  }
   return null;
 }
 
@@ -37,18 +55,24 @@ export function TimeRuler({ totalMs, timelineWidthPx, pxPerSec }: TimeRulerProps
   const minorInterval = getMinorInterval(majorInterval);
 
   const majorTicks = useMemo<number[]>(() => {
-    if (totalSec <= 0) return [];
+    if (totalSec <= 0) {
+      return [];
+    }
     const result: number[] = [];
     // Round to avoid floating-point drift
     for (let s = 0; s <= totalSec + majorInterval * 0.01; s = +(s + majorInterval).toFixed(6)) {
-      if (s > totalSec + majorInterval * 0.01) break;
+      if (s > totalSec + majorInterval * 0.01) {
+        break;
+      }
       result.push(+s.toFixed(4));
     }
     return result;
   }, [totalSec, majorInterval]);
 
   const minorTicks = useMemo<number[]>(() => {
-    if (!minorInterval || totalSec <= 0) return [];
+    if (!minorInterval || totalSec <= 0) {
+      return [];
+    }
     const result: number[] = [];
     for (let s = 0; s <= totalSec + minorInterval * 0.01; s = +(s + minorInterval).toFixed(6)) {
       const rounded = +s.toFixed(4);
@@ -56,12 +80,16 @@ export function TimeRuler({ totalMs, timelineWidthPx, pxPerSec }: TimeRulerProps
       const isMajor =
         Math.abs(rounded % majorInterval) < minorInterval * 0.01 ||
         Math.abs((rounded % majorInterval) - majorInterval) < minorInterval * 0.01;
-      if (!isMajor) result.push(rounded);
+      if (!isMajor) {
+        result.push(rounded);
+      }
     }
     return result;
   }, [totalSec, minorInterval, majorInterval]);
 
-  if (totalMs <= 0) return null;
+  if (totalMs <= 0) {
+    return null;
+  }
 
   return (
     <div className="sticky top-0 z-20 flex h-7 shrink-0 select-none border-b border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900">

@@ -52,8 +52,11 @@ function drawWave(ctx: CanvasRenderingContext2D, size: number, phase: number) {
   for (let i = 0; i <= 20; i++) {
     const px = (i / 20 - 0.5) * size;
     const py = Math.sin((i / 20) * Math.PI * 3 + phase) * size * 0.15;
-    if (i === 0) ctx.moveTo(px, py);
-    else ctx.lineTo(px, py);
+    if (i === 0) {
+      ctx.moveTo(px, py);
+    } else {
+      ctx.lineTo(px, py);
+    }
   }
   ctx.stroke();
 }
@@ -101,9 +104,13 @@ export function HeroBannerAnimation({ boosted }: HeroBannerAnimationProps) {
 
   const init = useCallback(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) {
+      return;
+    }
     const rect = canvas.parentElement?.getBoundingClientRect();
-    if (!rect) return;
+    if (!rect) {
+      return;
+    }
     const dpr = window.devicePixelRatio || 1;
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
@@ -125,9 +132,13 @@ export function HeroBannerAnimation({ boosted }: HeroBannerAnimationProps) {
 
     const animate = () => {
       const canvas = canvasRef.current;
-      if (!canvas) return;
+      if (!canvas) {
+        return;
+      }
       const ctx = canvas.getContext("2d");
-      if (!ctx) return;
+      if (!ctx) {
+        return;
+      }
 
       const dpr = window.devicePixelRatio || 1;
       const w = canvas.width / dpr;
@@ -155,10 +166,18 @@ export function HeroBannerAnimation({ boosted }: HeroBannerAnimationProps) {
         }
 
         // Wrap around
-        if (p.x < -p.size) p.x = w + p.size;
-        if (p.x > w + p.size) p.x = -p.size;
-        if (p.y < -p.size) p.y = h + p.size;
-        if (p.y > h + p.size) p.y = -p.size;
+        if (p.x < -p.size) {
+          p.x = w + p.size;
+        }
+        if (p.x > w + p.size) {
+          p.x = -p.size;
+        }
+        if (p.y < -p.size) {
+          p.y = h + p.size;
+        }
+        if (p.y > h + p.size) {
+          p.y = -p.size;
+        }
 
         const baseOpacity = p.opacity * opacityMul;
         // Pulsing opacity — faster pulse when boosted

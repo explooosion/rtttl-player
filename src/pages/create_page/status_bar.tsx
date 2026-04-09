@@ -10,7 +10,9 @@ function formatMs(ms: number): string {
   const m = Math.floor((totalSec % 3600) / 60);
   const s = totalSec % 60;
   const sStr = s.toFixed(3).padStart(6, "0");
-  if (h > 0) return `${h}:${String(m).padStart(2, "0")}:${sStr}`;
+  if (h > 0) {
+    return `${h}:${String(m).padStart(2, "0")}:${sStr}`;
+  }
   return `${String(m).padStart(2, "0")}:${sStr}`;
 }
 

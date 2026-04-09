@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "format": "prettier --write .",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "preview": "vite preview",
     "test": "vitest run",
     "generate-picaxe": "tsx scripts/generate-picaxe.ts",
@@ -17,10 +17,12 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
-      "eslint --fix",
+      "eslint --fix"
+    ],
+    "src/**/*.{ts,tsx}": [
       "prettier --write"
     ],
-    "*.{json,md,css,html}": [
+    "src/**/*.css": [
       "prettier --write"
     ]
   },

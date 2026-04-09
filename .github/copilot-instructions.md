@@ -64,6 +64,8 @@ New Collections: When adding a new RTTTL collection to the platform, follow the 
 
 File Naming: When creating, renaming, or moving any source file, apply the rules defined in /.agents/skills/file-naming-convention/SKILL.md. All filenames must be lowercase snake_case.
 
+Code Style: When writing or editing any TypeScript/TSX source file, apply the rules defined in /.agents/skills/code-style/SKILL.md. This covers import grouping (external vs relative separated by blank line) and mandatory braces on all `if` statements.
+
 # Corporate Development & AI Safety Standards
 
 ## Security & Credential Management

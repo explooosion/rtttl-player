@@ -223,7 +223,9 @@ export const CodeEditor = forwardRef<CodeEditorHandle, CodeEditorProps>(function
   useEffect(
     function reconfigureThemeOnModeChange() {
       const view = viewRef.current;
-      if (!view) return;
+      if (!view) {
+        return;
+      }
       view.dispatch({
         effects: themeCompartment.reconfigure(
           getEffectiveTheme(mode) === "dark" ? darkTheme : lightTheme,

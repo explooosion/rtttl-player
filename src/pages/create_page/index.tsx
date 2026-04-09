@@ -38,9 +38,13 @@ import { trimRtttl, deleteRegionRtttl } from "./utils/rtttl_cutter";
 function nextProjectName(existingTitles: string[]): string {
   const lower = existingTitles.map((s) => s.toLowerCase());
   const base = "untitled project";
-  if (!lower.includes(base)) return "Untitled Project";
+  if (!lower.includes(base)) {
+    return "Untitled Project";
+  }
   let n = 2;
-  while (lower.includes(`${base} ${n}`)) n++;
+  while (lower.includes(`${base} ${n}`)) {
+    n++;
+  }
   return `Untitled Project ${n}`;
 }
 
@@ -163,9 +167,13 @@ export function CreatePage() {
 
   const focusedTrackName = useMemo(() => {
     const code = tracks[focusedTrackIndex] ?? "";
-    if (!code.trim()) return `Track ${focusedTrackIndex + 1}`;
+    if (!code.trim()) {
+      return `Track ${focusedTrackIndex + 1}`;
+    }
     const colonIdx = code.indexOf(":");
-    if (colonIdx > 0) return code.slice(0, colonIdx).trim() || `Track ${focusedTrackIndex + 1}`;
+    if (colonIdx > 0) {
+      return code.slice(0, colonIdx).trim() || `Track ${focusedTrackIndex + 1}`;
+    }
     return `Track ${focusedTrackIndex + 1}`;
   }, [tracks, focusedTrackIndex]);
 
@@ -205,7 +213,9 @@ export function CreatePage() {
 
   /* ── Apply pending import after dialog has closed ── */
   useEffect(() => {
-    if (!pendingImport) return;
+    if (!pendingImport) {
+      return;
+    }
     stop();
     setSeekPositionMs(0);
     setPlayheadMs(0);
@@ -632,7 +642,9 @@ export function CreatePage() {
         confirmLabel={t("editor.removeTrack", { defaultValue: "Remove" })}
         variant="danger"
         onConfirm={() => {
-          if (confirmRemoveIndex !== null) handleRemoveTrack(confirmRemoveIndex);
+          if (confirmRemoveIndex !== null) {
+            handleRemoveTrack(confirmRemoveIndex);
+          }
           setConfirmRemoveIndex(null);
         }}
         onCancel={() => setConfirmRemoveIndex(null)}
@@ -658,8 +670,11 @@ export function CreatePage() {
         onConfirm={() => {
           const action = pendingAction;
           setPendingAction(null);
-          if (action === "new") _doNew();
-          else _doDiscard();
+          if (action === "new") {
+            _doNew();
+          } else {
+            _doDiscard();
+          }
         }}
         onCancel={() => setPendingAction(null)}
       />
