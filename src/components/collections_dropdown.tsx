@@ -2,6 +2,7 @@ import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
+
 import { COLLECTIONS } from "../constants/collections";
 import { useCollectionItemCount } from "../stores/collection_store";
 

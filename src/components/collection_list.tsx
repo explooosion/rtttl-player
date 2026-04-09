@@ -2,10 +2,11 @@ import { useMemo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import clsx from "clsx";
+
 import { useFilteredItems } from "../stores/collection_store";
 import { TrackRow, LetterHeader } from "./track_row";
 import type { RtttlEntry } from "../utils/rtttl_parser";
-import clsx from "clsx";
 
 const ITEMS_PER_PAGE = 50;
 

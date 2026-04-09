@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { usePlayerStore } from "../../stores/player_store";
 import clsx from "clsx";
+
+import { usePlayerStore } from "../../stores/player_store";
 
 /** Format milliseconds as mm:ss.mmm or h:mm:ss.mmm */
 function formatMs(ms: number): string {

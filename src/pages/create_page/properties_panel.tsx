@@ -2,11 +2,12 @@ import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { FaRegCopy, FaCheck } from "react-icons/fa";
 import { useState, useMemo } from "react";
+import clsx from "clsx";
+
 import type { RtttlCategory } from "../../utils/rtttl_parser";
 import { parseRtttl, getTotalDuration } from "../../utils/rtttl_parser";
 import { RTTTL_CATEGORIES } from "../../constants/categories";
 import { copyToClipboard } from "../../utils/clipboard";
-import clsx from "clsx";
 
 interface PropertiesPanelProps {
   name: string;

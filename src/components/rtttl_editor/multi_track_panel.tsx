@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { FaRegCopy, FaCheck, FaPlus, FaTimes } from "react-icons/fa";
 import clsx from "clsx";
+
 import { copyToClipboard } from "../../utils/clipboard";
 
 const TRACK_LABELS = ["Track 1", "Track 2", "Track 3", "Track 4"] as const;

@@ -6,6 +6,7 @@ import {
 } from "@codemirror/language";
 import { Tag } from "@lezer/highlight";
 import type { Extension } from "@codemirror/state";
+
 import type { SyntaxColors } from "../../stores/editor_settings_store";
 
 // ─── Custom Lezer tags for each RTTTL token type ───────────────────────────

@@ -2,13 +2,14 @@ import { useMemo, useState, useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FaSearch, FaChevronRight, FaChevronLeft, FaExternalLinkAlt } from "react-icons/fa";
+import clsx from "clsx";
+
 import { CodePreviewPanel } from "./code_preview_panel";
 import { TrackRow, LetterHeader } from "./track_row";
 import type { TrackRowAction } from "./track_row";
 import { RTTTL_CATEGORIES } from "../constants/categories";
 import type { RtttlEntry, RtttlCategory } from "../utils/rtttl_parser";
 import type { SortMode } from "../stores/collection_store";
-import clsx from "clsx";
 
 export interface BreadcrumbItem {
   label: string;

@@ -1,6 +1,7 @@
-import type { CollectionSlug } from "../utils/rtttl_parser";
 import { FaDatabase, FaUsers, FaMicrochip } from "react-icons/fa";
 import type { IconType } from "react-icons";
+
+import type { CollectionSlug } from "../utils/rtttl_parser";
 
 export interface CollectionDef {
   slug: CollectionSlug;

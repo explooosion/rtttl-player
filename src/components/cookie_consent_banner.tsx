@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaChevronRight } from "react-icons/fa";
-import { useCookieConsentStore } from "../stores/cookie_consent_store";
 import clsx from "clsx";
+
+import { useCookieConsentStore } from "../stores/cookie_consent_store";
 
 export function CookieConsentBanner() {
   const { t } = useTranslation();

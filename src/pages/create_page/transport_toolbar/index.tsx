@@ -27,15 +27,17 @@ import {
   FaCut,
   FaEraser,
 } from "react-icons/fa";
+import clsx from "clsx";
+
 import { usePlayerStore } from "../../../stores/player_store";
 import { useEditorSettingsStore } from "../../../stores/editor_settings_store";
 import { SyntaxColorPanel } from "../../../components/rtttl_editor/syntax_color_panel";
-import clsx from "clsx";
 import { DropdownMenu, Separator } from "./dropdown_menu";
 import type { MenuItemDef } from "./dropdown_menu";
 import { HelpDialog } from "./help_dialog";
 import { AboutDialog } from "./about_dialog";
 import { SYNTAX_ITEMS } from "./transport_constants";
+
 export type { MenuActions } from "./transport_constants";
 
 interface TransportToolbarProps {

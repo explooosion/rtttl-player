@@ -9,6 +9,7 @@ import {
 import { EditorState, Compartment, StateEffect } from "@codemirror/state";
 import { EditorView, keymap, placeholder as cmPlaceholder } from "@codemirror/view";
 import { defaultKeymap, historyKeymap, history } from "@codemirror/commands";
+
 import {
   rtttlLanguageSupport,
   rtttlNotesLanguageSupport,

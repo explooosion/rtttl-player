@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaRegCopy, FaCheck } from "react-icons/fa";
+import clsx from "clsx";
+
 import { usePlayerStore } from "../stores/player_store";
 import { useEditorSettingsStore } from "../stores/editor_settings_store";
 import { copyToClipboard } from "../utils/clipboard";
 import { CodeEditor } from "../components/rtttl_editor/code_editor";
-import clsx from "clsx";
 
 const TRACK_DOT_CLASSES = [
   "bg-indigo-500",

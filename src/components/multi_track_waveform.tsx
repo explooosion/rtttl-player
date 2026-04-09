@@ -1,6 +1,7 @@
+import clsx from "clsx";
+
 import { usePlayerStore } from "../stores/player_store";
 import { CanvasWaveform } from "./canvas_waveform";
-import clsx from "clsx";
 
 const TRACK_PLAYED_COLORS = [
   "rgb(99, 102, 241)",

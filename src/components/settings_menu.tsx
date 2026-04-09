@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/react";
 import { FaCog, FaTrashAlt } from "react-icons/fa";
+
 import { useListenedStore } from "../stores/listened_store";
 
 export function SettingsMenu() {

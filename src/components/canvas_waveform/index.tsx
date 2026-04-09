@@ -1,4 +1,5 @@
 import { useMemo, useRef, useCallback, useEffect, useState } from "react";
+
 import { parseRtttl } from "../../utils/rtttl_parser";
 import { generateBars } from "./waveform_bar_generator";
 import type { WaveformBar } from "./waveform_bar_generator";

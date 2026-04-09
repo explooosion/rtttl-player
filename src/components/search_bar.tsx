@@ -1,8 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { FaSearch } from "react-icons/fa";
+import { useRef, useCallback } from "react";
+
 import { useCollectionStore } from "../stores/collection_store";
 import type { SortMode } from "../stores/collection_store";
-import { useRef, useCallback } from "react";
 
 export function SearchBar() {
   const { t } = useTranslation();

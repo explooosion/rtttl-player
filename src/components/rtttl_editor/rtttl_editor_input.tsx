@@ -1,5 +1,6 @@
 import { useRef, useEffect, forwardRef } from "react";
 import { useTranslation } from "react-i18next";
+
 import { useEditorSettingsStore } from "../../stores/editor_settings_store";
 import { usePlayerStore } from "../../stores/player_store";
 import { CodeEditor } from "./code_editor";

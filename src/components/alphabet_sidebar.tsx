@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { useCollectionStore, useAvailableLetters } from "../stores/collection_store";
 import clsx from "clsx";
+
+import { useCollectionStore, useAvailableLetters } from "../stores/collection_store";
 
 export function AlphabetSidebar() {
   const { t } = useTranslation();

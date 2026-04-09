@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { FaMusic, FaExternalLinkAlt } from "react-icons/fa";
+
 import { COLLECTION_ILLUSTRATIONS } from "./landing_constants";
 
 interface CollectionCardProps {

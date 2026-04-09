@@ -2,9 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { FaTimes, FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
+import clsx from "clsx";
+
 import { parseRtttl } from "../../utils/rtttl_parser";
 import { TRACK_DOT_CLASSES, MAX_TRACKS } from "./constants";
-import clsx from "clsx";
 
 interface DetectedTrack {
   raw: string;

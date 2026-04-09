@@ -1,8 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { FaArrowRight, FaExternalLinkAlt } from "react-icons/fa";
+
 import { COLLECTIONS } from "../constants/collections";
 import type { CollectionDef } from "../constants/collections";
-import { FaArrowRight, FaExternalLinkAlt } from "react-icons/fa";
 import { Breadcrumb } from "../components/breadcrumb";
 
 function CollectionRow({

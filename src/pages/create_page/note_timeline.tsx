@@ -1,6 +1,7 @@
 import { useMemo } from "react";
-import { parseRtttlTimed } from "../../utils/rtttl_parser";
 import clsx from "clsx";
+
+import { parseRtttlTimed } from "../../utils/rtttl_parser";
 
 interface NoteTimelineProps {
   code: string;

@@ -1,7 +1,8 @@
 import { useTranslation } from "react-i18next";
+import clsx from "clsx";
+
 import { useCollectionStore } from "../stores/collection_store";
 import { RTTTL_CATEGORIES } from "../constants/categories";
-import clsx from "clsx";
 
 export function CategoryFilter() {
   const { t } = useTranslation();

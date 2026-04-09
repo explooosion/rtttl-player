@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
+
 import { ThemeProvider } from "./components/theme_provider";
 import { ScrollToTop } from "./components/scroll_to_top";
 import { AppShell } from "./components/app_shell";

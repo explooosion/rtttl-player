@@ -1,6 +1,7 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useTranslation } from "react-i18next";
 import { FaTimes } from "react-icons/fa";
+
 import { useCollectionStore } from "../../stores/collection_store";
 import { useFavoritesStore } from "../../stores/favorites_store";
 import { TRACK_DOT_CLASSES } from "./constants";

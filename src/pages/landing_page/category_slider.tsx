@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+
 import { CATEGORY_ITEMS } from "./landing_constants";
 
 export function CategorySlider() {

@@ -16,6 +16,8 @@ import {
 } from "react-icons/fa";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import clsx from "clsx";
+
 import { usePlayerStore } from "../../stores/player_store";
 import { useEditorSettingsStore } from "../../stores/editor_settings_store";
 import { parseRtttl, getTotalDuration } from "../../utils/rtttl_parser";
@@ -23,7 +25,6 @@ import { copyToClipboard } from "../../utils/clipboard";
 import { CanvasWaveform as Waveform } from "../../components/canvas_waveform";
 import { RtttlEditorInput } from "../../components/rtttl_editor/rtttl_editor_input";
 import type { RtttlEditorInputHandle } from "../../components/rtttl_editor/rtttl_editor_input";
-import clsx from "clsx";
 
 interface TrackLaneProps {
   id: string;

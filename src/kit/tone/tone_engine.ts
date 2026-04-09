@@ -1,4 +1,5 @@
 import * as Tone from "tone";
+
 import { parseRtttl } from "../../utils/rtttl_parser";
 import type { RtttlNote } from "../../utils/rtttl_parser";
 import { buildCumulativeMs, findNoteIndexAtMs, buildSchedule } from "./tone_schedule";

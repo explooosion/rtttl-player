@@ -1,6 +1,7 @@
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { useFavoritesStore } from "../stores/favorites_store";
 import clsx from "clsx";
+
+import { useFavoritesStore } from "../stores/favorites_store";
 
 interface FavoriteButtonProps {
   itemId: string;

@@ -11,6 +11,7 @@ import {
   FaMusic,
 } from "react-icons/fa";
 import clsx from "clsx";
+
 import { usePlayerStore } from "../../stores/player_store";
 import { useEditorSettingsStore } from "../../stores/editor_settings_store";
 import { copyToClipboard } from "../../utils/clipboard";

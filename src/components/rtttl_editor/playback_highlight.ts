@@ -2,6 +2,7 @@ import { StateField, StateEffect } from "@codemirror/state";
 import { Decoration, EditorView } from "@codemirror/view";
 import type { DecorationSet } from "@codemirror/view";
 import type { Extension } from "@codemirror/state";
+
 import type { NoteOffset } from "../../utils/rtttl_parser";
 
 export const setActiveNote = StateEffect.define<{
