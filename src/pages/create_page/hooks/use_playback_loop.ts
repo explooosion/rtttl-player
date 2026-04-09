@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { usePlayerStore } from "@/stores/player_store";
+import { usePlayerStore } from "../../../stores/player_store";
 import { TIMELINE_MIN_WIDTH } from "../constants";
 
 interface UsePlaybackLoopParams {

@@ -1,8 +1,8 @@
 import { useState, useCallback } from "react";
 import { HexColorPicker, HexColorInput } from "react-colorful";
 import { useTranslation } from "react-i18next";
-import { useEditorSettingsStore } from "@/stores/editor_settings_store";
-import type { SyntaxColorKey, SyntaxColors } from "@/stores/editor_settings_store";
+import { useEditorSettingsStore } from "../../stores/editor_settings_store";
+import type { SyntaxColorKey, SyntaxColors } from "../../stores/editor_settings_store";
 
 interface SyntaxColorPanelProps {
   onClose: () => void;

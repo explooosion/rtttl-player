@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { usePlayerStore } from "@/stores/player_store";
+import { usePlayerStore } from "../../../stores/player_store";
 import {
   PX_PER_SEC_MIN,
   PX_PER_SEC_MAX,

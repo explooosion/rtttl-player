@@ -11,11 +11,11 @@ import {
   FaMusic,
 } from "react-icons/fa";
 import clsx from "clsx";
-import { usePlayerStore } from "@/stores/player_store";
-import { useEditorSettingsStore } from "@/stores/editor_settings_store";
-import { copyToClipboard } from "@/utils/clipboard";
-import { CanvasWaveform as Waveform } from "@/components/canvas_waveform";
-import { ConfirmDialog } from "@/components/confirm_dialog";
+import { usePlayerStore } from "../../stores/player_store";
+import { useEditorSettingsStore } from "../../stores/editor_settings_store";
+import { copyToClipboard } from "../../utils/clipboard";
+import { CanvasWaveform as Waveform } from "../../components/canvas_waveform";
+import { ConfirmDialog } from "../../components/confirm_dialog";
 import { CodeEditor } from "./code_editor";
 import { RtttlToolbar } from "./rtttl_toolbar";
 import { SyntaxColorPanel } from "./syntax_color_panel";

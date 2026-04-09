@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { CollectionSlug, RtttlCategory, RtttlEntry } from "@/utils/rtttl_parser";
+import type { CollectionSlug, RtttlCategory, RtttlEntry } from "../utils/rtttl_parser";
 
 export type SortMode = "a-z" | "z-a" | "artist-a-z" | "artist-z-a";
 

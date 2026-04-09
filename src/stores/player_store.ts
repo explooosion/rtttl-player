@@ -1,7 +1,7 @@
 import { create } from "zustand";
-import { ToneEngine } from "@/kit/tone";
-import type { EngineState } from "@/kit/tone";
-import type { RtttlEntry } from "@/utils/rtttl_parser";
+import { ToneEngine } from "../kit/tone";
+import type { EngineState } from "../kit/tone";
+import type { RtttlEntry } from "../utils/rtttl_parser";
 import { useListenedStore } from "./listened_store";
 
 /** Re-export so existing consumers that import PlayerState still work. */

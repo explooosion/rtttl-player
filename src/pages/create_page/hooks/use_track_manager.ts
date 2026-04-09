@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from "react";
-import type { RtttlEditorInputHandle } from "@/components/rtttl_editor/rtttl_editor_input";
+import type { RtttlEditorInputHandle } from "../../../components/rtttl_editor/rtttl_editor_input";
 import { MAX_TRACKS, TRACK_COLORS } from "../constants";
 
 interface UseTrackManagerInit {

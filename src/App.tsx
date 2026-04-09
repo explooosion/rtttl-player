@@ -1,21 +1,21 @@
 import { HashRouter, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "@/components/theme_provider";
-import { ScrollToTop } from "@/components/scroll_to_top";
-import { AppShell } from "@/components/app_shell";
-import { LandingPage } from "@/pages/landing_page";
-import { CollectionsPage } from "@/pages/collections_page";
-import { CollectionPage } from "@/pages/collection_page";
-import { FavoritesPageRoute } from "@/pages/favorites_page_route";
-import { CreatorPage } from "@/pages/creator_page";
-import { TermsPage } from "@/pages/terms_page";
-import { PrivacyPolicyPage } from "@/pages/privacy_policy_page";
-import { CookiePolicyPage } from "@/pages/cookie_policy_page";
-import { LoginPage } from "@/pages/login_page";
-import { RegisterPage } from "@/pages/register_page";
-import { AccountPage } from "@/pages/account_page";
-import { ProfilePage } from "@/pages/profile_page";
-import { PasswordPage } from "@/pages/password_page";
-import { CreatePage } from "@/pages/create_page";
+import { ThemeProvider } from "./components/theme_provider";
+import { ScrollToTop } from "./components/scroll_to_top";
+import { AppShell } from "./components/app_shell";
+import { LandingPage } from "./pages/landing_page";
+import { CollectionsPage } from "./pages/collections_page";
+import { CollectionPage } from "./pages/collection_page";
+import { FavoritesPageRoute } from "./pages/favorites_page_route";
+import { CreatorPage } from "./pages/creator_page";
+import { TermsPage } from "./pages/terms_page";
+import { PrivacyPolicyPage } from "./pages/privacy_policy_page";
+import { CookiePolicyPage } from "./pages/cookie_policy_page";
+import { LoginPage } from "./pages/login_page";
+import { RegisterPage } from "./pages/register_page";
+import { AccountPage } from "./pages/account_page";
+import { ProfilePage } from "./pages/profile_page";
+import { PasswordPage } from "./pages/password_page";
+import { CreatePage } from "./pages/create_page";
 
 function App() {
   return (

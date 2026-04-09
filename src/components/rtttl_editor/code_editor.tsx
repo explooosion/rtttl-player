@@ -15,10 +15,10 @@ import {
   buildHighlightExtension,
 } from "./rtttl_language";
 import { playbackHighlightExtension, setActiveNote, clearActiveNote } from "./playback_highlight";
-import { parseRtttlOffsets } from "@/utils/rtttl_parser";
-import type { NoteOffset } from "@/utils/rtttl_parser";
-import type { SyntaxColors } from "@/stores/editor_settings_store";
-import { useThemeStore, getEffectiveTheme } from "@/stores/theme_store";
+import { parseRtttlOffsets } from "../../utils/rtttl_parser";
+import type { NoteOffset } from "../../utils/rtttl_parser";
+import type { SyntaxColors } from "../../stores/editor_settings_store";
+import { useThemeStore, getEffectiveTheme } from "../../stores/theme_store";
 
 export interface CodeEditorHandle {
   insertText: (text: string) => void;

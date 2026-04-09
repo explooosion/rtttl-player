@@ -1,5 +1,5 @@
 import { FaPlay, FaPause, FaStop } from "react-icons/fa";
-import { usePlayerStore } from "@/stores/player_store";
+import { usePlayerStore } from "../stores/player_store";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import { CanvasWaveform as Waveform } from "./canvas_waveform";

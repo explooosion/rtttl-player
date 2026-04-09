@@ -1,9 +1,9 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { FaHeart } from "react-icons/fa";
-import { useCollectionStore } from "@/stores/collection_store";
-import { useFavoritesStore } from "@/stores/favorites_store";
-import { ListPageLayout } from "@/components/list_page_layout";
+import { useCollectionStore } from "../stores/collection_store";
+import { useFavoritesStore } from "../stores/favorites_store";
+import { ListPageLayout } from "../components/list_page_layout";
 
 export function FavoritesPageRoute() {
   const { t } = useTranslation();

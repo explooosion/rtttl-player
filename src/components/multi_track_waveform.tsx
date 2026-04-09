@@ -1,4 +1,4 @@
-import { usePlayerStore } from "@/stores/player_store";
+import { usePlayerStore } from "../stores/player_store";
 import { CanvasWaveform } from "./canvas_waveform";
 import clsx from "clsx";
 

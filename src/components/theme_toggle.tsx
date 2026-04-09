@@ -1,7 +1,7 @@
 import { FaSun, FaMoon, FaDesktop } from "react-icons/fa";
 import type { IconType } from "react-icons";
-import { useThemeStore } from "@/stores/theme_store";
-import type { ThemeMode } from "@/stores/theme_store";
+import { useThemeStore } from "../stores/theme_store";
+import type { ThemeMode } from "../stores/theme_store";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 

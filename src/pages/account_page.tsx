@@ -7,9 +7,9 @@ import {
   FaExternalLinkAlt,
   FaLock,
 } from "react-icons/fa";
-import { useAuthStore } from "@/stores/auth_store";
+import { useAuthStore } from "../stores/auth_store";
 import { useEffect } from "react";
-import { Breadcrumb } from "@/components/breadcrumb";
+import { Breadcrumb } from "../components/breadcrumb";
 
 export function AccountPage() {
   const { t } = useTranslation();

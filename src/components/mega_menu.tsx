@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
-import { COLLECTIONS } from "@/constants/collections";
+import { COLLECTIONS } from "../constants/collections";
 import clsx from "clsx";
 
 function CollectionCard({

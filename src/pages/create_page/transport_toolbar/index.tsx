@@ -27,9 +27,9 @@ import {
   FaCut,
   FaEraser,
 } from "react-icons/fa";
-import { usePlayerStore } from "@/stores/player_store";
-import { useEditorSettingsStore } from "@/stores/editor_settings_store";
-import { SyntaxColorPanel } from "@/components/rtttl_editor/syntax_color_panel";
+import { usePlayerStore } from "../../../stores/player_store";
+import { useEditorSettingsStore } from "../../../stores/editor_settings_store";
+import { SyntaxColorPanel } from "../../../components/rtttl_editor/syntax_color_panel";
 import clsx from "clsx";
 import { DropdownMenu, Separator } from "./dropdown_menu";
 import type { MenuItemDef } from "./dropdown_menu";

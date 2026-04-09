@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaChevronRight } from "react-icons/fa";
-import { useCookieConsentStore } from "@/stores/cookie_consent_store";
+import { useCookieConsentStore } from "../stores/cookie_consent_store";
 import clsx from "clsx";
 
 export function CookieConsentBanner() {

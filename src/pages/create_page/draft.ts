@@ -1,4 +1,4 @@
-import type { RtttlCategory } from "@/utils/rtttl_parser";
+import type { RtttlCategory } from "../../utils/rtttl_parser";
 import { DRAFT_KEY } from "./constants";
 
 export interface Draft {

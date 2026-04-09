@@ -11,11 +11,11 @@ import {
   type DragEndEvent,
 } from "@dnd-kit/core";
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { useCollectionStore } from "@/stores/collection_store";
-import { usePlayerStore } from "@/stores/player_store";
-import { parseRtttl, getTotalDuration } from "@/utils/rtttl_parser";
-import type { RtttlCategory } from "@/utils/rtttl_parser";
-import { ConfirmDialog } from "@/components/confirm_dialog";
+import { useCollectionStore } from "../../stores/collection_store";
+import { usePlayerStore } from "../../stores/player_store";
+import { parseRtttl, getTotalDuration } from "../../utils/rtttl_parser";
+import type { RtttlCategory } from "../../utils/rtttl_parser";
+import { ConfirmDialog } from "../../components/confirm_dialog";
 import { DawHeader } from "./daw_header";
 import { TransportToolbar } from "./transport_toolbar";
 import { TrackLane } from "./track_lane";

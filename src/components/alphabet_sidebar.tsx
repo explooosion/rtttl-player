@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useCollectionStore, useAvailableLetters } from "@/stores/collection_store";
+import { useCollectionStore, useAvailableLetters } from "../stores/collection_store";
 import clsx from "clsx";
 
 export function AlphabetSidebar() {

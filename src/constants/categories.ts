@@ -1,4 +1,4 @@
-import type { RtttlCategory } from "@/utils/rtttl_parser";
+import type { RtttlCategory } from "../utils/rtttl_parser";
 
 export const RTTTL_CATEGORIES = [
   "pop",

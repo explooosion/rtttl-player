@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Breadcrumb } from "@/components/breadcrumb";
+import { Breadcrumb } from "../components/breadcrumb";
 
 export function CookiePolicyPage() {
   const { t } = useTranslation();

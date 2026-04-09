@@ -5,9 +5,9 @@ import { FaSearch, FaChevronRight, FaChevronLeft, FaExternalLinkAlt } from "reac
 import { CodePreviewPanel } from "./code_preview_panel";
 import { TrackRow, LetterHeader } from "./track_row";
 import type { TrackRowAction } from "./track_row";
-import { RTTTL_CATEGORIES } from "@/constants/categories";
-import type { RtttlEntry, RtttlCategory } from "@/utils/rtttl_parser";
-import type { SortMode } from "@/stores/collection_store";
+import { RTTTL_CATEGORIES } from "../constants/categories";
+import type { RtttlEntry, RtttlCategory } from "../utils/rtttl_parser";
+import type { SortMode } from "../stores/collection_store";
 import clsx from "clsx";
 
 export interface BreadcrumbItem {

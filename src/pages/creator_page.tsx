@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useCollectionStore } from "@/stores/collection_store";
-import { ListPageLayout } from "@/components/list_page_layout";
+import { useCollectionStore } from "../stores/collection_store";
+import { ListPageLayout } from "../components/list_page_layout";
 
 export function CreatorPage() {
   const { t } = useTranslation();

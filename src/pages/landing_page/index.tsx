@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { COLLECTIONS } from "@/constants/collections";
-import { HeroBannerAnimation } from "@/components/hero_banner_animation";
-import { useInView } from "@/hooks/use_in_view";
+import { COLLECTIONS } from "../../constants/collections";
+import { HeroBannerAnimation } from "../../components/hero_banner_animation";
+import { useInView } from "../../hooks/use_in_view";
 import { CollectionCard } from "./collection_card";
 import { CategorySlider } from "./category_slider";
 import { FEATURES } from "./landing_constants";

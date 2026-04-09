@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthStore } from "@/stores/auth_store";
-import { Breadcrumb } from "@/components/breadcrumb";
+import { useAuthStore } from "../stores/auth_store";
+import { Breadcrumb } from "../components/breadcrumb";
 
 export function ProfilePage() {
   const { t } = useTranslation();

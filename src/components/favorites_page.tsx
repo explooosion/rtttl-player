@@ -1,10 +1,10 @@
 import { useState, useMemo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { FaHeart, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { useCollectionStore } from "@/stores/collection_store";
-import { useFavoritesStore } from "@/stores/favorites_store";
+import { useCollectionStore } from "../stores/collection_store";
+import { useFavoritesStore } from "../stores/favorites_store";
 import { TrackRow, LetterHeader } from "./track_row";
-import type { RtttlEntry } from "@/utils/rtttl_parser";
+import type { RtttlEntry } from "../utils/rtttl_parser";
 import clsx from "clsx";
 
 const ITEMS_PER_PAGE = 50;

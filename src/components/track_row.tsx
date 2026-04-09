@@ -2,13 +2,13 @@ import { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { FaPlay, FaPause, FaRegCopy, FaCheck } from "react-icons/fa";
-import { usePlayerStore } from "@/stores/player_store";
-import { useListenedStore } from "@/stores/listened_store";
+import { usePlayerStore } from "../stores/player_store";
+import { useListenedStore } from "../stores/listened_store";
 import { FavoriteButton } from "./favorite_button";
 import { CanvasWaveform as Waveform } from "./canvas_waveform";
 import { MultiTrackWaveform } from "./multi_track_waveform";
-import { copyToClipboard } from "@/utils/clipboard";
-import type { RtttlEntry } from "@/utils/rtttl_parser";
+import { copyToClipboard } from "../utils/clipboard";
+import type { RtttlEntry } from "../utils/rtttl_parser";
 import clsx from "clsx";
 
 export interface TrackRowAction {

@@ -18,12 +18,12 @@ import { SettingsMenu } from "./settings_menu";
 import { MegaMenu } from "./mega_menu";
 import { UserMenu } from "./user_menu";
 import { CookieConsentBanner } from "./cookie_consent_banner";
-import { useCollectionStore } from "@/stores/collection_store";
-import { usePlayerStore } from "@/stores/player_store";
-import { useCookieConsentStore } from "@/stores/cookie_consent_store";
-import { COLLECTIONS } from "@/constants/collections";
-import { MOCK_COMMUNITY_ITEMS } from "@/data/mock-community";
-import { toRtttlEntries, type CollectionEntry } from "@/utils/collection_loader";
+import { useCollectionStore } from "../stores/collection_store";
+import { usePlayerStore } from "../stores/player_store";
+import { useCookieConsentStore } from "../stores/cookie_consent_store";
+import { COLLECTIONS } from "../constants/collections";
+import { MOCK_COMMUNITY_ITEMS } from "../data/mock-community";
+import { toRtttlEntries, type CollectionEntry } from "../utils/collection_loader";
 import clsx from "clsx";
 
 export function AppShell() {

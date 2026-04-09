@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { ThemeToggle } from "@/components/theme_toggle";
-import { LanguageSwitcher } from "@/components/language_switcher";
+import { ThemeToggle } from "../../components/theme_toggle";
+import { LanguageSwitcher } from "../../components/language_switcher";
 
 const logoSrc = `${import.meta.env.BASE_URL}icons/favicon-32x32.png`;
 

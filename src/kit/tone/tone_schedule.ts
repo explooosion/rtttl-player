@@ -1,4 +1,4 @@
-import type { RtttlNote } from "@/utils/rtttl_parser";
+import type { RtttlNote } from "../../utils/rtttl_parser";
 
 /**
  * Build a cumulative time table for a note array.

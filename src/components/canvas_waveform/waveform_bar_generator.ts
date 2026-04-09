@@ -1,4 +1,4 @@
-import type { RtttlNote } from "@/utils/rtttl_parser";
+import type { RtttlNote } from "../../utils/rtttl_parser";
 
 export interface WaveformBar {
   height: number;
