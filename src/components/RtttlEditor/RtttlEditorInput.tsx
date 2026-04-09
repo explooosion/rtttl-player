@@ -26,6 +26,8 @@ interface RtttlEditorInputProps {
   onSelectTrack?: (index: number) => void;
   onAddTrack?: () => void;
   onRemoveTrack?: (index: number) => void;
+  /** Override the note index used for playback highlight (e.g. per-track index in multi-track mode). */
+  noteIndexOverride?: number;
 }
 
 export const RtttlEditorInput = forwardRef<RtttlEditorInputHandle, RtttlEditorInputProps>(
@@ -44,6 +46,7 @@ export const RtttlEditorInput = forwardRef<RtttlEditorInputHandle, RtttlEditorIn
       onSelectTrack,
       onAddTrack,
       onRemoveTrack,
+      noteIndexOverride,
     },
     ref,
   ) {
@@ -52,10 +55,11 @@ export const RtttlEditorInput = forwardRef<RtttlEditorInputHandle, RtttlEditorIn
     const features = useEditorSettingsStore((s) => s.features);
     const syntaxColors = useEditorSettingsStore((s) => s.syntaxColors);
 
-    const currentNoteIndex = usePlayerStore((s) => s.currentNoteIndex);
+    const storeNoteIndex = usePlayerStore((s) => s.currentNoteIndex);
     const rawPlayerState = usePlayerStore((s) => s.playerState);
     // Coerce "stopped" → "idle" for CodeEditor's narrower prop type
     const playerState = rawPlayerState === "stopped" ? "idle" : rawPlayerState;
+    const currentNoteIndex = noteIndexOverride ?? storeNoteIndex;
 
     const codeEditorRef = useRef<CodeEditorHandle>(null);
 

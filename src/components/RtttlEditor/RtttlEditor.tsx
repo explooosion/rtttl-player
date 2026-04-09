@@ -1,16 +1,26 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { FaPlay, FaPause, FaStop, FaRegCopy, FaCheck, FaUndo, FaPalette } from "react-icons/fa";
+import {
+  FaPlay,
+  FaPause,
+  FaStop,
+  FaRegCopy,
+  FaCheck,
+  FaUndo,
+  FaPalette,
+  FaMusic,
+} from "react-icons/fa";
 import clsx from "clsx";
 import { usePlayerStore } from "@/stores/player-store";
 import { useEditorSettingsStore } from "@/stores/editor-settings-store";
 import { copyToClipboard } from "@/utils/clipboard";
-import { Waveform } from "@/components/Waveform";
+import { CanvasWaveform as Waveform } from "@/components/CanvasWaveform";
 import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { CodeEditor } from "./CodeEditor";
 import { RtttlToolbar } from "./RtttlToolbar";
 import { SyntaxColorPanel } from "./SyntaxColorPanel";
 import { TrackTabs, EscOutputPanel } from "./MultiTrackPanel";
+import { LyricsPanel } from "./LyricsPanel";
 import type { CodeEditorHandle } from "./CodeEditor";
 
 const TRACK_PLAYED_COLORS = [
@@ -63,6 +73,7 @@ export function RtttlEditorMain() {
   const [resetConfirmOpen, setResetConfirmOpen] = useState(false);
   const [colorPanelOpen, setColorPanelOpen] = useState(false);
   const [mutedTracks, setMutedTracks] = useState<Set<number>>(new Set());
+  const [lyricsMode, setLyricsMode] = useState(false);
 
   const codeEditorRef = useRef<CodeEditorHandle>(null);
   const paletteButtonRef = useRef<HTMLButtonElement>(null);
@@ -287,18 +298,40 @@ export function RtttlEditorMain() {
       )}
 
       {/* Editor area */}
-      <RtttlToolbar onInsert={handleInsert} />
-      <CodeEditor
-        ref={codeEditorRef}
-        value={displayedCode}
-        placeholder={t("editor.placeholder")}
-        syntaxHighlight={features.syntaxHighlight}
-        playbackTracking={features.playbackTracking}
-        syntaxColors={syntaxColors}
-        currentNoteIndex={currentNoteIndex}
-        playerState={editorPlayerState}
-        onChange={handleTrackCodeChange}
-      />
+      <div className="mb-1 flex items-center justify-between">
+        <RtttlToolbar onInsert={handleInsert} />
+        <button
+          type="button"
+          onClick={() => setLyricsMode((v) => !v)}
+          title="Toggle Lyrics Mode"
+          className={clsx(
+            "flex h-7 w-7 items-center justify-center rounded text-gray-400 hover:bg-gray-100 dark:text-gray-500 dark:hover:bg-gray-700",
+            lyricsMode && "bg-indigo-50 text-indigo-600 dark:bg-indigo-950/30 dark:text-indigo-400",
+          )}
+        >
+          <FaMusic size={12} />
+        </button>
+      </div>
+      {lyricsMode && isPlayingEdited ? (
+        <LyricsPanel
+          code={displayedCode}
+          currentNoteIndex={currentNoteIndex}
+          isPlaying={isPlayingEdited}
+          onSeek={seekTo}
+        />
+      ) : (
+        <CodeEditor
+          ref={codeEditorRef}
+          value={displayedCode}
+          placeholder={t("editor.placeholder")}
+          syntaxHighlight={features.syntaxHighlight}
+          playbackTracking={features.playbackTracking}
+          syntaxColors={syntaxColors}
+          currentNoteIndex={currentNoteIndex}
+          playerState={editorPlayerState}
+          onChange={handleTrackCodeChange}
+        />
+      )}
 
       {/* Play controls */}
       <div className="mt-3 grid grid-cols-3 gap-2">

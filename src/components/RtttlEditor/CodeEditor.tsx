@@ -6,7 +6,7 @@ import {
   useMemo,
   forwardRef,
 } from "react";
-import { EditorState, Compartment } from "@codemirror/state";
+import { EditorState, Compartment, StateEffect } from "@codemirror/state";
 import { EditorView, keymap, placeholder as cmPlaceholder } from "@codemirror/view";
 import { defaultKeymap, historyKeymap, history } from "@codemirror/commands";
 import {
@@ -39,6 +39,8 @@ interface CodeEditorProps {
   readOnly?: boolean;
   singleLine?: boolean;
   containerClassName?: string;
+  /** Scroll the editor to keep the active note visible during playback. */
+  autoScroll?: boolean;
   onChange?: (value: string) => void;
 }
 
@@ -94,6 +96,7 @@ export const CodeEditor = forwardRef<CodeEditorHandle, CodeEditorProps>(function
     readOnly = false,
     singleLine = false,
     containerClassName,
+    autoScroll = false,
     onChange,
   },
   ref,
@@ -105,6 +108,8 @@ export const CodeEditor = forwardRef<CodeEditorHandle, CodeEditorProps>(function
   useLayoutEffect(function syncOnChangeRef() {
     onChangeRef.current = onChange;
   });
+  /** True while syncValueOnExternalChange is dispatching — suppress onChange. */
+  const isExternalUpdateRef = useRef(false);
 
   const langCompartment = useMemo(() => new Compartment(), []);
   const highlightCompartment = useMemo(() => new Compartment(), []);
@@ -134,10 +139,10 @@ export const CodeEditor = forwardRef<CodeEditorHandle, CodeEditorProps>(function
     offsetsRef.current = parseRtttlOffsets(value);
 
     const updateListener = EditorView.updateListener.of((update) => {
-      if (update.docChanged) {
+      if (update.docChanged && !isExternalUpdateRef.current) {
         const newValue = update.state.doc.toString();
         offsetsRef.current = parseRtttlOffsets(newValue);
-        onChange?.(newValue);
+        onChangeRef.current?.(newValue);
       }
     });
 
@@ -186,7 +191,9 @@ export const CodeEditor = forwardRef<CodeEditorHandle, CodeEditorProps>(function
       }
       const docValue = view.state.doc.toString();
       if (docValue !== value) {
+        isExternalUpdateRef.current = true;
         view.dispatch({ changes: { from: 0, to: docValue.length, insert: value } });
+        isExternalUpdateRef.current = false;
         offsetsRef.current = parseRtttlOffsets(value);
       }
     },
@@ -235,14 +242,15 @@ export const CodeEditor = forwardRef<CodeEditorHandle, CodeEditorProps>(function
         view.dispatch({ effects: clearActiveNote.of(null) });
         return;
       }
-      view.dispatch({
-        effects: [
-          setActiveNote.of({
-            noteIndex: currentNoteIndex,
-            offsets: offsetsRef.current,
-          }),
-        ],
-      });
+      const offsets = offsetsRef.current;
+      const offset = offsets[currentNoteIndex];
+      const effects: StateEffect<unknown>[] = [
+        setActiveNote.of({ noteIndex: currentNoteIndex, offsets }),
+      ];
+      if (autoScroll && offset) {
+        effects.push(EditorView.scrollIntoView(offset.from, { y: "center" }));
+      }
+      view.dispatch({ effects });
     },
     [currentNoteIndex, playerState, playbackTracking],
   );
