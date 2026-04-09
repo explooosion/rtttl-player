@@ -38,4 +38,4 @@ The **ESC Configurator** collection is sourced from the [ESC Configurator](https
 
 ## License
 
-MIT © [explooosion](https://github.com/explooosion)
+AGPL-3.0 © [explooosion](https://github.com/explooosion)

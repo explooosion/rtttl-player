@@ -23,6 +23,7 @@
       "prettier --write"
     ]
   },
+  "license": "AGPL-3.0",
   "dependencies": {
     "-": "^0.0.1",
     "@codemirror/commands": "^6.10.3",
