@@ -73,7 +73,7 @@ export function TimeRuler({ totalMs, timelineWidthPx, pxPerSec }: TimeRulerProps
         {minorTicks.map((sec) => (
           <div
             key={`m${sec}`}
-            className="absolute top-0 w-px bg-gray-200 dark:bg-gray-700"
+            className="absolute top-0 w-px bg-gray-400 dark:bg-gray-600"
             style={{ left: `${(sec / totalSec) * 100}%`, height: 5 }}
           />
         ))}
@@ -84,8 +84,8 @@ export function TimeRuler({ totalMs, timelineWidthPx, pxPerSec }: TimeRulerProps
             className="absolute top-0 flex -translate-x-1/2 flex-col items-center"
             style={{ left: `${(sec / totalSec) * 100}%` }}
           >
-            <div className="h-2.5 w-px bg-gray-300 dark:bg-gray-600" />
-            <span className="mt-0.5 text-[9px] leading-none text-gray-400 dark:text-gray-500">
+            <div className="h-2.5 w-px bg-gray-500 dark:bg-gray-500" />
+            <span className="mt-0.5 text-[9px] leading-none text-gray-600 dark:text-gray-400">
               {formatSec(sec)}
             </span>
           </div>
