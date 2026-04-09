@@ -14,7 +14,6 @@ RTTTL Hub is a browser-based audio platform dedicated to collecting, playing, an
 - **Creator profiles & attribution** — Dedicated pages per contributor with full track listings
 - **Discovery & organization** — Full-text search, category filtering, A–Z navigation, and multiple sort modes
 - **Favorites & playback history** — Persistent personal favorites and listened-track management
-- **Multilingual interface** — English and Traditional Chinese (zh-TW), with additional locales planned
 
 ## Audio Engine
 
