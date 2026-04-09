@@ -186,13 +186,6 @@ export function parseRtttl(code: string): ParsedRtttl | null {
   return { name, defaults, notes };
 }
 
-export function formatDuration(totalMs: number): string {
-  const seconds = Math.floor(totalMs / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = seconds % 60;
-  return `${minutes}:${String(remainingSeconds).padStart(2, "0")}`;
-}
-
 export function getTotalDuration(notes: RtttlNote[]): number {
   return notes.reduce((sum, note) => sum + note.durationMs, 0);
 }
