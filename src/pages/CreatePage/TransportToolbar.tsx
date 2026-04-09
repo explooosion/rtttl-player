@@ -16,9 +16,15 @@ import {
   FaQuestionCircle,
   FaSignOutAlt,
   FaFileAlt,
-  FaTag,
-  FaCheckCircle,
   FaTimes,
+  FaUndo,
+  FaRedo,
+  FaCompressArrowsAlt,
+  FaExpandArrowsAlt,
+  FaBan,
+  FaMapMarkerAlt,
+  FaHeart,
+  FaInfoCircle,
 } from "react-icons/fa";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { usePlayerStore } from "@/stores/player-store";
@@ -31,16 +37,35 @@ const SYNTAX_ITEMS = ["d=", "o=", "b=", ":", ",", "#", ".", "p", "1", "2", "4", 
 export interface MenuActions {
   onNew: () => void;
   onImport: () => void;
+  onImportFromFavorites: () => void;
   onNavigateHome: () => void;
   onFocusName: () => void;
   onCreate: () => void;
   onDiscard: () => void;
+  onStop: () => void;
   onAddTrack: () => void;
   onRemoveFocusedTrack: () => void;
   onToggleMuteFocusedTrack: () => void;
+  onUndo: () => void;
+  onRedo: () => void;
+  onMuteAll: () => void;
+  onUnmuteAll: () => void;
+  onRemoveEmptyTracks: () => void;
+  onCollapseAll: () => void;
+  onExpandAll: () => void;
+  onSetLoopIn: () => void;
+  onSetLoopOut: () => void;
+  onClearLoop: () => void;
   canAddTrack: boolean;
   canRemoveTrack: boolean;
   focusedTrackIsMuted: boolean;
+  canUndo: boolean;
+  canRedo: boolean;
+  loopInMs: number | null;
+  loopOutMs: number | null;
+  hasEmptyTracks: boolean;
+  allTracksMuted: boolean;
+  anyTrackMuted: boolean;
 }
 
 interface TransportToolbarProps extends MenuActions {
@@ -57,6 +82,8 @@ type MenuItemDef =
       label: string;
       icon?: React.ReactNode;
       disabled?: boolean;
+      /** Shows a coloured dot/check on the right to indicate an active/toggled state. */
+      active?: boolean;
       onClick: () => void;
     }
   | { type: "separator" };
@@ -80,7 +107,7 @@ function DropdownMenu({ label, items }: { label: string; items: MenuItemDef[] })
         type="button"
         onClick={() => setOpen((v) => !v)}
         className={clsx(
-          "flex h-7 items-center gap-0.5 rounded px-2 text-xs font-medium text-gray-600 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700",
+          "flex h-8 items-center gap-0.5 rounded px-2.5 text-sm font-medium text-gray-600 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700",
           open && "bg-gray-200 dark:bg-gray-700",
         )}
       >
@@ -89,7 +116,7 @@ function DropdownMenu({ label, items }: { label: string; items: MenuItemDef[] })
       </button>
 
       {open && (
-        <div className="absolute left-0 top-full z-[60] mt-0.5 min-w-[188px] rounded-md border border-gray-200 bg-white py-1 shadow-lg dark:border-gray-700 dark:bg-gray-900">
+        <div className="absolute left-0 top-full z-60 mt-0.5 min-w-47 rounded-md border border-gray-200 bg-white py-1 shadow-lg dark:border-gray-700 dark:bg-gray-900">
           {items.map((item, i) => {
             if (item.type === "separator") {
               return <div key={i} className="my-1 h-px bg-gray-100 dark:bg-gray-800" />;
@@ -104,16 +131,23 @@ function DropdownMenu({ label, items }: { label: string; items: MenuItemDef[] })
                   setOpen(false);
                 }}
                 className={clsx(
-                  "flex w-full items-center gap-2 px-3 py-1.5 text-left text-xs",
+                  "flex w-full items-center gap-2 px-3 py-2 text-left text-sm",
                   item.disabled
                     ? "cursor-default text-gray-300 dark:text-gray-600"
-                    : "text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 dark:text-gray-300 dark:hover:bg-indigo-900/30 dark:hover:text-indigo-300",
+                    : item.active
+                      ? "bg-indigo-100 text-indigo-700 hover:bg-indigo-200 dark:bg-indigo-900/40 dark:text-indigo-300 dark:hover:bg-indigo-900/60"
+                      : "text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 dark:text-gray-300 dark:hover:bg-indigo-900/30 dark:hover:text-indigo-300",
                 )}
               >
                 {item.icon && (
-                  <span className="w-3.5 shrink-0 text-center opacity-60">{item.icon}</span>
+                  <span className={clsx("w-5 shrink-0 text-center", !item.active && "opacity-60")}>
+                    {item.icon}
+                  </span>
                 )}
                 <span className="flex-1">{item.label}</span>
+                {item.active && (
+                  <span className="ml-2 h-2 w-2 shrink-0 rounded-full bg-indigo-600 dark:bg-indigo-400" />
+                )}
               </button>
             );
           })}
@@ -129,48 +163,125 @@ function HelpDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { t } = useTranslation();
   return (
     <Dialog open={open} onClose={onClose} className="relative z-50">
-      <div className="fixed inset-0 bg-black/30 backdrop-blur-sm" aria-hidden="true" />
+      <div className="fixed inset-0 bg-black/20" aria-hidden="true" />
       <div className="fixed inset-0 flex items-center justify-center p-4">
-        <DialogPanel className="w-full max-w-md rounded-xl border border-gray-200 bg-white p-6 shadow-2xl dark:border-gray-700 dark:bg-gray-900">
-          <DialogTitle className="text-base font-semibold text-gray-900 dark:text-white">
+        <DialogPanel className="w-full max-w-sm rounded-2xl border border-gray-100 bg-white p-6 shadow-xl dark:border-gray-800 dark:bg-gray-900">
+          <DialogTitle className="text-base font-semibold text-gray-800 dark:text-white">
             {t("editor.toolbar.helpTitle", { defaultValue: "RTTTL Quick Reference" })}
           </DialogTitle>
-          <div className="mt-3 space-y-2">
-            <p className="font-mono text-sm text-gray-700 dark:text-gray-300">
-              {"name:d=4,o=5,b=120:notes"}
-            </p>
-            <table className="w-full border-collapse">
-              <tbody>
-                {[
-                  ["d=", "Default duration (1, 2, 4, 8, 16, 32)"],
-                  ["o=", "Default octave (4–7)"],
-                  ["b=", "Tempo in BPM"],
-                  ["#", "Sharp modifier (e.g. c#5)"],
-                  [".", "Dotted note — 1.5× duration"],
-                  ["p", "Rest / pause"],
-                ].map(([k, v]) => (
-                  <tr key={k} className="border-b border-gray-100 dark:border-gray-800">
-                    <td className="w-10 py-1 pr-3 font-mono text-xs text-indigo-600 dark:text-indigo-400">
+          <p className="mt-1 font-mono text-xs text-gray-400 dark:text-gray-500">
+            name : d=4, o=5, b=120 : notes
+          </p>
+          <div className="mt-4 space-y-3">
+            <div className="rounded-xl bg-gray-50 p-3 dark:bg-gray-800/50">
+              <p className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-400 dark:text-gray-500">
+                Header fields
+              </p>
+              <div className="grid grid-cols-1 gap-y-2">
+                {(
+                  [
+                    ["d=", "Default note duration (1 2 4 8 16 32)"],
+                    ["o=", "Default octave (4 – 7)"],
+                    ["b=", "Tempo in BPM"],
+                  ] as [string, string][]
+                ).map(([k, v]) => (
+                  <div key={k} className="flex items-center gap-2">
+                    <code className="rounded-md bg-indigo-100 px-2 py-0.5 font-mono text-xs font-semibold text-indigo-600 dark:bg-indigo-900/40 dark:text-indigo-300">
                       {k}
-                    </td>
-                    <td className="py-1 text-xs text-gray-600 dark:text-gray-400">{v}</td>
-                  </tr>
+                    </code>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">{v}</span>
+                  </div>
                 ))}
-              </tbody>
-            </table>
-            <p className="text-[11px] text-gray-400">
-              {t("editor.toolbar.helpNote", {
-                defaultValue:
-                  "Notes: c d e f g a b (+ # sharp, + octave number, + duration prefix)",
-              })}
-            </p>
+              </div>
+            </div>
+            <div className="rounded-xl bg-gray-50 p-3 dark:bg-gray-800/50">
+              <p className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-400 dark:text-gray-500">
+                Note modifiers
+              </p>
+              <div className="grid grid-cols-1 gap-y-2">
+                {(
+                  [
+                    ["#", "Sharp  (e.g. c#5)"],
+                    [".", "Dotted — 1.5 × duration"],
+                    ["p", "Rest / pause"],
+                  ] as [string, string][]
+                ).map(([k, v]) => (
+                  <div key={k} className="flex items-center gap-2">
+                    <code className="rounded-md bg-indigo-100 px-2 py-0.5 font-mono text-xs font-semibold text-indigo-600 dark:bg-indigo-900/40 dark:text-indigo-300">
+                      {k}
+                    </code>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">{v}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <p className="mt-3 text-[11px] text-gray-400 dark:text-gray-600">
+            Notes: c d e f g a b &nbsp;·&nbsp; add octave number &amp; duration prefix freely
+          </p>
+          <div className="mt-5 flex justify-end">
+            <button
+              onClick={onClose}
+              className="rounded-lg bg-indigo-500 px-5 py-2 text-sm font-medium text-white hover:bg-indigo-600"
+            >
+              {t("confirm.ok", { defaultValue: "Got it" })}
+            </button>
+          </div>
+        </DialogPanel>
+      </div>
+    </Dialog>
+  );
+}
+
+// ─── About dialog ────────────────────────────────────────────────────────────
+
+function AboutDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const { t } = useTranslation();
+  return (
+    <Dialog open={open} onClose={onClose} className="relative z-50">
+      <div className="fixed inset-0 bg-black/20" aria-hidden="true" />
+      <div className="fixed inset-0 flex items-center justify-center p-4">
+        <DialogPanel className="w-full max-w-sm rounded-2xl border border-gray-100 bg-white p-6 shadow-xl dark:border-gray-800 dark:bg-gray-900">
+          <div className="mb-4 flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-100 dark:bg-indigo-900/40">
+              <FaCode size={20} className="text-indigo-600 dark:text-indigo-400" />
+            </div>
+            <div>
+              <DialogTitle className="text-base font-semibold text-gray-800 dark:text-white">
+                RTTTL Editor
+              </DialogTitle>
+              <p className="text-xs text-gray-400 dark:text-gray-500">v1.0 · RTTTL Hub</p>
+            </div>
+          </div>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            {t("create.aboutDesc", {
+              defaultValue:
+                "A multi-track RTTTL editor for composing, previewing, and exporting ringtone tunes. Supports up to 8 simultaneous tracks with real-time waveform preview and A-B loop markers.",
+            })}
+          </p>
+          <div className="mt-4 space-y-1.5 rounded-xl bg-gray-50 p-3 dark:bg-gray-800/50">
+            {(
+              [
+                ["Format", "Ring Tone Transfer Language (RTTTL)"],
+                ["Max Tracks", "8"],
+                ["Storage", "Local browser storage (draft)"],
+                ["Shortcuts", "Ctrl/⌘+Z  Undo · Ctrl/⌘+Shift+Z  Redo"],
+              ] as [string, string][]
+            ).map(([k, v]) => (
+              <div key={k} className="flex items-start gap-2 text-xs">
+                <span className="w-20 shrink-0 font-medium text-gray-400 dark:text-gray-500">
+                  {k}
+                </span>
+                <span className="text-gray-600 dark:text-gray-300">{v}</span>
+              </div>
+            ))}
           </div>
           <div className="mt-5 flex justify-end">
             <button
               onClick={onClose}
-              className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+              className="rounded-lg bg-indigo-500 px-5 py-2 text-sm font-medium text-white hover:bg-indigo-600"
             >
-              {t("confirm.ok", { defaultValue: "Got it" })}
+              {t("confirm.ok", { defaultValue: "OK" })}
             </button>
           </div>
         </DialogPanel>
@@ -187,21 +298,39 @@ export function TransportToolbar({
   onToolbarInsert,
   onNew,
   onImport,
+  onImportFromFavorites,
   onNavigateHome,
-  onFocusName,
-  onCreate,
+  onFocusName: _onFocusName,
+  onCreate: _onCreate,
   onDiscard,
+  onStop,
   onAddTrack,
   onRemoveFocusedTrack,
   onToggleMuteFocusedTrack,
+  onUndo,
+  onRedo,
+  onMuteAll,
+  onUnmuteAll,
+  onRemoveEmptyTracks,
+  onCollapseAll,
+  onExpandAll,
+  onSetLoopIn,
+  onSetLoopOut,
+  onClearLoop,
   canAddTrack,
   canRemoveTrack,
   focusedTrackIsMuted,
+  canUndo,
+  canRedo,
+  loopInMs,
+  loopOutMs,
+  hasEmptyTracks,
+  allTracksMuted,
+  anyTrackMuted,
 }: TransportToolbarProps) {
   const { t } = useTranslation();
 
   const playerState = usePlayerStore((s) => s.playerState);
-  const stop = usePlayerStore((s) => s.stop);
 
   const editorFeatures = useEditorSettingsStore((s) => s.features);
   const toggleFeature = useEditorSettingsStore((s) => s.toggleFeature);
@@ -212,6 +341,7 @@ export function TransportToolbar({
   const paletteButtonRef = useRef<HTMLButtonElement>(null);
   const colorPanelRef = useRef<HTMLDivElement>(null);
   const [helpDialogOpen, setHelpDialogOpen] = useState(false);
+  const [aboutDialogOpen, setAboutDialogOpen] = useState(false);
 
   useEffect(
     function closePaletteOnClickOutside() {
@@ -233,39 +363,32 @@ export function TransportToolbar({
   const fileItems: MenuItemDef[] = [
     {
       type: "action",
-      icon: <FaFileAlt size={9} />,
+      icon: <FaFileAlt size={13} />,
       label: t("create.menuNew", { defaultValue: "New Project" }),
       onClick: onNew,
     },
     {
       type: "action",
-      icon: <FaFileImport size={9} />,
+      icon: <FaFileImport size={13} />,
       label: t("create.import", { defaultValue: "Import…" }),
       onClick: onImport,
     },
-    { type: "separator" },
     {
       type: "action",
-      icon: <FaTag size={9} />,
-      label: t("create.menuRename", { defaultValue: "Rename Project" }),
-      onClick: onFocusName,
-    },
-    {
-      type: "action",
-      icon: <FaCheckCircle size={9} />,
-      label: t("create.create", { defaultValue: "Create" }),
-      onClick: onCreate,
+      icon: <FaHeart size={13} />,
+      label: t("create.menuImportFromFavorites", { defaultValue: "Import from Favorites…" }),
+      onClick: onImportFromFavorites,
     },
     { type: "separator" },
     {
       type: "action",
-      icon: <FaTimes size={9} />,
+      icon: <FaTimes size={13} />,
       label: t("create.cancel", { defaultValue: "Discard & Exit" }),
       onClick: onDiscard,
     },
     {
       type: "action",
-      icon: <FaSignOutAlt size={9} />,
+      icon: <FaSignOutAlt size={13} />,
       label: t("create.menuExit", { defaultValue: "Exit to Home" }),
       onClick: onNavigateHome,
     },
@@ -274,64 +397,199 @@ export function TransportToolbar({
   const editItems: MenuItemDef[] = [
     {
       type: "action",
-      icon: <FaPlus size={9} />,
+      icon: <FaUndo size={13} />,
+      label: t("create.undo", { defaultValue: "Undo" }),
+      disabled: !canUndo,
+      onClick: onUndo,
+    },
+    {
+      type: "action",
+      icon: <FaRedo size={13} />,
+      label: t("create.redo", { defaultValue: "Redo" }),
+      disabled: !canRedo,
+      onClick: onRedo,
+    },
+    { type: "separator" },
+    {
+      type: "action",
+      icon: <FaPlus size={13} />,
       label: t("editor.addTrack", { defaultValue: "Add Track" }),
       disabled: !canAddTrack,
       onClick: onAddTrack,
     },
     {
       type: "action",
-      icon: <FaTrash size={9} />,
+      icon: <FaTrash size={13} />,
       label: t("editor.removeTrack", { defaultValue: "Remove Focused Track" }),
       disabled: !canRemoveTrack,
       onClick: onRemoveFocusedTrack,
     },
+    {
+      type: "action",
+      icon: <FaBan size={13} />,
+      label: t("create.removeEmptyTracks", { defaultValue: "Remove Empty Tracks" }),
+      disabled: !hasEmptyTracks,
+      onClick: onRemoveEmptyTracks,
+    },
     { type: "separator" },
     {
       type: "action",
-      icon: focusedTrackIsMuted ? <FaVolumeMute size={9} /> : <FaVolumeUp size={9} />,
+      icon: focusedTrackIsMuted ? <FaVolumeMute size={13} /> : <FaVolumeUp size={13} />,
       label: focusedTrackIsMuted
         ? t("editor.unmuteFocused", { defaultValue: "Unmute Focused Track" })
         : t("editor.muteFocused", { defaultValue: "Mute Focused Track" }),
       onClick: onToggleMuteFocusedTrack,
+    },
+    {
+      type: "action",
+      icon: <FaVolumeMute size={13} />,
+      label: t("create.muteAll", { defaultValue: "Mute All Tracks" }),
+      disabled: allTracksMuted,
+      onClick: onMuteAll,
+    },
+    {
+      type: "action",
+      icon: <FaVolumeUp size={13} />,
+      label: t("create.unmuteAll", { defaultValue: "Unmute All Tracks" }),
+      disabled: !anyTrackMuted,
+      onClick: onUnmuteAll,
+    },
+  ];
+
+  const viewItems: MenuItemDef[] = [
+    {
+      type: "action",
+      icon: <FaCompressArrowsAlt size={13} />,
+      label: t("create.collapseAll", { defaultValue: "Collapse All Tracks" }),
+      onClick: onCollapseAll,
+    },
+    {
+      type: "action",
+      icon: <FaExpandArrowsAlt size={13} />,
+      label: t("create.expandAll", { defaultValue: "Expand All Tracks" }),
+      onClick: onExpandAll,
+    },
+    { type: "separator" },
+    {
+      type: "action",
+      icon: <FaCode size={13} />,
+      label: t("editor.feature.syntaxHighlight", { defaultValue: "Syntax Highlighting" }),
+      active: editorFeatures.syntaxHighlight,
+      onClick: () => toggleFeature("syntaxHighlight"),
+    },
+    {
+      type: "action",
+      icon: <FaEye size={13} />,
+      label: t("editor.feature.playbackTracking", { defaultValue: "Follow Playback" }),
+      active: editorFeatures.playbackTracking,
+      onClick: () => toggleFeature("playbackTracking"),
+    },
+  ];
+
+  const transportItems: MenuItemDef[] = [
+    {
+      type: "action",
+      icon: <FaMapMarkerAlt size={13} />,
+      label:
+        loopInMs !== null
+          ? t("create.setLoopIn", {
+              defaultValue: `Set Loop In (A) — ${(loopInMs / 1000).toFixed(1)}s`,
+            })
+          : t("create.setLoopIn", { defaultValue: "Set Loop In (A)" }),
+      active: loopInMs !== null,
+      onClick: onSetLoopIn,
+    },
+    {
+      type: "action",
+      icon: <FaMapMarkerAlt size={13} />,
+      label:
+        loopOutMs !== null
+          ? t("create.setLoopOut", {
+              defaultValue: `Set Loop Out (B) — ${(loopOutMs / 1000).toFixed(1)}s`,
+            })
+          : t("create.setLoopOut", { defaultValue: "Set Loop Out (B)" }),
+      active: loopOutMs !== null,
+      onClick: onSetLoopOut,
+    },
+    { type: "separator" },
+    {
+      type: "action",
+      icon: <FaTimes size={13} />,
+      label: t("create.clearLoop", { defaultValue: "Clear A-B Loop" }),
+      disabled: loopInMs === null && loopOutMs === null,
+      onClick: onClearLoop,
     },
   ];
 
   const helpItems: MenuItemDef[] = [
     {
       type: "action",
-      icon: <FaQuestionCircle size={9} />,
+      icon: <FaQuestionCircle size={13} />,
       label: t("editor.toolbar.helpTitle", { defaultValue: "RTTTL Quick Reference" }),
       onClick: () => setHelpDialogOpen(true),
+    },
+    { type: "separator" },
+    {
+      type: "action",
+      icon: <FaInfoCircle size={13} />,
+      label: t("create.menuAbout", { defaultValue: "About" }),
+      onClick: () => setAboutDialogOpen(true),
     },
   ];
 
   return (
     <>
-      <div className="flex shrink-0 items-center gap-1 border-b border-gray-200 bg-gray-100/50 px-2 py-1 dark:border-gray-800 dark:bg-gray-900/50">
+      <div className="flex shrink-0 items-center gap-1 border-b border-gray-300 bg-gray-200 px-3 py-1.5 dark:border-gray-800 dark:bg-gray-900/50">
         {/* Group 0: App menus */}
         <DropdownMenu label={t("create.menuFile", { defaultValue: "File" })} items={fileItems} />
         <DropdownMenu label={t("create.menuEdit", { defaultValue: "Edit" })} items={editItems} />
+        <DropdownMenu label={t("create.menuView", { defaultValue: "View" })} items={viewItems} />
+        <DropdownMenu
+          label={t("create.menuTransport", { defaultValue: "Transport" })}
+          items={transportItems}
+        />
         <DropdownMenu label={t("create.menuHelp", { defaultValue: "Help" })} items={helpItems} />
+
+        <Separator />
+
+        {/* Group 0.5: Undo / Redo */}
+        <button
+          type="button"
+          onClick={onUndo}
+          disabled={!canUndo}
+          title={t("create.undo", { defaultValue: "Undo" })}
+          className="flex h-8 w-8 items-center justify-center rounded text-gray-600 hover:bg-gray-200 disabled:opacity-30 dark:text-gray-400 dark:hover:bg-gray-700"
+        >
+          <FaUndo size={14} />
+        </button>
+        <button
+          type="button"
+          onClick={onRedo}
+          disabled={!canRedo}
+          title={t("create.redo", { defaultValue: "Redo" })}
+          className="flex h-8 w-8 items-center justify-center rounded text-gray-600 hover:bg-gray-200 disabled:opacity-30 dark:text-gray-400 dark:hover:bg-gray-700"
+        >
+          <FaRedo size={14} />
+        </button>
 
         <Separator />
 
         {/* Group 1: Transport */}
         <button
           type="button"
-          onClick={stop}
+          onClick={onStop}
           disabled={!isPreviewActive}
-          className="flex h-7 w-7 items-center justify-center rounded text-gray-600 hover:bg-gray-200 disabled:opacity-30 dark:text-gray-400 dark:hover:bg-gray-700"
+          className="flex h-8 w-8 items-center justify-center rounded text-gray-600 hover:bg-gray-200 disabled:opacity-30 dark:text-gray-400 dark:hover:bg-gray-700"
           title={t("player.stop")}
         >
-          <FaStop size={12} />
+          <FaStop size={16} />
         </button>
         <button
           type="button"
           onClick={onPlayToggle}
           disabled={!hasPlayableContent}
           className={clsx(
-            "flex h-7 w-7 items-center justify-center rounded text-white",
+            "flex h-8 w-8 items-center justify-center rounded text-white",
             playerState === "playing"
               ? "bg-amber-600 hover:bg-amber-700"
               : "bg-indigo-500 hover:bg-indigo-600",
@@ -345,7 +603,7 @@ export function TransportToolbar({
                 : t("player.play")
           }
         >
-          {playerState === "playing" ? <FaPause size={11} /> : <FaPlay size={11} />}
+          {playerState === "playing" ? <FaPause size={15} /> : <FaPlay size={15} />}
         </button>
 
         <Separator />
@@ -357,7 +615,7 @@ export function TransportToolbar({
               key={item}
               type="button"
               title={t("editor.insertToken", { defaultValue: `Insert "${item}"`, token: item })}
-              className="flex h-6 min-w-6 items-center justify-center rounded px-1 font-mono text-xs text-gray-600 hover:bg-indigo-100 hover:text-indigo-700 dark:text-gray-400 dark:hover:bg-indigo-900/40 dark:hover:text-indigo-300"
+              className="flex h-7 min-w-7 items-center justify-center rounded px-1 font-mono text-sm text-gray-600 hover:bg-indigo-100 hover:text-indigo-700 dark:text-gray-400 dark:hover:bg-indigo-900/40 dark:hover:text-indigo-300"
               onClick={() => onToolbarInsert(item)}
             >
               {item}
@@ -373,26 +631,26 @@ export function TransportToolbar({
           onClick={() => toggleFeature("syntaxHighlight")}
           title={t("editor.feature.syntaxHighlight", { defaultValue: "Syntax Highlighting" })}
           className={clsx(
-            "flex h-7 w-7 items-center justify-center rounded transition-colors",
+            "flex h-8 w-8 items-center justify-center rounded transition-colors",
             editorFeatures.syntaxHighlight
               ? "bg-indigo-100 text-indigo-600 dark:bg-indigo-900/40 dark:text-indigo-400"
               : "text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700",
           )}
         >
-          <FaCode size={12} />
+          <FaCode size={14} />
         </button>
         <button
           type="button"
           onClick={() => toggleFeature("playbackTracking")}
           title={t("editor.feature.playbackTracking", { defaultValue: "Follow Playback" })}
           className={clsx(
-            "flex h-7 w-7 items-center justify-center rounded transition-colors",
+            "flex h-8 w-8 items-center justify-center rounded transition-colors",
             editorFeatures.playbackTracking
               ? "bg-indigo-100 text-indigo-600 dark:bg-indigo-900/40 dark:text-indigo-400"
               : "text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700",
           )}
         >
-          <FaEye size={12} />
+          <FaEye size={14} />
         </button>
         <div className="relative">
           <button
@@ -401,11 +659,11 @@ export function TransportToolbar({
             onClick={() => setColorPanelOpen((v) => !v)}
             title={t("editor.syntaxColors", { defaultValue: "Syntax Colors" })}
             className={clsx(
-              "flex h-7 w-7 items-center justify-center rounded text-gray-400 hover:bg-gray-200 dark:text-gray-500 dark:hover:bg-gray-700",
+              "flex h-8 w-8 items-center justify-center rounded text-gray-400 hover:bg-gray-200 dark:text-gray-500 dark:hover:bg-gray-700",
               colorPanelOpen && "bg-gray-200 text-indigo-600 dark:bg-gray-700 dark:text-indigo-400",
             )}
           >
-            <FaPalette size={13} />
+            <FaPalette size={15} />
           </button>
           {colorPanelOpen && (
             <div ref={colorPanelRef} className="absolute right-0 top-full z-50 mt-1">
@@ -421,9 +679,9 @@ export function TransportToolbar({
           type="button"
           onClick={onImport}
           title={t("create.import", { defaultValue: "Import RTTTL" })}
-          className="flex h-7 w-7 items-center justify-center rounded text-gray-400 hover:bg-gray-200 dark:text-gray-500 dark:hover:bg-gray-700"
+          className="flex h-8 w-8 items-center justify-center rounded text-gray-400 hover:bg-gray-200 dark:text-gray-500 dark:hover:bg-gray-700"
         >
-          <FaFileImport size={12} />
+          <FaFileImport size={16} />
         </button>
 
         <Separator />
@@ -433,17 +691,128 @@ export function TransportToolbar({
           type="button"
           title={t("editor.toolbar.helpTitle", { defaultValue: "RTTTL Quick Reference" })}
           onClick={() => setHelpDialogOpen(true)}
-          className="flex h-7 w-7 items-center justify-center rounded text-gray-400 hover:bg-gray-200 hover:text-gray-600 dark:text-gray-500 dark:hover:bg-gray-600 dark:hover:text-gray-300"
+          className="flex h-8 w-8 items-center justify-center rounded text-gray-400 hover:bg-gray-200 hover:text-gray-600 dark:text-gray-500 dark:hover:bg-gray-600 dark:hover:text-gray-300"
         >
-          <FaQuestionCircle size={14} />
+          <FaQuestionCircle size={17} />
         </button>
       </div>
 
+      {/* ── Second toolbar row ── */}
+      <div className="flex shrink-0 items-center gap-1 border-b border-gray-200 bg-gray-50/80 px-3 py-1 dark:border-gray-800 dark:bg-gray-900/30">
+        {/* Mute All / Unmute All */}
+        <button
+          type="button"
+          onClick={onMuteAll}
+          disabled={allTracksMuted}
+          title={t("create.muteAll", { defaultValue: "Mute All Tracks" })}
+          className="flex h-7 items-center gap-1 rounded px-2 text-sm text-gray-500 hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-30 dark:text-gray-400 dark:hover:bg-gray-700"
+        >
+          <FaVolumeMute size={13} />
+          <span>{t("create.muteAll", { defaultValue: "Mute All" })}</span>
+        </button>
+        <button
+          type="button"
+          onClick={onUnmuteAll}
+          disabled={!anyTrackMuted}
+          title={t("create.unmuteAll", { defaultValue: "Unmute All Tracks" })}
+          className="flex h-7 items-center gap-1 rounded px-2 text-sm text-gray-500 hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-30 dark:text-gray-400 dark:hover:bg-gray-700"
+        >
+          <FaVolumeUp size={13} />
+          <span>{t("create.unmuteAll", { defaultValue: "Unmute All" })}</span>
+        </button>
+
+        <Separator />
+
+        {/* Remove Empty Tracks */}
+        <button
+          type="button"
+          onClick={onRemoveEmptyTracks}
+          disabled={!hasEmptyTracks}
+          title={t("create.removeEmptyTracks", { defaultValue: "Remove Empty Tracks" })}
+          className="flex h-7 items-center gap-1 rounded px-2 text-sm text-gray-500 hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-30 dark:text-gray-400 dark:hover:bg-gray-700"
+        >
+          <FaBan size={13} />
+          <span>{t("create.removeEmptyTracks", { defaultValue: "Remove Empty" })}</span>
+        </button>
+
+        <Separator />
+
+        {/* Collapse All / Expand All */}
+        <button
+          type="button"
+          onClick={onCollapseAll}
+          title={t("create.collapseAll", { defaultValue: "Collapse All Tracks" })}
+          className="flex h-7 items-center gap-1 rounded px-2 text-sm text-gray-500 hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700"
+        >
+          <FaCompressArrowsAlt size={13} />
+          <span>{t("create.collapseAll", { defaultValue: "Collapse All" })}</span>
+        </button>
+        <button
+          type="button"
+          onClick={onExpandAll}
+          title={t("create.expandAll", { defaultValue: "Expand All Tracks" })}
+          className="flex h-7 items-center gap-1 rounded px-2 text-sm text-gray-500 hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700"
+        >
+          <FaExpandArrowsAlt size={13} />
+          <span>{t("create.expandAll", { defaultValue: "Expand All" })}</span>
+        </button>
+
+        <Separator />
+
+        {/* A-B Loop markers */}
+        <button
+          type="button"
+          onClick={onSetLoopIn}
+          title={t("create.setLoopIn", { defaultValue: "Set Loop In (A)" })}
+          className={clsx(
+            "flex h-7 items-center gap-1 rounded px-2 text-sm transition-colors",
+            loopInMs !== null
+              ? "bg-indigo-100 text-indigo-600 dark:bg-indigo-900/40 dark:text-indigo-400"
+              : "text-gray-500 hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700",
+          )}
+        >
+          <FaMapMarkerAlt size={13} />
+          <span>A</span>
+          {loopInMs !== null && (
+            <span className="text-[10px] opacity-70">{(loopInMs / 1000).toFixed(1)}s</span>
+          )}
+        </button>
+        <button
+          type="button"
+          onClick={onSetLoopOut}
+          title={t("create.setLoopOut", { defaultValue: "Set Loop Out (B)" })}
+          className={clsx(
+            "flex h-7 items-center gap-1 rounded px-2 text-sm transition-colors",
+            loopOutMs !== null
+              ? "bg-purple-100 text-purple-600 dark:bg-purple-900/40 dark:text-purple-400"
+              : "text-gray-500 hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700",
+          )}
+        >
+          <FaMapMarkerAlt size={13} />
+          <span>B</span>
+          {loopOutMs !== null && (
+            <span className="text-[10px] opacity-70">{(loopOutMs / 1000).toFixed(1)}s</span>
+          )}
+        </button>
+        {(loopInMs !== null || loopOutMs !== null) && (
+          <button
+            type="button"
+            onClick={onClearLoop}
+            title={t("create.clearLoop", { defaultValue: "Clear A-B Loop" })}
+            className="flex h-7 items-center gap-1 rounded px-2 text-sm text-red-500 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20"
+          >
+            <FaTimes size={12} />
+            <span>{t("create.clearLoop", { defaultValue: "Clear Loop" })}</span>
+          </button>
+        )}
+      </div>
+
       <HelpDialog open={helpDialogOpen} onClose={() => setHelpDialogOpen(false)} />
+      <AboutDialog open={aboutDialogOpen} onClose={() => setAboutDialogOpen(false)} />
     </>
   );
 }
 
 function Separator() {
-  return <div className="mx-0.5 h-4 w-px shrink-0 bg-gray-300 dark:bg-gray-700" />;
+  return <div className="mx-0.5 h-5 w-px shrink-0 bg-gray-300 dark:bg-gray-700" />;
 }
