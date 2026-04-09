@@ -28,10 +28,10 @@ import type { CutMode } from "./cut_dialog";
 import { loadDraft, saveDraft, clearDraft } from "./draft";
 import { MAX_TRACKS } from "./constants";
 import { TimeRuler } from "./time_ruler";
-import { useTrackManager } from "./use_track_manager";
-import { usePlaybackLoop } from "./use_playback_loop";
-import { useTimelineInteraction } from "./use_timeline_interaction";
-import { useKeyboardShortcuts } from "./use_keyboard_shortcuts";
+import { useTrackManager } from "./hooks/use_track_manager";
+import { usePlaybackLoop } from "./hooks/use_playback_loop";
+import { useTimelineInteraction } from "./hooks/use_timeline_interaction";
+import { useKeyboardShortcuts } from "./hooks/use_keyboard_shortcuts";
 import { trimRtttl, deleteRegionRtttl } from "@/utils/rtttl_cutter";
 
 function nextProjectName(existingTitles: string[]): string {

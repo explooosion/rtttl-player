@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { usePlayerStore } from "@/stores/player_store";
-import { TIMELINE_MIN_WIDTH } from "./constants";
+import { TIMELINE_MIN_WIDTH } from "../constants";
 
 interface UsePlaybackLoopParams {
   trackListRef: React.RefObject<HTMLDivElement | null>;

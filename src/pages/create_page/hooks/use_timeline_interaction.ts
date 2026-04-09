@@ -5,7 +5,7 @@ import {
   PX_PER_SEC_MAX,
   PX_PER_SEC_DEFAULT,
   TIMELINE_MIN_WIDTH,
-} from "./constants";
+} from "../constants";
 
 interface UseTimelineInteractionParams {
   trackListRef: React.RefObject<HTMLDivElement | null>;
