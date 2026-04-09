@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import { ToneEngine } from "@/utils/tone_engine";
-import type { EngineState } from "@/utils/tone_engine";
+import { ToneEngine } from "@/kit/tone";
+import type { EngineState } from "@/kit/tone";
 import type { RtttlEntry } from "@/utils/rtttl_parser";
 import { useListenedStore } from "./listened_store";
 

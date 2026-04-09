@@ -1,6 +1,6 @@
 import * as Tone from "tone";
-import { parseRtttl } from "./rtttl_parser";
-import type { RtttlNote } from "./rtttl_parser";
+import { parseRtttl } from "@/utils/rtttl_parser";
+import type { RtttlNote } from "@/utils/rtttl_parser";
 import { buildCumulativeMs, findNoteIndexAtMs, buildSchedule } from "./tone_schedule";
 import type { ScheduledNote } from "./tone_schedule";
 
