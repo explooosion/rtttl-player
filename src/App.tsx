@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 
 import { ThemeProvider } from "./components/theme_provider";
@@ -41,11 +41,50 @@ const ProfilePage = lazy(() =>
 const PasswordPage = lazy(() =>
   import("./pages/password_page").then((m) => ({ default: m.PasswordPage })),
 );
-const CreatePage = lazy(() =>
-  import("./pages/create_page").then((m) => ({ default: m.CreatePage })),
-);
+
+/**
+ * Module-level cache for the create-page chunk.
+ * Shared between the preload function in app_shell and CreatePageRoute here.
+ * All dynamic imports for the same specifier share the browser's module cache,
+ * so calling import("./pages/create_page") multiple times is safe and free.
+ */
+let _createPageCache: { CreatePage: React.ComponentType } | null = null;
+
+/**
+ * Creates the create page without React.lazy + Suspense.
+ * Reason: HashRouter wraps navigation in startTransition, which suppresses
+ * Suspense fallbacks — the old page stays frozen instead of showing the loader.
+ * Using useState lets React commit the PageLoader immediately on navigation.
+ */
+function CreatePageRoute() {
+  const [Mod, setMod] = useState<{ CreatePage: React.ComponentType } | null>(_createPageCache);
+
+  useEffect(() => {
+    if (Mod) {
+      return;
+    }
+    void import("./pages/create_page").then((m) => {
+      _createPageCache = m;
+      setMod(m);
+    });
+  }, [Mod]);
+
+  if (!Mod) {
+    return <PageLoader />;
+  }
+
+  return <Mod.CreatePage />;
+}
 
 function App() {
+  useEffect(() => {
+    // Preload the create-page chunk in the background after initial render
+    // so navigation is instant for most users.
+    void import("./pages/create_page").then((m) => {
+      _createPageCache = m;
+    });
+  }, []);
+
   return (
     <ThemeProvider>
       <HashRouter>
@@ -53,7 +92,7 @@ function App() {
         <Suspense fallback={<PageLoader />}>
           <Routes>
             {/* DAW editor — standalone fullscreen route (no AppShell) */}
-            <Route path="/create" element={<CreatePage />} />
+            <Route path="/create" element={<CreatePageRoute />} />
             <Route element={<AppShell />}>
               <Route path="/" element={<LandingPage />} />
               <Route path="/collections" element={<CollectionsPage />} />

@@ -9,6 +9,11 @@ import { useCollectionStore } from "../stores/collection_store";
 import { getCollectionBySlug } from "../constants/collections";
 import type { CollectionSlug } from "../utils/rtttl_parser";
 
+/** Triggers create-page chunk download on hover/focus, before the user clicks. */
+const preloadCreatePage = () => {
+  void import("../pages/create_page");
+};
+
 export function CollectionPage() {
   const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
@@ -45,6 +50,8 @@ export function CollectionPage() {
     slug === "community" ? (
       <button
         onClick={handleCreateNew}
+        onMouseEnter={preloadCreatePage}
+        onFocus={preloadCreatePage}
         className="flex items-center gap-1.5 rounded-lg bg-indigo-600 px-3 py-2 text-sm font-medium text-white hover:bg-indigo-700"
       >
         <FaPlus size={16} />

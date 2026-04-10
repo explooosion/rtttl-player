@@ -26,6 +26,11 @@ import { toRtttlEntries, type CollectionEntry } from "../utils/collection_loader
 
 const logoSrc = `${import.meta.env.BASE_URL}icons/favicon-32x32.png`;
 
+/** Triggers create-page chunk download on hover/focus, before the user clicks. */
+const preloadCreatePage = () => {
+  void import("../pages/create_page");
+};
+
 export function AppShell() {
   const { t } = useTranslation();
   const location = useLocation();
@@ -151,6 +156,8 @@ export function AppShell() {
             </Link>
             <Link
               to="/create"
+              onMouseEnter={preloadCreatePage}
+              onFocus={preloadCreatePage}
               className={clsx(
                 "whitespace-nowrap rounded-lg px-3 py-1.5 text-sm font-brand font-bold tracking-wider transition-colors",
                 isCreateActive
@@ -276,6 +283,8 @@ export function AppShell() {
               <Link
                 to="/create"
                 onClick={closeSidebar}
+                onMouseEnter={preloadCreatePage}
+                onFocus={preloadCreatePage}
                 className={clsx(
                   "rounded-lg px-3 py-2 text-sm font-medium",
                   isCreateActive
