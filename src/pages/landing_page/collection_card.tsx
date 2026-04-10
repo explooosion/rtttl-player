@@ -30,14 +30,14 @@ export function CollectionCard({ slug, nameKey, descriptionKey, source }: Collec
     >
       {/* Illustration banner */}
       <div
-        className={`flex h-36 items-center justify-center bg-linear-to-br ${illustration.gradient}`}
+        className={`flex h-24 items-center justify-center bg-linear-to-br ${illustration.gradient}`}
       >
-        <Icon size={48} className="text-white/80 transition-transform group-hover:scale-110" />
+        <Icon size={32} className="text-white/80 transition-transform group-hover:scale-110" />
       </div>
       {/* Content */}
-      <div className="p-5">
-        <h3 className="mb-1 text-lg font-bold text-gray-900 dark:text-white">{t(nameKey)}</h3>
-        <p className="mb-3 line-clamp-2 text-sm text-gray-500 dark:text-gray-400">
+      <div className="p-4">
+        <h3 className="mb-1 text-base font-bold text-gray-900 dark:text-white">{t(nameKey)}</h3>
+        <p className="mb-2 line-clamp-2 text-xs text-gray-500 dark:text-gray-400">
           {t(descriptionKey)}
         </p>
         {source && (

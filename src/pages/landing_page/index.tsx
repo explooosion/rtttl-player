@@ -77,7 +77,7 @@ export function LandingPage() {
           <h3 className="fly-in mb-6 text-2xl font-bold text-gray-900 dark:text-white">
             {t("collections.title")}
           </h3>
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {COLLECTIONS.map((col, i) => (
               <div key={col.slug} className={`fly-in fly-in-delay-${i + 1}`}>
                 <CollectionCard
