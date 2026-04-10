@@ -3,8 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FaPlus } from "react-icons/fa";
 
-import { ListPageLayout } from "../components/list_page_layout";
-import type { BreadcrumbItem } from "../components/list_page_layout";
+import { ListPageLayout } from "../layouts/list_page_layout";
+import type { BreadcrumbItem } from "../layouts/list_page_layout";
 import { useCollectionStore } from "../stores/collection_store";
 import { getCollectionBySlug } from "../constants/collections";
 import type { CollectionSlug } from "../utils/rtttl_parser";

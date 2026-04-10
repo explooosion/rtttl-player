@@ -3,17 +3,17 @@ import { useTranslation } from "react-i18next";
 import { Outlet } from "react-router-dom";
 import { FaMusic } from "react-icons/fa";
 
-import { AppHeader } from "./app_header";
-import { AppMobileSidebar } from "./app_mobile_sidebar";
-import { AppFooter } from "./app_footer";
-import { BetaNoticeBanner } from "./beta_notice_banner";
-import { CookieConsentBanner } from "./cookie_consent_banner";
-import { useCollectionStore } from "../stores/collection_store";
-import { usePlayerStore } from "../stores/player_store";
-import { useCookieConsentStore } from "../stores/cookie_consent_store";
-import { toRtttlEntries, type CollectionEntry } from "../utils/collection_loader";
+import { RootHeader } from "./root_header";
+import { RootMobileSidebar } from "./root_mobile_sidebar";
+import { RootFooter } from "./root_footer";
+import { BetaNoticeBanner } from "../../components/beta_notice_banner";
+import { CookieConsentBanner } from "../../components/cookie_consent_banner";
+import { useCollectionStore } from "../../stores/collection_store";
+import { usePlayerStore } from "../../stores/player_store";
+import { useCookieConsentStore } from "../../stores/cookie_consent_store";
+import { toRtttlEntries, type CollectionEntry } from "../../utils/collection_loader";
 
-export function AppShell() {
+export function RootShell() {
   const { t } = useTranslation();
   const setItems = useCollectionStore((s) => s.setItems);
   const isLoading = useCollectionStore((s) => s.isLoading);
@@ -92,8 +92,8 @@ export function AppShell() {
   return (
     <div className="min-h-screen">
       <BetaNoticeBanner />
-      <AppHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} scrolled={scrolled} />
-      <AppMobileSidebar isOpen={sidebarOpen} onClose={closeSidebar} />
+      <RootHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} scrolled={scrolled} />
+      <RootMobileSidebar isOpen={sidebarOpen} onClose={closeSidebar} />
 
       <Outlet />
 
@@ -116,7 +116,7 @@ export function AppShell() {
         </div>
       )}
 
-      <AppFooter resetConsent={resetConsent} />
+      <RootFooter resetConsent={resetConsent} />
       <CookieConsentBanner />
     </div>
   );

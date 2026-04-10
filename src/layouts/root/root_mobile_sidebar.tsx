@@ -2,20 +2,20 @@ import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import clsx from "clsx";
 
-import { ThemeToggle } from "./theme_toggle";
-import { SettingsMenu } from "./settings_menu";
-import { LanguageSwitcher } from "./language_switcher";
+import { ThemeToggle } from "../../components/theme_toggle";
+import { SettingsMenu } from "../../components/settings_menu";
+import { LanguageSwitcher } from "../../components/language_switcher";
 
 const preloadCreatePage = () => {
-  void import("../pages/create_page");
+  void import("../../pages/create_page");
 };
 
-interface AppMobileSidebarProps {
+interface RootMobileSidebarProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export function AppMobileSidebar({ isOpen, onClose }: AppMobileSidebarProps) {
+export function RootMobileSidebar({ isOpen, onClose }: RootMobileSidebarProps) {
   const { t } = useTranslation();
   const location = useLocation();
 

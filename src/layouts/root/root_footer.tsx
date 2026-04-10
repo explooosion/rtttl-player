@@ -2,14 +2,14 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { FaGithub, FaBug, FaExternalLinkAlt } from "react-icons/fa";
 
-import { LanguageSwitcher } from "./language_switcher";
-import { COLLECTIONS } from "../constants/collections";
+import { LanguageSwitcher } from "../../components/language_switcher";
+import { COLLECTIONS } from "../../constants/collections";
 
-interface AppFooterProps {
+interface RootFooterProps {
   resetConsent: () => void;
 }
 
-export function AppFooter({ resetConsent }: AppFooterProps) {
+export function RootFooter({ resetConsent }: RootFooterProps) {
   const { t } = useTranslation();
 
   return (

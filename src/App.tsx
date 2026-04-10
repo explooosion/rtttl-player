@@ -4,7 +4,7 @@ import * as Tone from "tone";
 
 import { ThemeProvider } from "./components/theme_provider";
 import { ScrollToTop } from "./components/scroll_to_top";
-import { AppShell } from "./components/app_shell";
+import { RootShell } from "./layouts/root/root_shell";
 import { PageLoader } from "./components/page_loader";
 
 const LandingPage = lazy(() =>
@@ -108,7 +108,7 @@ function App() {
           <Routes>
             {/* DAW editor — standalone fullscreen route (no AppShell) */}
             <Route path="/create" element={<CreatePageRoute />} />
-            <Route element={<AppShell />}>
+            <Route element={<RootShell />}>
               <Route path="/" element={<LandingPage />} />
               <Route path="/collections" element={<CollectionsPage />} />
               <Route path="/collections/:slug" element={<CollectionPage />} />

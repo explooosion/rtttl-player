@@ -3,25 +3,25 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes, FaGithub, FaSearch } from "react-icons/fa";
 import clsx from "clsx";
 
-import { ThemeToggle } from "./theme_toggle";
-import { SettingsMenu } from "./settings_menu";
-import { MegaMenu } from "./mega_menu";
-import { UserMenu } from "./user_menu";
-import { useCollectionStore } from "../stores/collection_store";
+import { ThemeToggle } from "../../components/theme_toggle";
+import { SettingsMenu } from "../../components/settings_menu";
+import { MegaMenu } from "../../components/mega_menu";
+import { UserMenu } from "../../components/user_menu";
+import { useCollectionStore } from "../../stores/collection_store";
 
 const logoSrc = `${import.meta.env.BASE_URL}icons/favicon-32x32.png`;
 
 const preloadCreatePage = () => {
-  void import("../pages/create_page");
+  void import("../../pages/create_page");
 };
 
-interface AppHeaderProps {
+interface RootHeaderProps {
   sidebarOpen: boolean;
   setSidebarOpen: (v: boolean) => void;
   scrolled: boolean;
 }
 
-export function AppHeader({ sidebarOpen, setSidebarOpen, scrolled }: AppHeaderProps) {
+export function RootHeader({ sidebarOpen, setSidebarOpen, scrolled }: RootHeaderProps) {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();

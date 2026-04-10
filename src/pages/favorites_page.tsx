@@ -4,7 +4,7 @@ import { FaHeart } from "react-icons/fa";
 
 import { useCollectionStore } from "../stores/collection_store";
 import { useFavoritesStore } from "../stores/favorites_store";
-import { ListPageLayout } from "../components/list_page_layout";
+import { ListPageLayout } from "../layouts/list_page_layout";
 
 export function FavoritesPage() {
   const { t } = useTranslation();
