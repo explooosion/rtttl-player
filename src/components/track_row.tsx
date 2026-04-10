@@ -134,7 +134,12 @@ export function TrackRow({ item, extraActions }: TrackRowProps) {
                 code={item.code}
                 currentNoteIndex={isActive ? currentNoteIndex : 0}
                 totalNotes={isActive ? totalNotes : 0}
-                isPlaying={isActive && (playerState === "playing" || playerState === "paused")}
+                isPlaying={
+                  isActive &&
+                  (playerState === "playing" ||
+                    playerState === "paused" ||
+                    playerState === "stopped")
+                }
                 onSeek={isActive ? seekTo : undefined}
                 height={36}
                 barCount={50}
@@ -146,7 +151,12 @@ export function TrackRow({ item, extraActions }: TrackRowProps) {
                 code={item.code}
                 currentNoteIndex={isActive ? currentNoteIndex : 0}
                 totalNotes={isActive ? totalNotes : 0}
-                isPlaying={isActive && (playerState === "playing" || playerState === "paused")}
+                isPlaying={
+                  isActive &&
+                  (playerState === "playing" ||
+                    playerState === "paused" ||
+                    playerState === "stopped")
+                }
                 onSeek={isActive ? seekTo : undefined}
                 height={20}
                 barCount={30}

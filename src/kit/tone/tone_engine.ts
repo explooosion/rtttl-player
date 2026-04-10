@@ -226,11 +226,11 @@ export class ToneEngine {
     Tone.getTransport().stop();
     Tone.getTransport().position = 0;
     this.disposeTracks();
-    this.state = "idle";
+    this.state = "stopped";
 
     if (this.callback) {
       this.callback({
-        state: "idle",
+        state: "stopped",
         currentNoteIndex: finalPrimaryIdx,
         totalNotes: finalGlobalTotal,
         trackNoteIndices: finalNoteIndices,

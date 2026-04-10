@@ -43,7 +43,9 @@ export function Player() {
               code={editedCode || currentItem.code}
               currentNoteIndex={currentNoteIndex}
               totalNotes={totalNotes}
-              isPlaying={playerState === "playing" || playerState === "paused"}
+              isPlaying={
+                playerState === "playing" || playerState === "paused" || playerState === "stopped"
+              }
               onSeek={seekTo}
               height={48}
               barCount={60}

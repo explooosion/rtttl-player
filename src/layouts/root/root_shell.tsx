@@ -154,7 +154,7 @@ export function RootShell() {
             )}
           </div>
           {/* Waveform — only when there's something to show */}
-          {(playerState === "playing" || playerState === "paused") && (
+          {(playerState === "playing" || playerState === "paused" || playerState === "stopped") && (
             <>
               {currentItem.tracks && currentItem.tracks.length > 1 ? (
                 <MultiTrackWaveform

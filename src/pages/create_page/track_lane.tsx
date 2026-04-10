@@ -96,7 +96,8 @@ export function TrackLane({
   const fontSize = useEditorSettingsStore((s) => s.fontSize);
 
   const isMuted = trackMuted[index] ?? false;
-  const isPreviewActive = playerState === "playing" || playerState === "paused";
+  const isPreviewActive =
+    playerState === "playing" || playerState === "paused" || playerState === "stopped";
   const isValid = useMemo(() => code.trim().length > 0 && parseRtttl(code.trim()) !== null, [code]);
   const trackDurationMs = useMemo(() => {
     const parsed = code.trim() ? parseRtttl(code.trim()) : null;
