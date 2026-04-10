@@ -22,7 +22,6 @@ import { useCollectionStore } from "../stores/collection_store";
 import { usePlayerStore } from "../stores/player_store";
 import { useCookieConsentStore } from "../stores/cookie_consent_store";
 import { COLLECTIONS } from "../constants/collections";
-import { MOCK_COMMUNITY_ITEMS } from "../data/mock-community";
 import { toRtttlEntries, type CollectionEntry } from "../utils/collection_loader";
 
 const logoSrc = `${import.meta.env.BASE_URL}icons/favicon-32x32.png`;
@@ -77,15 +76,16 @@ export function AppShell() {
         fetch(`${base}picaxe.json`).then((r) => r.json() as Promise<CollectionEntry[]>),
         fetch(`${base}esc-configurator.json`).then((r) => r.json() as Promise<CollectionEntry[]>),
         fetch(`${base}skully-rtttl.json`).then((r) => r.json() as Promise<CollectionEntry[]>),
+        fetch(`${base}community.json`).then((r) => r.json() as Promise<CollectionEntry[]>),
       ])
-        .then(([picaxeData, escData, skullyData]) => {
+        .then(([picaxeData, escData, skullyData, communityData]) => {
           const picaxeEntries = toRtttlEntries(picaxeData, "picaxe", "picaxe");
           const escEntries = toRtttlEntries(escData, "esc-configurator", "esc");
           const skullyEntries = toRtttlEntries(skullyData, "skully-rtttl", "skully");
           setItems([...picaxeEntries, ...escEntries, ...skullyEntries]);
           // Read live state to avoid stale closure race in React Strict Mode
           if (useCollectionStore.getState().userItems.length === 0) {
-            for (const item of MOCK_COMMUNITY_ITEMS) {
+            for (const item of toRtttlEntries(communityData, "community", "community")) {
               addUserItem(item);
             }
           }
