@@ -8,12 +8,8 @@ RTTTL Hub is a browser-based audio platform dedicated to collecting, playing, an
 
 ## Features
 
-- **Curated tone library** — A continually expanding catalogue spanning multiple collections, sourced from industry archives, open-source projects, and community submissions
-- **In-browser playback** — Instant tone preview with real-time waveform visualization and seek control
+- **Collections** — A continually expanding catalogue spanning multiple collections, sourced from industry archives, open-source projects, and community submissions
 - **RTTTL editor & composer** — Full-featured authoring environment with syntax highlighting, multi-track support, and live audio preview — working toward a complete Digital Audio Workstation (DAW) experience in the browser
-- **Creator profiles & attribution** — Dedicated pages per contributor with full track listings
-- **Discovery & organization** — Full-text search, category filtering, A–Z navigation, and multiple sort modes
-- **Favorites & playback history** — Persistent personal favorites and listened-track management
 
 ## Audio Engine
 
@@ -24,12 +20,10 @@ RTTTL Hub is a browser-based audio platform dedicated to collecting, playing, an
 
 All collections integrated into the platform are listed here. This section is updated whenever a new collection is added.
 
-We deeply respect the intellectual property, authorship, and creative effort behind every data source included in this platform. All collections are derived from publicly available, open-source projects, and we strive to follow each upstream license faithfully. We have not formally contacted every upstream maintainer, but we acknowledge their ownership in full and are committed to complying with their licensing terms. If you are a rights holder and have any concerns, please open an issue and we will respond promptly.
-
-- **PICAXE** — Sourced from the [PICAXE RTTTL collection](https://picaxe.com/rtttl-ringtones-for-tune-command/). Used for non-commercial, educational purposes; all rights remain with the original authors.
-- **ESC Configurator** — Sourced from the [ESC Configurator](https://esc-configurator.com/) open-source project. Community-contributed melodies used under the project's open-source license.
-- **Skully RTTTL** — Sourced from [rtttl-web-composer](https://github.com/ImSkully/rtttl-web-composer) by ImSkully. Used under the GPL-2.0 license.
-- **ESPHome** — Sourced from the [ESPHome RTTTL component documentation](https://esphome.io/components/rtttl.html). Used under the MIT license.
+- **PICAXE** — Sourced from the [PICAXE RTTTL collection](https://picaxe.com/rtttl-ringtones-for-tune-command/).
+- **ESC Configurator** — Sourced from the [ESC Configurator](https://esc-configurator.com/) open-source project.
+- **Skully RTTTL** — Sourced from [rtttl-web-composer](https://github.com/ImSkully/rtttl-web-composer) by ImSkully.
+- **ESPHome** — Sourced from the [ESPHome RTTTL component documentation](https://esphome.io/components/rtttl.html).
 
 ## License
 
