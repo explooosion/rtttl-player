@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { FaQuestionCircle } from "react-icons/fa";
 import clsx from "clsx";
 
 import { usePlayerStore } from "../../stores/player_store";
@@ -24,6 +25,7 @@ interface StatusBarProps {
   playheadMs: number;
   seekPositionMs: number;
   guideMs: number | null;
+  onHelpOpen: () => void;
 }
 
 export function StatusBar({
@@ -34,6 +36,7 @@ export function StatusBar({
   playheadMs,
   seekPositionMs,
   guideMs,
+  onHelpOpen,
 }: StatusBarProps) {
   const { t } = useTranslation();
   const playerState = usePlayerStore((s) => s.playerState);
@@ -43,7 +46,17 @@ export function StatusBar({
   const positionMs = isActive ? playheadMs : seekPositionMs;
 
   return (
-    <div className="flex h-7 shrink-0 items-center gap-4 border-t border-gray-400 bg-gray-300/80 px-3 dark:border-gray-800 dark:bg-gray-900/80">
+    <div className="flex h-9 shrink-0 items-center gap-3 border-t border-gray-400 bg-gray-300/80 px-3 dark:border-gray-800 dark:bg-gray-900/80">
+      {/* Studio Guide shortcut */}
+      <button
+        type="button"
+        onClick={onHelpOpen}
+        title={t("editor.toolbar.helpTitle", { defaultValue: "Studio Guide" })}
+        className="flex h-5 w-5 shrink-0 items-center justify-center rounded text-gray-400 hover:bg-gray-400/30 hover:text-gray-700 dark:text-gray-600 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+      >
+        <FaQuestionCircle size={13} />
+      </button>
+
       {/* Draft state */}
       <span
         className={clsx(

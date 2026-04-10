@@ -34,7 +34,6 @@ import { useEditorSettingsStore } from "../../../stores/editor_settings_store";
 import { SyntaxColorPanel } from "../../../components/rtttl_editor/syntax_color_panel";
 import { DropdownMenu, MenuBar, Separator } from "./dropdown_menu";
 import type { MenuItemDef } from "./dropdown_menu";
-import { HelpDialog } from "./help_dialog";
 import { AboutDialog } from "./about_dialog";
 import { SYNTAX_ITEMS } from "./transport_constants";
 
@@ -67,6 +66,7 @@ interface TransportToolbarProps {
   onClearLoop: () => void;
   onTrimRegion: () => void;
   onDeleteRegion: () => void;
+  onHelpOpen: () => void;
   canAddTrack: boolean;
   canRemoveTrack: boolean;
   focusedTrackIsMuted: boolean;
@@ -107,6 +107,7 @@ export function TransportToolbar({
   onClearLoop,
   onTrimRegion,
   onDeleteRegion,
+  onHelpOpen,
   canAddTrack,
   canRemoveTrack,
   focusedTrackIsMuted,
@@ -131,7 +132,6 @@ export function TransportToolbar({
   const [colorPanelOpen, setColorPanelOpen] = useState(false);
   const paletteButtonRef = useRef<HTMLButtonElement>(null);
   const colorPanelRef = useRef<HTMLDivElement>(null);
-  const [helpDialogOpen, setHelpDialogOpen] = useState(false);
   const [aboutDialogOpen, setAboutDialogOpen] = useState(false);
 
   useEffect(
@@ -334,8 +334,8 @@ export function TransportToolbar({
     {
       type: "action",
       icon: <FaQuestionCircle size={13} />,
-      label: t("editor.toolbar.helpTitle", { defaultValue: "RTTTL Quick Reference" }),
-      onClick: () => setHelpDialogOpen(true),
+      label: t("editor.toolbar.helpTitle", { defaultValue: "Studio Guide" }),
+      onClick: onHelpOpen,
     },
     { type: "separator" },
     {
@@ -514,8 +514,8 @@ export function TransportToolbar({
           {/* Group 5: Help */}
           <button
             type="button"
-            title={t("editor.toolbar.helpTitle", { defaultValue: "RTTTL Quick Reference" })}
-            onClick={() => setHelpDialogOpen(true)}
+            title={t("editor.toolbar.helpTitle", { defaultValue: "Studio Guide" })}
+            onClick={onHelpOpen}
             className="flex h-8 w-8 items-center justify-center rounded text-gray-400 hover:bg-gray-200 hover:text-gray-600 dark:text-gray-500 dark:hover:bg-gray-600 dark:hover:text-gray-300"
           >
             <FaQuestionCircle size={17} />
@@ -659,7 +659,6 @@ export function TransportToolbar({
         </div>
       </div>
 
-      <HelpDialog open={helpDialogOpen} onClose={() => setHelpDialogOpen(false)} />
       <AboutDialog open={aboutDialogOpen} onClose={() => setAboutDialogOpen(false)} />
     </>
   );

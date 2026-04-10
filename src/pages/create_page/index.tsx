@@ -25,6 +25,7 @@ import { StatusBar } from "./status_bar";
 import { ImportDialog } from "./import_dialog";
 import { FavoriteImportDialog } from "./favorite_import_dialog";
 import { CutDialog } from "./cut_dialog";
+import { HelpDialog } from "./transport_toolbar/help_dialog";
 import type { CutMode } from "./cut_dialog";
 import { loadDraft, saveDraft, clearDraft } from "./draft";
 import { MAX_TRACKS } from "./constants";
@@ -68,6 +69,7 @@ export function CreatePage() {
   /* ── Local state ── */
   const [importOpen, setImportOpen] = useState(false);
   const [favImportOpen, setFavImportOpen] = useState(false);
+  const [helpOpen, setHelpOpen] = useState(false);
   const [pendingImport, setPendingImport] = useState<string[] | null>(null);
   const [pendingAction, setPendingAction] = useState<"new" | "discard" | null>(null);
   const _draft = loadDraft();
@@ -495,6 +497,7 @@ export function CreatePage() {
           hasEmptyTracks={hasEmptyTracks}
           allTracksMuted={allTracksMuted}
           anyTrackMuted={anyTrackMuted}
+          onHelpOpen={() => setHelpOpen(true)}
         />
 
         {/* Main area: track list (left) + properties panel (right) */}
@@ -638,6 +641,7 @@ export function CreatePage() {
           playheadMs={playheadMs}
           seekPositionMs={seekPositionMs}
           guideMs={guideMs}
+          onHelpOpen={() => setHelpOpen(true)}
         />
 
         <ImportDialog
@@ -645,6 +649,8 @@ export function CreatePage() {
           onClose={() => setImportOpen(false)}
           onConfirm={handleImportConfirm}
         />
+
+        <HelpDialog open={helpOpen} onClose={() => setHelpOpen(false)} />
 
         <FavoriteImportDialog
           open={favImportOpen}

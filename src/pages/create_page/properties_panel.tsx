@@ -91,7 +91,7 @@ export function PropertiesPanel({
     <div className="flex w-48 shrink-0 flex-col border-l border-gray-400 bg-gray-200 sm:w-52 lg:w-64 dark:border-gray-800 dark:bg-gray-900">
       {/* Header */}
       <div className="border-b border-gray-400 px-3 py-2 dark:border-gray-800">
-        <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+        <h3 className="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
           {t("create.properties", { defaultValue: "Properties" })}
         </h3>
       </div>
@@ -101,7 +101,7 @@ export function PropertiesPanel({
         {errors.length > 0 && (
           <div className="rounded bg-red-50 px-2 py-1 dark:bg-red-900/20">
             {errors.map((err, i) => (
-              <p key={i} className="text-xs text-red-600 dark:text-red-400">
+              <p key={i} className="text-sm text-red-600 dark:text-red-400">
                 {err}
               </p>
             ))}
@@ -110,7 +110,7 @@ export function PropertiesPanel({
 
         {/* Name */}
         <div>
-          <label className="mb-0.5 block text-xs font-medium text-gray-500 dark:text-gray-400">
+          <label className="mb-0.5 block text-sm font-medium text-gray-500 dark:text-gray-400">
             {t("create.name")}
           </label>
           <input
@@ -125,7 +125,7 @@ export function PropertiesPanel({
 
         {/* Categories */}
         <div>
-          <label className="mb-1 block text-xs font-medium text-gray-500 dark:text-gray-400">
+          <label className="mb-1 block text-sm font-medium text-gray-500 dark:text-gray-400">
             {t("create.category")}
           </label>
           <div className="grid grid-cols-2 gap-x-2 gap-y-0.5">
@@ -135,7 +135,7 @@ export function PropertiesPanel({
                 <label
                   key={cat}
                   className={clsx(
-                    "flex cursor-pointer items-center gap-1.5 rounded px-1 py-0.5 text-xs transition-colors",
+                    "flex cursor-pointer items-center gap-1.5 rounded px-1 py-0.5 text-sm transition-colors",
                     checked
                       ? "font-medium text-indigo-600 dark:text-indigo-400"
                       : "text-gray-600 hover:bg-gray-300/40 dark:text-gray-400 dark:hover:bg-gray-700/40",
@@ -165,7 +165,7 @@ export function PropertiesPanel({
           disabled={!tracks.some((tk) => tk.trim())}
           title={t("create.copyAll", { defaultValue: "Copy all track codes to clipboard" })}
           className={clsx(
-            "flex w-full items-center justify-center gap-1.5 rounded border px-3 py-1.5 text-xs font-medium transition-colors",
+            "flex w-full items-center justify-center gap-1.5 rounded border px-3 py-1.5 text-sm font-medium transition-colors",
             "border-gray-400 text-gray-600 hover:border-gray-500 hover:bg-gray-200",
             "dark:border-gray-600 dark:text-gray-300 dark:hover:border-gray-500 dark:hover:bg-gray-800",
             "disabled:cursor-not-allowed disabled:opacity-40",
@@ -180,15 +180,15 @@ export function PropertiesPanel({
 
       {/* Current Track Section */}
       <div className="border-t border-gray-400 px-3 py-3 dark:border-gray-800">
-        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+        <h4 className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
           {t("create.currentTrack", { defaultValue: "Current Track" })}
         </h4>
-        <p className="mb-2 truncate text-xs font-medium text-gray-700 dark:text-gray-300">
+        <p className="mb-2 truncate text-sm font-medium text-gray-700 dark:text-gray-300">
           {focusedTrackName}
         </p>
 
         {trackStats ? (
-          <dl className="space-y-1 text-xs text-gray-600 dark:text-gray-400">
+          <dl className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
             <div className="flex justify-between">
               <dt>{t("create.trackDuration", { defaultValue: "Duration" })}</dt>
               <dd className="font-mono text-gray-800 dark:text-gray-200">
@@ -215,7 +215,7 @@ export function PropertiesPanel({
             </div>
           </dl>
         ) : (
-          <p className="text-xs text-gray-400">—</p>
+          <p className="text-sm text-gray-400">—</p>
         )}
 
         {/* Copy current track */}
@@ -224,7 +224,7 @@ export function PropertiesPanel({
           onClick={handleCopyTrack}
           disabled={!focusedCode.trim()}
           className={clsx(
-            "mt-2 flex w-full items-center justify-center gap-1.5 rounded border px-3 py-1.5 text-xs font-medium transition-colors",
+            "mt-2 flex w-full items-center justify-center gap-1.5 rounded border px-3 py-1.5 text-sm font-medium transition-colors",
             "border-gray-300 text-gray-600 hover:border-gray-400 hover:bg-gray-100",
             "dark:border-gray-600 dark:text-gray-300 dark:hover:border-gray-500 dark:hover:bg-gray-800",
             "disabled:cursor-not-allowed disabled:opacity-40",
