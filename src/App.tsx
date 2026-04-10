@@ -1,5 +1,5 @@
 import { lazy, Suspense, useState, useEffect } from "react";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { ThemeProvider } from "./components/theme_provider";
 import { ScrollToTop } from "./components/scroll_to_top";
@@ -52,7 +52,7 @@ let _createPageCache: { CreatePage: React.ComponentType } | null = null;
 
 /**
  * Creates the create page without React.lazy + Suspense.
- * Reason: HashRouter wraps navigation in startTransition, which suppresses
+ * Reason: React Router wraps navigations in startTransition, which suppresses
  * Suspense fallbacks — the old page stays frozen instead of showing the loader.
  * Using useState lets React commit the PageLoader immediately on navigation.
  */
@@ -87,7 +87,7 @@ function App() {
 
   return (
     <ThemeProvider>
-      <HashRouter>
+      <BrowserRouter>
         <ScrollToTop />
         <Suspense fallback={<PageLoader />}>
           <Routes>
@@ -110,7 +110,7 @@ function App() {
             </Route>
           </Routes>
         </Suspense>
-      </HashRouter>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }

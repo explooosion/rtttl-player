@@ -4,7 +4,7 @@ RTTTL Hub is a browser-based audio platform dedicated to collecting, playing, an
 
 > **⚠️ Work in Progress** — This platform is currently under active development and not yet officially launched. Features and content are subject to change.
 
-**Live site:** [https://robby570.tw/rtttl-hub/](https://robby570.tw/rtttl-hub/)
+**Live site:** [https://rtttl-hub.io](https://rtttl-hub.io)
 
 ## Features
 

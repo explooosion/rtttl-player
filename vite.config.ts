@@ -5,7 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/rtttl-hub/",
+  base: "/",
   plugins: [react(), tailwindcss()],
   test: {
     environment: "node",

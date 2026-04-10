@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/rtttl-hub/icons/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/rtttl-hub/icons/favicon-32x32.png" />
-    <link rel="apple-touch-icon" href="/rtttl-hub/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,9 +22,11 @@
       content="RTTTL, ringtone, retro, chiptune, Nokia, PICAXE, Web Audio, player, editor, composer"
     />
 
+    <link rel="canonical" href="https://rtttl-hub.io/" />
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://robby570.tw/rtttl-hub/" />
+    <meta property="og:url" content="https://rtttl-hub.io/" />
     <meta property="og:title" content="RTTTL Hub — Browse, Play & Create Retro Ringtones" />
     <meta
       property="og:description"
@@ -32,7 +34,7 @@
     />
     <meta
       property="og:image"
-      content="https://robby570.tw/rtttl-hub/assets/banners/banner_fb-og.png"
+      content="https://rtttl-hub.io/assets/banners/banner_fb-og.png"
     />
 
     <!-- Twitter -->
@@ -44,8 +46,24 @@
     />
     <meta
       name="twitter:image"
-      content="https://robby570.tw/rtttl-hub/assets/banners/banner_fb-og.png"
+      content="https://rtttl-hub.io/assets/banners/banner_fb-og.png"
     />
+
+    <!-- SPA path restore for GitHub Pages BrowserRouter deep-link support -->
+    <script>
+      (function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
   </head>
   <body>
     <div id="root"></div>
