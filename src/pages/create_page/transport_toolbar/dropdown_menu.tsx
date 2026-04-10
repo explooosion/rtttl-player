@@ -59,42 +59,45 @@ export function DropdownMenu({ label, items }: { label: string; items: MenuItemD
     setMenuStyle({ top: rect.bottom + 2, left: rect.left });
   }, []);
 
-  useEffect(() => {
-    if (!open) {
-      return;
-    }
-    updatePosition();
-    function onDown(e: MouseEvent) {
-      if (
-        menuRef.current?.contains(e.target as Node) ||
-        buttonRef.current?.contains(e.target as Node)
-      ) {
-        return;
-      }
-      if (menuBar) {
-        menuBar.setOpenId(null);
-      } else {
-        setLocalOpen(false);
-      }
-    }
-    function onScroll() {
-      updatePosition();
-    }
-    document.addEventListener("mousedown", onDown);
-    window.addEventListener("scroll", onScroll, true);
-    window.addEventListener("resize", updatePosition);
-    return () => {
-      document.removeEventListener("mousedown", onDown);
-      window.removeEventListener("scroll", onScroll, true);
-      window.removeEventListener("resize", updatePosition);
-    };
-  }, [open, updatePosition, menuBar]);
-
   function handleMouseEnter() {
     if (menuBar && menuBar.openId !== null && menuBar.openId !== id) {
       menuBar.setOpenId(id);
     }
   }
+
+  useEffect(
+    function registerListenersWhenOpenChange() {
+      if (!open) {
+        return;
+      }
+      updatePosition();
+      function onDown(e: MouseEvent) {
+        if (
+          menuRef.current?.contains(e.target as Node) ||
+          buttonRef.current?.contains(e.target as Node)
+        ) {
+          return;
+        }
+        if (menuBar) {
+          menuBar.setOpenId(null);
+        } else {
+          setLocalOpen(false);
+        }
+      }
+      function onScroll() {
+        updatePosition();
+      }
+      document.addEventListener("mousedown", onDown);
+      window.addEventListener("scroll", onScroll, true);
+      window.addEventListener("resize", updatePosition);
+      return () => {
+        document.removeEventListener("mousedown", onDown);
+        window.removeEventListener("scroll", onScroll, true);
+        window.removeEventListener("resize", updatePosition);
+      };
+    },
+    [open, updatePosition, menuBar],
+  );
 
   return (
     <div>

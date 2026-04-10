@@ -195,13 +195,16 @@ export function CreatePage() {
     }
   }
 
-  /* ── Scroll focused track into view (task 4) ── */
-  useEffect(() => {
-    const el = trackRowsRef.current[focusedTrackIndex];
-    if (el && trackListRef.current) {
-      el.scrollIntoView({ block: "nearest", behavior: "smooth" });
-    }
-  }, [focusedTrackIndex]);
+  /* ── Scroll focused track into view ── */
+  useEffect(
+    function scrollIntoViewWhenFocusedTrackChange() {
+      const el = trackRowsRef.current[focusedTrackIndex];
+      if (el && trackListRef.current) {
+        el.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      }
+    },
+    [focusedTrackIndex],
+  );
 
   /* ── Draft persistence ── */
   useEffect(
@@ -212,20 +215,23 @@ export function CreatePage() {
   );
 
   /* ── Apply pending import after dialog has closed ── */
-  useEffect(() => {
-    if (!pendingImport) {
-      return;
-    }
-    stop();
-    setSeekPositionMs(0);
-    setPlayheadMs(0);
-    setLoopInMs(null);
-    setLoopOutMs(null);
-    resetMutedTracks();
-    resetTracks(pendingImport);
-    setPendingImport(null);
+  useEffect(
+    function applyImportWhenPendingChange() {
+      if (!pendingImport) {
+        return;
+      }
+      stop();
+      setSeekPositionMs(0);
+      setPlayheadMs(0);
+      setLoopInMs(null);
+      setLoopOutMs(null);
+      resetMutedTracks();
+      resetTracks(pendingImport);
+      setPendingImport(null);
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pendingImport]);
+    [pendingImport],
+  );
 
   /* ── New project ── */
   const _doNew = useCallback(() => {

@@ -36,18 +36,6 @@ export function ImportDialog({ open, onClose, onConfirm }: ImportDialogProps) {
   const [text, setText] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  /* Focus textarea when dialog opens; clear text when it closes. */
-  useEffect(() => {
-    if (!open) {
-      return;
-    }
-    const id = window.setTimeout(() => textareaRef.current?.focus(), 60);
-    return () => {
-      window.clearTimeout(id);
-      setText("");
-    };
-  }, [open]);
-
   const detected = detectTracks(text);
   const validTracks = detected.filter((d) => d.valid).map((d) => d.raw);
   const canImport = validTracks.length > 0 && validTracks.length <= MAX_TRACKS;
@@ -59,6 +47,21 @@ export function ImportDialog({ open, onClose, onConfirm }: ImportDialogProps) {
     onConfirm(validTracks.slice(0, MAX_TRACKS));
     setText("");
   }
+
+  /* Focus textarea when dialog opens; clear text when it closes. */
+  useEffect(
+    function focusTextareaWhenOpen() {
+      if (!open) {
+        return;
+      }
+      const id = window.setTimeout(() => textareaRef.current?.focus(), 60);
+      return () => {
+        window.clearTimeout(id);
+        setText("");
+      };
+    },
+    [open],
+  );
 
   return (
     <Dialog open={open} onClose={onClose} className="relative z-50">

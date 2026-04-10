@@ -1,10 +1,10 @@
 ---
 name: code-style
-description: Defines TypeScript/TSX code style rules for this repository. Apply when writing, reviewing, or refactoring any source file — covers import grouping and control flow formatting.
+description: Defines TypeScript/TSX code style rules for this repository. Apply when writing, reviewing, or refactoring any source file — covers import grouping, control flow formatting, useEffect naming, return type inference, and hook ordering.
 license: MIT
 metadata:
   author: explooosion
-  version: "1.0.0"
+  version: "1.2.0"
 ---
 
 # Code Style Rules
@@ -34,8 +34,8 @@ import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 
 // 2. Relative imports (one blank line above)
-import { MyComponent } from "./my_component";
-import { useMyStore } from "../stores/my_store";
+import { usePlayerStore } from "../stores/player_store";
+import { parseRtttl } from "../utils/rtttl_parser";
 ```
 
 ### Rules
@@ -52,60 +52,215 @@ import { useMyStore } from "../stores/my_store";
 ```ts
 // WRONG — no blank line between groups
 import { useState } from "react";
-import { MyComponent } from "./my_component";
+import { usePlayerStore } from "../stores/player_store";
 
 // WRONG — interleaved
 import { useState } from "react";
-import { MyComponent } from "./my_component";
+import { parseRtttl } from "../utils/rtttl_parser";
 import clsx from "clsx";
 
 // WRONG — const between imports
 import { useState } from "react";
-const BASE = "...";
+const BASE_URL = "...";
 import clsx from "clsx";
 ```
 
 ---
 
-## Rule 2 — `if` Statement Braces
+## Rule 2 — Control Flow Braces
 
-All `if`, `else if`, and `else` blocks **must** use curly braces `{}`, even when the body is a single statement or `return`.
+All `if`, `else if`, `else`, `switch`, and `case` blocks **must** use curly braces `{}`. The statement inside **must be on its own line** — single-line block syntax is also forbidden.
 
 ### Format
 
 ```ts
-// correct
-if (condition) {
+// ✅ Correct
+if (!track) {
   return;
 }
 
-if (condition) {
-  doSomething();
+if (isPlaying) {
+  pause();
 } else {
-  doOther();
+  play();
+}
+
+switch (playerState) {
+  case "playing": {
+    return <FaPause />;
+  }
+  case "paused": {
+    return <FaPlay />;
+  }
+  default: {
+    return null;
+  }
 }
 ```
 
 ### Rules
 
-| Rule             | Requirement                                                     |
-| ---------------- | --------------------------------------------------------------- |
-| Braces           | Always required — no exceptions                                 |
-| Single-line body | Must expand to multi-line with braces                           |
-| `return` only    | Must still use braces                                           |
-| Ternary          | Allowed only for simple value assignments, not for control flow |
+| Rule              | Requirement                                                     |
+| ----------------- | --------------------------------------------------------------- |
+| Braces            | Always required — no exceptions                                 |
+| Single-line body  | Must expand to multi-line with braces                           |
+| Same-line block   | `{ return; }` on one line is also forbidden — must be multiline |
+| `return` only     | Must still use braces                                           |
+| `switch` / `case` | Each `case` body must also be wrapped in `{}`                   |
+| Ternary           | Allowed only for simple value assignments, not control flow     |
 
 ### Anti-patterns (Forbidden)
 
 ```ts
 // WRONG — no braces
-if (condition) return;
+if (!track) return;
 
-// WRONG — single-line without braces
-if (condition) doSomething();
+// WRONG — single-line block (braces on same line) is also forbidden
+if (!track) { return; }
 
 // WRONG — else without braces
-if (a) {
-  doA();
-} else doB();
+if (isPlaying) {
+  pause();
+} else play();
+
+// WRONG — switch without per-case braces
+switch (playerState) { case "playing": return <FaPause />; }
+```
+
+---
+
+## Rule 3 — `useEffect` Named Functions
+
+Always use a **named function** as the `useEffect` callback. Anonymous arrow functions are forbidden.
+
+Naming format: `verb + When + trigger condition`
+
+### Format
+
+```tsx
+// ✅ Correct
+useEffect(
+  function focusEditorWhenDialogOpen() {
+    if (!open) {
+      return;
+    }
+    editorRef.current?.focus();
+  },
+  [open],
+);
+
+useEffect(
+  function registerListenersWhenMenuOpen() {
+    if (!open) {
+      return;
+    }
+    document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
+  },
+  [open],
+);
+
+useEffect(
+  function saveDraftWhenTracksChange() {
+    saveDraft({ name, tracks, categories });
+  },
+  [name, tracks, categories],
+);
+
+// ❌ Forbidden
+useEffect(() => {
+  saveDraft({ name, tracks });
+}, [name, tracks]);
+```
+
+### Naming Guide
+
+| Scenario                 | Example                              |
+| ------------------------ | ------------------------------------ |
+| One-time initialization  | `initAudioContext`                   |
+| Depends on a state flag  | `focusEditorWhenDialogOpen`          |
+| Multiple deps            | `reloadWhenCollectionOrFilterChange` |
+| Register event listeners | `registerListenersWhenMenuOpen`      |
+| Sync derived data        | `syncWaveformWhenTracksChange`       |
+| Persist state            | `saveDraftWhenTracksChange`          |
+
+---
+
+## Rule 4 — Return Type Inference
+
+**Do not** explicitly annotate return types on function declarations — let TypeScript infer them.
+
+Exception: exported utility functions where an explicit constraint is needed.
+
+```tsx
+// ✅ Correct — TypeScript infers the return type
+function parseTrackName(rtttl: string) {
+  return rtttl.split(":")[0]?.trim() ?? "";
+}
+
+function derivePlayerIcon(state: PlayerState) {
+  if (state === "playing") {
+    return <FaPause />;
+  }
+  return <FaPlay />;
+}
+
+// ❌ Forbidden — do not annotate return types on local functions
+function parseTrackName(rtttl: string): string {
+  return rtttl.split(":")[0]?.trim() ?? "";
+}
+
+function derivePlayerIcon(state: PlayerState): React.ReactNode {
+  return <FaPlay />;
+}
+```
+
+---
+
+## Rule 5 — Hook Ordering
+
+`useEffect` hooks **must** be placed **after** all handler functions (`handleXxx`), not before them.
+
+Required order inside a React component body:
+
+1. Variable declarations & derived values
+2. `useXxx` hook calls (e.g. `useState`, `useRef`, `useCallback`, store selectors)
+3. Handler functions (`handleXxx`)
+4. `useEffect` hooks
+5. Early-return guards
+6. JSX `return`
+
+```tsx
+// ✅ Correct order
+const [text, setText] = useState("");
+const validTracks = parseRtttl(text);
+const canImport = validTracks !== null;
+
+function handleConfirm() {
+  onConfirm(text);
+  setText("");
+}
+
+useEffect(
+  function focusInputWhenOpen() {
+    if (!open) {
+      return;
+    }
+    inputRef.current?.focus();
+  },
+  [open],
+);
+
+return <Dialog />;
+
+// ❌ Forbidden — useEffect before handler function
+const [text, setText] = useState("");
+
+useEffect(function focusInputWhenOpen() { // ← should be after handleConfirm
+  // ...
+}, [open]);
+
+function handleConfirm() {
+  // ...
+}
 ```

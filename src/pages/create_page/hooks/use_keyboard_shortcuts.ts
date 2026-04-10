@@ -51,30 +51,33 @@ function isInputFocused(): boolean {
 }
 
 export function useKeyboardShortcuts(shortcuts: ShortcutDef[]) {
-  useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      for (const shortcut of shortcuts) {
-        if (shortcut.ignoreInInput && isInputFocused()) {
-          continue;
-        }
+  useEffect(
+    function registerKeyboardListenersWhenShortcutsChange() {
+      function handleKeyDown(e: KeyboardEvent) {
+        for (const shortcut of shortcuts) {
+          if (shortcut.ignoreInInput && isInputFocused()) {
+            continue;
+          }
 
-        const parsed = parseShortcut(shortcut.key);
+          const parsed = parseShortcut(shortcut.key);
 
-        const ctrlOrMeta = parsed.ctrl || parsed.meta;
-        const matchesCtrlMeta = ctrlOrMeta ? e.ctrlKey || e.metaKey : !e.ctrlKey && !e.metaKey;
-        const matchesShift = parsed.shift ? e.shiftKey : !e.shiftKey;
-        const matchesAlt = parsed.alt ? e.altKey : !e.altKey;
-        const matchesKey = e.key.toLowerCase() === parsed.key;
+          const ctrlOrMeta = parsed.ctrl || parsed.meta;
+          const matchesCtrlMeta = ctrlOrMeta ? e.ctrlKey || e.metaKey : !e.ctrlKey && !e.metaKey;
+          const matchesShift = parsed.shift ? e.shiftKey : !e.shiftKey;
+          const matchesAlt = parsed.alt ? e.altKey : !e.altKey;
+          const matchesKey = e.key.toLowerCase() === parsed.key;
 
-        if (matchesCtrlMeta && matchesShift && matchesAlt && matchesKey) {
-          e.preventDefault();
-          shortcut.action();
-          return;
+          if (matchesCtrlMeta && matchesShift && matchesAlt && matchesKey) {
+            e.preventDefault();
+            shortcut.action();
+            return;
+          }
         }
       }
-    }
 
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [shortcuts]);
+      document.addEventListener("keydown", handleKeyDown);
+      return () => document.removeEventListener("keydown", handleKeyDown);
+    },
+    [shortcuts],
+  );
 }
