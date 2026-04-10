@@ -9,7 +9,7 @@ interface UseTrackManagerInit {
 
 export function useTrackManager({ initialTracks }: UseTrackManagerInit) {
   const [tracks, setTracks] = useState<string[]>(() =>
-    initialTracks.length > 0 ? initialTracks : [""],
+    initialTracks.length > 0 ? initialTracks : ["Track 1:"],
   );
   const [focusedTrackIndex, setFocusedTrackIndex] = useState(0);
   const [expandedTracks, setExpandedTracks] = useState<Set<number>>(
@@ -19,7 +19,7 @@ export function useTrackManager({ initialTracks }: UseTrackManagerInit) {
   const trackEditorRefs = useRef<(RtttlEditorInputHandle | null)[]>([]);
 
   const [trackColors, setTrackColorsState] = useState<string[]>(() =>
-    (initialTracks.length > 0 ? initialTracks : [""]).map(
+    (initialTracks.length > 0 ? initialTracks : ["Track 1:"]).map(
       (_, i) => TRACK_COLORS[i % TRACK_COLORS.length] ?? "rgb(99, 102, 241)",
     ),
   );
@@ -83,7 +83,7 @@ export function useTrackManager({ initialTracks }: UseTrackManagerInit) {
       return;
     }
     const n = tracks.length + 1;
-    const stub = `Track${n}:`;
+    const stub = `Track ${n}:`;
     const next = [...tracks, stub];
     commitTracks(next);
     const newIdx = next.length - 1;
@@ -328,7 +328,7 @@ export function useTrackManager({ initialTracks }: UseTrackManagerInit) {
   }
 
   function resetTracks(newTracks?: string[]) {
-    const initial = newTracks ?? [""];
+    const initial = newTracks ?? ["Track 1:"];
     pastRef.current = [];
     futureRef.current = [];
     setHistoryVersion((v) => v + 1);
