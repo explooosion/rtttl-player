@@ -2,6 +2,10 @@ import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import clsx from "clsx";
 
+import { ThemeToggle } from "./theme_toggle";
+import { SettingsMenu } from "./settings_menu";
+import { LanguageSwitcher } from "./language_switcher";
+
 const preloadCreatePage = () => {
   void import("../pages/create_page");
 };
@@ -81,6 +85,24 @@ export function AppMobileSidebar({ isOpen, onClose }: AppMobileSidebarProps) {
             {t("actions.createNew")}
           </Link>
         </nav>
+
+        {/* Settings — Theme + Config (desktop header items moved here) */}
+        <div className="mt-4 border-t border-gray-200 pt-4 dark:border-gray-700">
+          <div className="mb-3 flex items-center justify-between px-1">
+            <span className="text-xs font-medium uppercase tracking-wider text-gray-400 dark:text-gray-500">
+              {t("settings.title", { defaultValue: "Settings" })}
+            </span>
+          </div>
+          <div className="mb-3 flex items-center gap-2 px-1">
+            <ThemeToggle />
+          </div>
+          <div className="mb-3 px-1">
+            <LanguageSwitcher />
+          </div>
+          <div className="px-1">
+            <SettingsMenu />
+          </div>
+        </div>
       </div>
     </div>
   );

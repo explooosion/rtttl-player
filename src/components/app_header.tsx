@@ -84,11 +84,11 @@ export function AppHeader({ sidebarOpen, setSidebarOpen, scrolled }: AppHeaderPr
           </Link>
         </nav>
 
-        {/* Searchbar — only visible when scrolled */}
+        {/* Searchbar — only visible when scrolled, desktop only */}
         <div
           className={clsx(
             "relative transition-all duration-300",
-            scrolled ? "flex-1 opacity-100" : "w-0 overflow-hidden opacity-0",
+            scrolled ? "hidden flex-1 opacity-100 sm:flex" : "w-0 overflow-hidden opacity-0",
           )}
         >
           <FaSearch size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -110,7 +110,9 @@ export function AppHeader({ sidebarOpen, setSidebarOpen, scrolled }: AppHeaderPr
 
         {/* Right side controls */}
         <div className="flex shrink-0 items-center gap-2">
-          <ThemeToggle />
+          <div className="hidden sm:flex sm:items-center sm:gap-2">
+            <ThemeToggle />
+          </div>
           <a
             href="https://github.com/explooosion/rtttl-hub"
             target="_blank"
@@ -120,14 +122,17 @@ export function AppHeader({ sidebarOpen, setSidebarOpen, scrolled }: AppHeaderPr
           >
             <FaGithub size={18} />
           </a>
-          <SettingsMenu />
+          <div className="hidden sm:block">
+            <SettingsMenu />
+          </div>
           <UserMenu />
         </div>
       </div>
 
-      {/* Search row — only visible when NOT scrolled and sidebar is closed */}
+      {/* Search row — only visible when NOT scrolled, sidebar closed, and desktop only */}
       <div
         className={clsx(
+          "hidden sm:grid",
           "grid transition-[grid-template-rows] duration-300 ease-in-out",
           scrolled || sidebarOpen ? "grid-rows-[0fr]" : "grid-rows-[1fr]",
         )}
