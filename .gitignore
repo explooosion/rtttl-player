@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # TypeScript cache
 *.tsbuildinfo
+
+# PICAXE source zip files (downloaded locally to generate picaxe.json)
+public/*.zip
