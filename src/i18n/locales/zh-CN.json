@@ -64,6 +64,10 @@
       "name": "Skully RTTTL",
       "description": "来自 ImSkully 的 RTTTL Web Composer 项目，精选 15 首经典铃声示例，涵盖流行、影视主题、提示音等类型。"
     },
+    "esphome": {
+      "name": "ESPHome",
+      "description": "ESPHome 官方文档收录的 RTTTL 示例音乐，包含星球大战、碟中谍、超级马里奥等经典主题及内置提示音。"
+    },
     "officialSource": "来源"
   },
   "categories": {

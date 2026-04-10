@@ -64,6 +64,10 @@
       "name": "Skully RTTTL",
       "description": "A handpicked collection of classic ringtone examples from the RTTTL Web Composer project by ImSkully, covering pop, movie themes, alerts, and more."
     },
+    "esphome": {
+      "name": "ESPHome",
+      "description": "Official RTTTL example tunes from the ESPHome documentation, including classic themes from Star Wars, Mission Impossible, Super Mario, and built-in alert sounds."
+    },
     "officialSource": "Source"
   },
   "categories": {

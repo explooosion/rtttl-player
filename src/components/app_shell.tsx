@@ -76,13 +76,21 @@ export function AppShell() {
         fetch(`${base}esc-configurator.json`).then((r) => r.json() as Promise<CollectionEntry[]>),
         fetch(`${base}skully-rtttl.json`).then((r) => r.json() as Promise<CollectionEntry[]>),
         fetch(`${base}community.json`).then((r) => r.json() as Promise<CollectionEntry[]>),
+        fetch(`${base}esphome.json`).then((r) => r.json() as Promise<CollectionEntry[]>),
       ])
-        .then(([picaxeData, escData, skullyData, communityData]) => {
+        .then(([picaxeData, escData, skullyData, communityData, esphomeData]) => {
           const picaxeEntries = toRtttlEntries(picaxeData, "picaxe", "picaxe");
           const escEntries = toRtttlEntries(escData, "esc-configurator", "esc");
           const skullyEntries = toRtttlEntries(skullyData, "skully-rtttl", "skully");
           const communityEntries = toRtttlEntries(communityData, "community", "community");
-          setItems([...picaxeEntries, ...escEntries, ...skullyEntries, ...communityEntries]);
+          const esphomeEntries = toRtttlEntries(esphomeData, "esphome", "esphome");
+          setItems([
+            ...picaxeEntries,
+            ...escEntries,
+            ...skullyEntries,
+            ...communityEntries,
+            ...esphomeEntries,
+          ]);
         })
         .catch((err) => console.error("Failed to load collection:", err));
     },

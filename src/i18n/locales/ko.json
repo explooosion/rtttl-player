@@ -64,6 +64,10 @@
       "name": "Skully RTTTL",
       "description": "ImSkully의 RTTTL Web Composer 프로젝트에서 엄선한 15곡의 클래식 벨소리. 팝, 영화 테마, 알림음 등 다양한 장르를 수록했습니다."
     },
+    "esphome": {
+      "name": "ESPHome",
+      "description": "ESPHome 공식 문서에 수록된 RTTTL 예제 모음. 스타워즈, 미션 임파서블, 슈퍼 마리오 등 클래식 테마와 기본 알림음을 포함합니다."
+    },
     "officialSource": "소스"
   },
   "categories": {

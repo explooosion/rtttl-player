@@ -64,6 +64,10 @@
       "name": "Skully RTTTL",
       "description": "ImSkully の RTTTL Web Composer プロジェクトから厳選した 15 曲のクラシック着信音。ポップ、映画テーマ、アラートなど多彩なジャンルを収録。"
     },
+    "esphome": {
+      "name": "ESPHome",
+      "description": "ESPHome 公式ドキュメント掲載の RTTTL サンプル集。スター・ウォーズ、ミッション：インポッシブル、スーパーマリオなどの定番テーマとアラート音を収録。"
+    },
     "officialSource": "ソース"
   },
   "categories": {
