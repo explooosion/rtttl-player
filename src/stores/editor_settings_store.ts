@@ -42,7 +42,7 @@ export const useEditorSettingsStore = create<EditorSettingsState>()(
   persist(
     (set) => ({
       features: {
-        syntaxHighlight: false,
+        syntaxHighlight: true,
         playbackTracking: true,
       },
       fontSize: 13,
