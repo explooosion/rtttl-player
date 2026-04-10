@@ -1,5 +1,6 @@
 import { lazy, Suspense, useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import * as Tone from "tone";
 
 import { ThemeProvider } from "./components/theme_provider";
 import { ScrollToTop } from "./components/scroll_to_top";
@@ -83,6 +84,20 @@ function App() {
     void import("./pages/create_page").then((m) => {
       _createPageCache = m;
     });
+  }, []);
+
+  useEffect(function unlockAudioContextOnMobile() {
+    // iOS Safari and some Android browsers suspend the AudioContext until a
+    // user gesture occurs. We listen for any pointerdown anywhere on the page
+    // and call Tone.start() to resume the context whenever it is not running.
+    // This covers: first visit, lock-screen return, and app-switch resume.
+    function unlock() {
+      if (Tone.context.state !== "running") {
+        void Tone.start();
+      }
+    }
+    document.addEventListener("pointerdown", unlock, { passive: true });
+    return () => document.removeEventListener("pointerdown", unlock);
   }, []);
 
   return (

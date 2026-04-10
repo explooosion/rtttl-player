@@ -34,7 +34,6 @@ export class ToneEngine {
   private callback: EngineCallback | null = null;
   private primaryTrackIdx = 0;
   private rafId = 0;
-  private startedOnce = false;
 
   setCallback(cb: EngineCallback): void {
     this.callback = cb;
@@ -207,9 +206,11 @@ export class ToneEngine {
   // ── Private ──────────────────────────────────────────
 
   private async ensureStarted(): Promise<void> {
-    if (!this.startedOnce) {
+    // Always call Tone.start() when the context is not running.
+    // On iOS Safari the AudioContext is suspended after lock screen, app switch,
+    // or backgrounding — so we must re-unlock on every play attempt, not just once.
+    if (Tone.context.state !== "running") {
       await Tone.start();
-      this.startedOnce = true;
     }
   }
 
