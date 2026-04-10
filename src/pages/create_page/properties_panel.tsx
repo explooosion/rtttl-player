@@ -202,7 +202,7 @@ export function PropertiesPanel({
       {/* Scrollable content */}
       <div className="flex-1 overflow-y-auto">
         {/* ── Project section ── */}
-        <div>
+        <div className="pb-2">
           <button
             type="button"
             onClick={toggleProjectSection}
@@ -337,7 +337,7 @@ export function PropertiesPanel({
         </div>
 
         {/* ── Current Track section ── */}
-        <div className="border-t border-gray-400 dark:border-gray-700">
+        <div className="border-t border-gray-400 pb-2 dark:border-gray-700">
           <button
             type="button"
             onClick={toggleTrackSection}

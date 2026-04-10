@@ -16,9 +16,9 @@ export function UserMenu() {
     return (
       <Link
         to="/login"
-        className="flex items-center justify-center rounded-full border border-gray-300 p-2 text-gray-500 transition-colors hover:bg-gray-100 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-700"
+        className="rounded-lg p-1.5 text-gray-500 transition-colors hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700"
       >
-        <FaUser size={16} />
+        <FaUser size={18} />
       </Link>
     );
   }

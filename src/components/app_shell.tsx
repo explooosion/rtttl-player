@@ -199,6 +199,15 @@ export function AppShell() {
           {/* Right side controls */}
           <div className="flex shrink-0 items-center gap-2">
             <ThemeToggle />
+            <a
+              href="https://github.com/explooosion/rtttl-hub"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="rounded-lg p-1.5 text-gray-500 transition-colors hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700"
+            >
+              <FaGithub size={18} />
+            </a>
             <SettingsMenu />
             <UserMenu />
           </div>
@@ -332,9 +341,33 @@ export function AppShell() {
                   {t("app.title")}
                 </span>
               </Link>
-              <p className="mb-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+              <p className="mb-3 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
                 {t("footer.aboutDescription")}
               </p>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <a
+                    href="https://github.com/explooosion/rtttl-hub"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-gray-500 transition-colors hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400"
+                  >
+                    <FaGithub size={14} />
+                    {t("footer.sourceCode")}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/explooosion/rtttl-hub/issues"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-gray-500 transition-colors hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400"
+                  >
+                    <FaBug size={14} />
+                    {t("footer.reportIssue")}
+                  </a>
+                </li>
+              </ul>
             </div>
 
             {/* Discover */}
@@ -351,7 +384,7 @@ export function AppShell() {
                     {t("footer.allCollections")}
                   </Link>
                 </li>
-                {COLLECTIONS.map((col) => (
+                {COLLECTIONS.filter((c) => c.group !== "library").map((col) => (
                   <li key={col.slug}>
                     {col.source ? (
                       <a
@@ -390,28 +423,19 @@ export function AppShell() {
                 {t("footer.resources")}
               </h4>
               <ul className="space-y-2 text-sm">
-                <li>
-                  <a
-                    href="https://github.com/explooosion/rtttl-hub"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-gray-500 transition-colors hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400"
-                  >
-                    <FaGithub size={14} />
-                    {t("footer.sourceCode")}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/explooosion/rtttl-hub/issues"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-gray-500 transition-colors hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400"
-                  >
-                    <FaBug size={14} />
-                    {t("footer.reportIssue")}
-                  </a>
-                </li>
+                {COLLECTIONS.filter((c) => c.group === "library").map((col) => (
+                  <li key={col.slug}>
+                    <a
+                      href={col.source}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-gray-500 transition-colors hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400"
+                    >
+                      {t(col.nameKey)}
+                      <FaExternalLinkAlt size={11} />
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
