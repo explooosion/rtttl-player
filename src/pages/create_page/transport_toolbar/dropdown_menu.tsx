@@ -1,7 +1,21 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useContext, createContext, useId } from "react";
 import { createPortal } from "react-dom";
 import { FaChevronDown } from "react-icons/fa";
 import clsx from "clsx";
+
+interface MenuBarContextValue {
+  openId: string | null;
+  setOpenId: (id: string | null) => void;
+}
+
+const MenuBarContext = createContext<MenuBarContextValue | null>(null);
+
+export function MenuBar({ children }: { children: React.ReactNode }) {
+  const [openId, setOpenId] = useState<string | null>(null);
+  return (
+    <MenuBarContext.Provider value={{ openId, setOpenId }}>{children}</MenuBarContext.Provider>
+  );
+}
 
 export type MenuItemDef =
   | {
@@ -16,7 +30,23 @@ export type MenuItemDef =
   | { type: "separator" };
 
 export function DropdownMenu({ label, items }: { label: string; items: MenuItemDef[] }) {
-  const [open, setOpen] = useState(false);
+  const id = useId();
+  const menuBar = useContext(MenuBarContext);
+
+  const [localOpen, setLocalOpen] = useState(false);
+  const open = menuBar ? menuBar.openId === id : localOpen;
+
+  const setOpen = useCallback(
+    (value: boolean) => {
+      if (menuBar) {
+        menuBar.setOpenId(value ? id : null);
+      } else {
+        setLocalOpen(value);
+      }
+    },
+    [menuBar, id],
+  );
+
   const [menuStyle, setMenuStyle] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
   const buttonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -41,7 +71,11 @@ export function DropdownMenu({ label, items }: { label: string; items: MenuItemD
       ) {
         return;
       }
-      setOpen(false);
+      if (menuBar) {
+        menuBar.setOpenId(null);
+      } else {
+        setLocalOpen(false);
+      }
     }
     function onScroll() {
       updatePosition();
@@ -54,14 +88,21 @@ export function DropdownMenu({ label, items }: { label: string; items: MenuItemD
       window.removeEventListener("scroll", onScroll, true);
       window.removeEventListener("resize", updatePosition);
     };
-  }, [open, updatePosition]);
+  }, [open, updatePosition, menuBar]);
+
+  function handleMouseEnter() {
+    if (menuBar && menuBar.openId !== null && menuBar.openId !== id) {
+      menuBar.setOpenId(id);
+    }
+  }
 
   return (
     <div>
       <button
         ref={buttonRef}
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onMouseEnter={handleMouseEnter}
+        onClick={() => setOpen(!open)}
         className={clsx(
           "flex h-8 items-center gap-0.5 rounded px-2.5 text-sm font-medium text-gray-600 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700",
           open && "bg-gray-200 dark:bg-gray-700",

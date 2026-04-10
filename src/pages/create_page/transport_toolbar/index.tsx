@@ -32,7 +32,7 @@ import clsx from "clsx";
 import { usePlayerStore } from "../../../stores/player_store";
 import { useEditorSettingsStore } from "../../../stores/editor_settings_store";
 import { SyntaxColorPanel } from "../../../components/rtttl_editor/syntax_color_panel";
-import { DropdownMenu, Separator } from "./dropdown_menu";
+import { DropdownMenu, MenuBar, Separator } from "./dropdown_menu";
 import type { MenuItemDef } from "./dropdown_menu";
 import { HelpDialog } from "./help_dialog";
 import { AboutDialog } from "./about_dialog";
@@ -351,14 +351,28 @@ export function TransportToolbar({
       <div className="shrink-0 overflow-x-auto border-b border-gray-300 bg-gray-200 dark:border-gray-800 dark:bg-gray-900/50">
         <div className="flex items-center gap-1 px-3 py-1.5">
           {/* Group 0: App menus */}
-          <DropdownMenu label={t("create.menuFile", { defaultValue: "File" })} items={fileItems} />
-          <DropdownMenu label={t("create.menuEdit", { defaultValue: "Edit" })} items={editItems} />
-          <DropdownMenu label={t("create.menuView", { defaultValue: "View" })} items={viewItems} />
-          <DropdownMenu
-            label={t("create.menuTransport", { defaultValue: "Transport" })}
-            items={transportItems}
-          />
-          <DropdownMenu label={t("create.menuHelp", { defaultValue: "Help" })} items={helpItems} />
+          <MenuBar>
+            <DropdownMenu
+              label={t("create.menuFile", { defaultValue: "File" })}
+              items={fileItems}
+            />
+            <DropdownMenu
+              label={t("create.menuEdit", { defaultValue: "Edit" })}
+              items={editItems}
+            />
+            <DropdownMenu
+              label={t("create.menuView", { defaultValue: "View" })}
+              items={viewItems}
+            />
+            <DropdownMenu
+              label={t("create.menuTransport", { defaultValue: "Transport" })}
+              items={transportItems}
+            />
+            <DropdownMenu
+              label={t("create.menuHelp", { defaultValue: "Help" })}
+              items={helpItems}
+            />
+          </MenuBar>
 
           <Separator />
 
