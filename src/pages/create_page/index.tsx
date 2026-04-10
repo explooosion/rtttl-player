@@ -134,6 +134,11 @@ export function CreatePage() {
   const [loopOutMs, setLoopOutMs] = useState<number | null>(null);
   const [cutDialogMode, setCutDialogMode] = useState<CutMode | null>(null);
 
+  /** Snapshot of tracks at the last playTracks/playCode call.
+   *  Used to detect whether tracks were edited while paused,
+   *  so we reload audio instead of resuming stale engine data. */
+  const lastPlayedTracksRef = useRef<string[]>([]);
+
   const {
     guideMs,
     setGuideMs,
@@ -345,17 +350,23 @@ export function CreatePage() {
   function handlePlayToggle() {
     if (playerState === "playing") {
       pause();
-    } else if (playerState === "paused") {
+    } else if (playerState === "paused" && tracks === lastPlayedTracksRef.current) {
+      // Tracks unchanged since last play: seamless resume
       resume();
     } else {
+      // idle, OR paused with edited tracks: start fresh with latest code
       const nonEmpty = tracks.filter((tk) => tk.trim().length > 0);
-      const startMs = seekPositionMs > 0 ? seekPositionMs : undefined;
+      const startMs =
+        playerState === "paused" ? playheadMs : seekPositionMs > 0 ? seekPositionMs : undefined;
       if (nonEmpty.length > 1) {
         playTracks(nonEmpty, startMs);
       } else if (nonEmpty.length === 1) {
         playCode(nonEmpty[0].trim(), startMs);
       }
-      setSeekPositionMs(0);
+      lastPlayedTracksRef.current = tracks;
+      if (playerState !== "paused") {
+        setSeekPositionMs(0);
+      }
     }
   }
 

@@ -395,7 +395,10 @@ export function TrackLane({
 
       {/* Accordion: single-line Code Editor */}
       {isExpanded && (
-        <div className="flex border-t border-gray-200 dark:border-gray-800/50">
+        <div
+          className="flex border-t border-gray-200 dark:border-gray-800/50"
+          onClick={(e) => e.stopPropagation()}
+        >
           {/* Sticky spacer to match the header column */}
           <div className="sticky left-0 z-10 flex w-48 shrink-0 items-center gap-1 border-t border-r border-gray-400 bg-gray-200 px-2.5 py-1.5 dark:border-gray-800 dark:bg-gray-900">
             {/* Clear code */}

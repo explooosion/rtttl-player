@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef } from "react";
 
 import type { RtttlEditorInputHandle } from "../../../components/rtttl_editor/rtttl_editor_input";
-import { MAX_TRACKS, TRACK_COLORS } from "../constants";
+import { MAX_TRACKS, TRACK_COLORS, NEW_TRACK_STUB_BODY } from "../constants";
 
 interface UseTrackManagerInit {
   initialTracks: string[];
@@ -9,7 +9,7 @@ interface UseTrackManagerInit {
 
 export function useTrackManager({ initialTracks }: UseTrackManagerInit) {
   const [tracks, setTracks] = useState<string[]>(() =>
-    initialTracks.length > 0 ? initialTracks : ["Track 1:"],
+    initialTracks.length > 0 ? initialTracks : [`Track1:${NEW_TRACK_STUB_BODY}`],
   );
   const [focusedTrackIndex, setFocusedTrackIndex] = useState(0);
   const [expandedTracks, setExpandedTracks] = useState<Set<number>>(
@@ -19,7 +19,7 @@ export function useTrackManager({ initialTracks }: UseTrackManagerInit) {
   const trackEditorRefs = useRef<(RtttlEditorInputHandle | null)[]>([]);
 
   const [trackColors, setTrackColorsState] = useState<string[]>(() =>
-    (initialTracks.length > 0 ? initialTracks : ["Track 1:"]).map(
+    (initialTracks.length > 0 ? initialTracks : [`Track1:${NEW_TRACK_STUB_BODY}`]).map(
       (_, i) => TRACK_COLORS[i % TRACK_COLORS.length] ?? "rgb(99, 102, 241)",
     ),
   );
@@ -83,7 +83,7 @@ export function useTrackManager({ initialTracks }: UseTrackManagerInit) {
       return;
     }
     const n = tracks.length + 1;
-    const stub = `Track ${n}:`;
+    const stub = `Track${n}:${NEW_TRACK_STUB_BODY}`;
     const next = [...tracks, stub];
     commitTracks(next);
     const newIdx = next.length - 1;
@@ -328,7 +328,7 @@ export function useTrackManager({ initialTracks }: UseTrackManagerInit) {
   }
 
   function resetTracks(newTracks?: string[]) {
-    const initial = newTracks ?? ["Track 1:"];
+    const initial = newTracks ?? [`Track1:${NEW_TRACK_STUB_BODY}`];
     pastRef.current = [];
     futureRef.current = [];
     setHistoryVersion((v) => v + 1);

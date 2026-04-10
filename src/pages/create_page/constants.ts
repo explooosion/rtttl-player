@@ -30,3 +30,8 @@ export const PX_PER_SEC_MIN = 20;
 export const PX_PER_SEC_MAX = 800;
 /** Minimum timeline canvas width in px regardless of duration. */
 export const TIMELINE_MIN_WIDTH = 600;
+
+/** Default RTTTL body appended to every newly created track stub.
+ *  Produces a single playable C5 quarter-note at 120 BPM so the
+ *  track immediately shows a waveform and emits audio. */
+export const NEW_TRACK_STUB_BODY = "d=4,o=5,b=140:c,c#,d,d#,e,f,f#,g,g#,a,a#,b,c6";
