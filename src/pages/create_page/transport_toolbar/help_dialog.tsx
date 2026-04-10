@@ -53,7 +53,7 @@ function RtttlItem({ token, desc }: RtttlItemProps) {
       <code className="rounded-md bg-indigo-100 px-2 py-0.5 font-mono text-xs font-semibold text-indigo-600 dark:bg-indigo-900/40 dark:text-indigo-300">
         {token}
       </code>
-      <span className="text-sm text-gray-500 dark:text-gray-400">{desc}</span>
+      <span className="text-sm text-gray-700 dark:text-gray-200">{desc}</span>
     </div>
   );
 }
@@ -239,7 +239,7 @@ export function HelpDialog({ open, onClose }: { open: boolean; onClose: () => vo
               </div>
 
               <div className="mt-0.5">
-                <p className="mb-1.5 text-[11px] font-medium uppercase tracking-wide text-gray-400 dark:text-gray-600">
+                <p className="mb-1.5 text-sm font-medium uppercase tracking-wide text-gray-400 dark:text-gray-400">
                   {t("editor.guide.headerFields", { defaultValue: "Header fields" })}
                 </p>
                 <div className="flex flex-col gap-1.5">
@@ -261,7 +261,7 @@ export function HelpDialog({ open, onClose }: { open: boolean; onClose: () => vo
               </div>
 
               <div className="mt-0.5">
-                <p className="mb-1.5 text-[11px] font-medium uppercase tracking-wide text-gray-400 dark:text-gray-600">
+                <p className="mb-1.5 text-sm font-medium uppercase tracking-wide text-gray-400 dark:text-gray-400">
                   {t("editor.guide.noteModifiers", { defaultValue: "Note modifiers" })}
                 </p>
                 <div className="flex flex-col gap-1.5">
@@ -281,13 +281,13 @@ export function HelpDialog({ open, onClose }: { open: boolean; onClose: () => vo
               </div>
 
               <div className="mt-0.5">
-                <p className="mb-1.5 text-[11px] font-medium uppercase tracking-wide text-gray-400 dark:text-gray-600">
+                <p className="mb-1.5 text-sm font-medium uppercase tracking-wide text-gray-400 dark:text-gray-400">
                   {t("editor.guide.notes", { defaultValue: "Notes" })}
                 </p>
-                <p className="font-mono text-xs text-gray-500 dark:text-gray-400">
+                <p className="font-mono text-sm text-gray-700 dark:text-gray-200">
                   c &nbsp;d &nbsp;e &nbsp;f &nbsp;g &nbsp;a &nbsp;b
                 </p>
-                <p className="mt-1 text-[11px] text-gray-400 dark:text-gray-600">
+                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
                   {t("editor.guide.notesHint", {
                     defaultValue: "Prefix duration, suffix octave freely",
                   })}
@@ -295,10 +295,10 @@ export function HelpDialog({ open, onClose }: { open: boolean; onClose: () => vo
               </div>
 
               <div className="mt-0.5">
-                <p className="mb-1.5 text-[11px] font-medium uppercase tracking-wide text-gray-400 dark:text-gray-600">
+                <p className="mb-1.5 text-sm font-medium uppercase tracking-wide text-gray-400 dark:text-gray-400">
                   {t("editor.guide.example", { defaultValue: "Examples" })}
                 </p>
-                <div className="flex flex-col gap-1 font-mono text-[11px] text-gray-500 dark:text-gray-400">
+                <div className="flex flex-col gap-1 font-mono text-sm text-gray-700 dark:text-gray-200">
                   <span>
                     <span className="text-indigo-500">8</span>c
                     <span className="text-indigo-500">5</span> — 8th note C5
