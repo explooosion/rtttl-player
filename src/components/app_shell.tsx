@@ -31,7 +31,6 @@ export function AppShell() {
   const location = useLocation();
   const navigate = useNavigate();
   const setItems = useCollectionStore((s) => s.setItems);
-  const addUserItem = useCollectionStore((s) => s.addUserItem);
   const isLoading = useCollectionStore((s) => s.isLoading);
   const searchQuery = useCollectionStore((s) => s.searchQuery);
   const setSearchQuery = useCollectionStore((s) => s.setSearchQuery);
@@ -82,17 +81,12 @@ export function AppShell() {
           const picaxeEntries = toRtttlEntries(picaxeData, "picaxe", "picaxe");
           const escEntries = toRtttlEntries(escData, "esc-configurator", "esc");
           const skullyEntries = toRtttlEntries(skullyData, "skully-rtttl", "skully");
-          setItems([...picaxeEntries, ...escEntries, ...skullyEntries]);
-          // Read live state to avoid stale closure race in React Strict Mode
-          if (useCollectionStore.getState().userItems.length === 0) {
-            for (const item of toRtttlEntries(communityData, "community", "community")) {
-              addUserItem(item);
-            }
-          }
+          const communityEntries = toRtttlEntries(communityData, "community", "community");
+          setItems([...picaxeEntries, ...escEntries, ...skullyEntries, ...communityEntries]);
         })
         .catch((err) => console.error("Failed to load collection:", err));
     },
-    [setItems, addUserItem],
+    [setItems],
   );
 
   const closeSidebar = useCallback(() => setSidebarOpen(false), []);

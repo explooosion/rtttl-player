@@ -26,7 +26,7 @@ export function CollectionPage() {
       return items.filter((item) => item.collection === (slug as CollectionSlug));
     }
     if (slug === "community") {
-      return userItems;
+      return [...items.filter((item) => item.collection === "community"), ...userItems];
     }
     return [...items, ...userItems].filter((item) => item.collection === (slug as CollectionSlug));
   }, [slug, items, userItems]);

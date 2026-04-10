@@ -99,7 +99,7 @@ function getItemsByCollection(
     return items.filter((item) => item.collection === "picaxe");
   }
   if (collection === "community") {
-    return userItems;
+    return [...items.filter((item) => item.collection === "community"), ...userItems];
   }
   return [...items, ...userItems].filter((item) => item.collection === collection);
 }
@@ -140,7 +140,7 @@ export function useCollectionItemCount(collection: CollectionSlug): number {
   const items = useCollectionStore((s) => s.items);
   const userItems = useCollectionStore((s) => s.userItems);
   if (collection === "community") {
-    return userItems.length;
+    return items.filter((item) => item.collection === "community").length + userItems.length;
   }
   return items.filter((item) => item.collection === collection).length;
 }
