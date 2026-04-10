@@ -21,6 +21,11 @@ export function useRipple(
   phaseRef: MutableRefObject<AnimPhase>,
 ) {
   useEffect(() => {
+    // Touch-only devices have no hover / mousemove — skip the ripple effect.
+    if (window.matchMedia("(hover: none)").matches) {
+      return;
+    }
+
     const onMouseMove = (e: MouseEvent) => {
       if (phaseRef.current !== "scatter") {
         return;

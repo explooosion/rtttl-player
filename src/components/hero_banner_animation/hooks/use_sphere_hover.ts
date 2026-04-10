@@ -13,6 +13,11 @@ export function useSphereHover(
   mouseRef: MutableRefObject<{ x: number; y: number }>,
 ) {
   useEffect(() => {
+    // Touch-only devices have no hover capability — skip the sphere effect entirely.
+    if (window.matchMedia("(hover: none)").matches) {
+      return;
+    }
+
     const btn = targetRef.current;
     if (!btn) {
       return;
