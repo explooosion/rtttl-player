@@ -566,6 +566,10 @@
   "pagination": {
     "pageInfo": "{{current}} / {{total}} 페이지"
   },
+  "betaBanner": {
+    "message": "RTTTL Hub는 현재 개발 중입니다. 일부 기능이 불완전하거나 일시적으로 사용할 수 없을 수 있습니다.",
+    "dismiss": "닫기"
+  },
   "language": {
     "en": "English",
     "zh-TW": "繁體中文",

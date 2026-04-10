@@ -6,6 +6,7 @@ import { FaMusic } from "react-icons/fa";
 import { AppHeader } from "./app_header";
 import { AppMobileSidebar } from "./app_mobile_sidebar";
 import { AppFooter } from "./app_footer";
+import { BetaNoticeBanner } from "./beta_notice_banner";
 import { CookieConsentBanner } from "./cookie_consent_banner";
 import { useCollectionStore } from "../stores/collection_store";
 import { usePlayerStore } from "../stores/player_store";
@@ -90,6 +91,7 @@ export function AppShell() {
 
   return (
     <div className="min-h-screen">
+      <BetaNoticeBanner />
       <AppHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} scrolled={scrolled} />
       <AppMobileSidebar isOpen={sidebarOpen} onClose={closeSidebar} />
 

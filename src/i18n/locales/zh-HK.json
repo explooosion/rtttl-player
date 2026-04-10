@@ -566,6 +566,10 @@
   "pagination": {
     "pageInfo": "第 {{current}} / {{total}} 頁"
   },
+  "betaBanner": {
+    "message": "RTTTL Hub 目前正積極開發中，部分功能可能尚未完整或暫時無法使用。",
+    "dismiss": "關閉"
+  },
   "language": {
     "en": "English",
     "zh-TW": "繁體中文",
